@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default " en-us " }}">
+<html lang="en-us">
 
 <head>
   <meta charset="UTF-8">
@@ -12,12 +12,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly.min.css" rel="stylesheet" media="screen, print">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
 
-  <!-- jQuery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <script src="dist/bundle.js"></script>
-
   <style>
     body {
       font-family: Open Sans;
@@ -27,6 +21,10 @@
       text-align: center;
       font-size: small;
       border-top: 1px solid;
+    }
+    
+    #login:hover {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -77,6 +75,14 @@
         </ul>
       </div>
     </nav>
+
+    <div class="toast-pf toast-pf-max-width toast-pf-top-right alert alert-danger alert-dismissable fade in hidden" id="toastNotification">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        <span class="pficon pficon-close"></span>
+      </button>
+      <span class="pficon pficon-error-circle-o"></span>
+      <div id="errorMessage"></div>
+    </div>
   </header>
 
   <main>
