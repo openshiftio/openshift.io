@@ -11,26 +11,9 @@
   <!-- PatternFly Styles -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly.min.css" rel="stylesheet" media="screen, print">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
-
-  <style>
-    body {
-      font-family: Open Sans;
-    }
-    
-    .footer {
-      text-align: center;
-      font-size: small;
-      border-top: 1px solid;
-    }
-    
-    #login:hover {
-      cursor: pointer;
-    }
-
-  </style>
 </head>
 
-<body class="cards-pf">
+<body class="app app-component flex-container in-column-direction flex-grow cards-pf">
   <header class="padding-bottom-10">
     <nav class="navbar navbar-inverse navbar-pf" role="navigation">
       <div class="navbar-header">
@@ -38,8 +21,8 @@
           <li id="loggedout">
             <a id="login">Sign In</a>
           </li>
-          <li dropdown class="pull-right dropdown hidden" id="loggedin">
-            <a dropdown-open class="pull-right">
+          <li class="pull-right dropdown hidden" id="loggedin">
+            <a class="pull-right" data-toggle="dropdown" href="#">
               <div id="header_dropdownToggle_header">
                 <span class="nav-item-icon">
                   <span class="nav-icon pficon-user hidden" id="nouserimage"></span>
@@ -51,7 +34,7 @@
             </a>
             <ul class="dropdown-menu view-width-100">
               <li>
-                <a>
+                <a id="profilelink">
                   <span class="nav-item-text">Profile</span>
                 </a>
               </li>
@@ -62,12 +45,12 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a>
+                <a id="settingslink">
                   <span class="nav-item-text">Settings</span>
                 </a>
               </li>
               <li>
-                <a>
+                <a id="logout" href="#">
                   <span class="nav-item-text">Sign out</span>
                 </a>
               </li>
@@ -86,9 +69,9 @@
     </div>
   </header>
 
-  <main>
+  <main class="view-container flex-container in-column-direction container-cards-pf">
 
-    <div class="container-fluid container-cards-pf">
+    <div class="view overflow-auto">
 
       <div class="row row-cards-pf">
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">

@@ -1,0 +1,133 @@
+
+$debug-border:0;
+$debug-component-border:0;
+$debug-component-spacing:0;
+
+$debug-root-component-border-color: navy;
+$debug-component-border-color: lighten( navy,20%);
+$debug-child-component-border-color:lighten($debug-component-border-color,30%);
+
+$debug-div-border-color:orange;
+$debug-aside-border-color:darken(orangered,20%);
+$debug-section-border-color: lighten(orangered,0%);
+
+$debug-header-border-color:darkgreen;
+$debug-main-border-color:lighten($debug-header-border-color,10%);
+$debug-footer-border-color:lighten($debug-header-border-color,20%);
+
+$debug-bootstrap-container-color:darken(saddlebrown,10%);
+$debug-bootstrap-row-color:lighten($debug-bootstrap-container-color,10%);
+$debug-bootstrap-column-color:lighten($debug-bootstrap-container-color,20%);
+
+
+// add a layout border
+@mixin debug-border($color,$width:$debug-border) {
+  border : solid $width $color ;
+}
+
+@mixin debug-stretch-to-fit-viewport($debuging-offset:3*$debug-component-spacing){
+  min-height: calc(100vh - #{$debuging-offset});
+}
+
+// header main footer trio layout debugging
+@mixin header-main-footer-child{
+  >header
+    {
+      @include debug-border($debug-header-border-color);
+    }
+  >main
+    {
+      @include debug-border($debug-main-border-color);
+    }
+  >footer
+    {
+      @include debug-border($debug-footer-border-color);
+    }
+};
+
+.app{
+  @include debug-border($debug-root-component-border-color,$debug-component-border);
+  //min-height: calc(100vh - 2*$debug-component-spacing) !important
+  //margin:($debug-component-border+2*$debug-component-spacing);
+}
+
+//app component layout debugging
+.app-component
+{
+
+  @include debug-border($debug-component-border-color,$debug-component-border);
+
+  >.app-component
+  {
+     @include debug-border($debug-child-component-border-color,$debug-component-border);
+  }
+  @include header-main-footer-child;
+  >div
+  {
+    @include header-main-footer-child;
+    >aside
+    {
+      @include debug-border($debug-aside-border-color);
+      @include header-main-footer-child;
+    }
+    >section
+    {
+      @include debug-border($debug-section-border-color);
+      @include header-main-footer-child;
+    }
+  }
+  >aside
+  {
+
+    @include debug-border($debug-aside-border-color);
+    @include header-main-footer-child;
+  }
+  >section
+  {
+    @include debug-border($debug-section-border-color);
+    @include header-main-footer-child;
+    >aside
+    {
+      @include debug-border($debug-aside-border-color);
+    }
+  }
+};
+
+//flex container layout debugging
+.flex-container
+{
+  @include header-main-footer-child;
+}
+
+
+//all app-component layout bedugging
+@mixin debug-app-component{
+    padding:$debug-component-spacing;
+    margin:$debug-component-spacing;
+    border-style: solid;
+};
+
+//bootstrap layout debugging
+.container-fluid
+{
+    @include debug-border($debug-bootstrap-container-color);
+}
+
+.row
+{
+    @include debug-border($debug-bootstrap-row-color);
+
+}
+//startswith or contains
+div[class^="col-"], div[class*=" col-"] {
+     @include debug-border($debug-bootstrap-column-color);
+    //  >.app-component
+    //  {
+    //    margin-left:-15px;
+    //    margin-right:-15px;
+    //  }
+}
+
+
+
+

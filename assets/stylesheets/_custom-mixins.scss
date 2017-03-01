@@ -1,0 +1,39 @@
+// functions
+//convert px to em/rem
+@function em($px) {
+  @return ($px / $em-base-font-size) * 1em;
+}
+
+@function rem($px) {
+  @return ($px / $rem-base-font-size) * 1rem;
+}
+
+//custom mixins
+@mixin truncate() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+@mixin borderRadius($radius) {
+  border-radius: $radius;
+  -o-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}

@@ -1,0 +1,45 @@
+@import 'custom-variables';
+@import 'custom-mixins';
+
+body {
+    font-family: Open Sans;
+}
+
+//colors
+.color-grey{ color: $color-pf-black-800 !important; }
+
+// custom classes
+.containerPadd{ padding: em(96) 0 em(66) 0; }
+.containerPadd-nologin{ padding-bottom: 0; }
+.truncate{
+    @include truncate;
+}
+.truncate-ellipsis{
+    display: table;
+    table-layout: fixed;
+    white-space: nowrap;
+}
+.dn{ display: none; }
+.dib{ display: inline-block; }
+.db{ display: block; }
+.textCenter{ text-align: $textCenter; }
+
+@media (max-width: $grid-float-breakpoint){
+    .mobdn{ display: none; }
+    .list-view-pf {
+        .list-group-item-heading{
+            font-size: em(12);
+        }
+    }
+}
+@media (max-width: ($grid-float-breakpoint - 1)){
+  .containerPadd{ padding-top: em(11); }
+  .containerPadd-nologin{ padding-bottom: 0; }
+}
+    
+#login:hover {
+  cursor: pointer;
+}
+
+
+@import 'layout';
