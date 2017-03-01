@@ -51,19 +51,63 @@ export class Auth {
     window.location.href = this.apiUrl + '/login/authorize';
   }
 
-  handleLogin() {
-    let url = new URI(window.location.href);
+  handleLogin(url : uri.URI) {
     let query = url.query(true)as any;
     if (url.hasQuery('token')) {
+      let token = query['token'];
       let redir = new URI('/home')
-        .addQuery({token: query['token']})
+        .addQuery({token: token})
         .toString();
       console.log('Authentication succeeded, redirecting to', redir);
+      window
+        .localStorage
+        .setItem('authToken', token);
       window.location.href = redir;
-    } else if (url.hasQuery('error')) {
-      $("#errorMessage").html("abc" + query['error']);
-      $("#toastNotification").css('visibility','visible').hide().fadeIn().removeClass('hidden');;
     }
+  }
+
+  handleError(url : uri.URI) {
+    let query = url.query(true)as any;
+    if (url.hasQuery('error')) {
+      $("#errorMessage").html("abc" + query['error']);
+      $("#toastNotification")
+        .css('visibility', 'visible')
+        .hide()
+        .fadeIn()
+        .removeClass('hidden');
+    }
+  }
+
+  updateUserMenu() {
+    let token = window
+      .localStorage
+      .getItem('authToken');
+    if (token) {
+      $.ajax({
+        url: this.apiUrl + 'user',
+        headers: {
+          "Authorization": "Bearer " + token,
+          'Content-Type': "application/json"
+        },
+        method: 'GET',
+        dataType: 'json',
+        success: response => {
+          console.log(response);
+          let user = response.data;
+          if (user.attributes.imageURL) {
+            $("#userimage")
+              .attr("src", user.attributes.imageURL)
+              .removeClass("hidden");
+          } else {
+            $("#nouserimage").removeClass("hidden");
+          }
+          $("#name").html(user.attributes.fullName);
+          $("#loggedout").hide();
+          $("#loggedin").removeClass('hidden');
+        }
+      });
+    }
+
   }
 }
 
@@ -82,10 +126,14 @@ function loadScripts() {
 $(document)
   .ready(function () {
 
+    let auth = new Auth();
+    let url = new URI(window.location.href);
+    auth.handleLogin(url);
+
     loadScripts();
 
-    let auth = new Auth();
-    auth.handleLogin();
+    auth.handleError(url);
+    auth.updateUserMenu();
 
     $("a#login").click(function () {
       auth.login();

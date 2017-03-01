@@ -26,6 +26,7 @@
     #login:hover {
       cursor: pointer;
     }
+
   </style>
 </head>
 
@@ -34,17 +35,17 @@
     <nav class="navbar navbar-inverse navbar-pf" role="navigation">
       <div class="navbar-header">
         <ul class="nav navbar-nav navbar-right">
-          <li>
+          <li id="loggedout">
             <a id="login">Sign In</a>
           </li>
-          <li dropdown class="pull-right dropdown hidden">
+          <li dropdown class="pull-right dropdown hidden" id="loggedin">
             <a dropdown-open class="pull-right">
               <div id="header_dropdownToggle_header">
                 <span class="nav-item-icon">
-              <span class="nav-icon pficon-user"></span>
-                <!--<img src="" />-->
+                  <span class="nav-icon pficon-user hidden" id="nouserimage"></span>
+                  <img class="hidden" id="userimage"/>
                 </span>
-                <span class="nav-item-text"></span>
+                <span class="nav-item-text" id="name"></span>
                 <span class="nav-icon caret"></span>
               </div>
             </a>
