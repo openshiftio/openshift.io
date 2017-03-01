@@ -21,34 +21,35 @@ yum clean all
 service docker start
 
 # Build builder image
-docker build -t www.openshift.io-builder -f Dockerfile.builder .
-mkdir -p dist && docker run --detach=true --name=www.openshift.io-builder -t -v $(pwd)/dist:/dist:Z -e BUILD_NUMBER -e BUILD_URL -e BUILD_TIMESTAMP www.openshift.io-builder
+docker build -t wwwopenshiftio-builder -f Dockerfile.builder .
+mkdir -p dist && docker run --detach=true --name=wwwopenshiftio-builder -t -v $(pwd)/dist:/dist:Z -e BUILD_NUMBER -e BUILD_URL -e BUILD_TIMESTAMP wwwopenshiftio-builder
 
-# Build the site
-docker exec www.openshift.io-builder hugo 
+# Build almigty-ui
+docker exec wwwopenshiftio-builder npm install
 
 ## Exec unit tests
-# NO TESTS docker exec www.openshift.io-builder ./run_unit_tests.sh
+#docker exec wwwopenshiftio-builder ./run_unit_tests.sh
 
-if [ $? -eq 0 ]; then
-  echo 'CICO: unit tests OK'
-else
-  echo 'CICO: unit tests FAIL'
-  exit 1
-fi
+#if [ $? -eq 0 ]; then
+#  echo 'CICO: unit tests OK'
+#else
+#  echo 'CICO: unit tests FAIL'
+#  exit 1
+#fi
 
 ## Exec functional tests
-# NO TESTS docker exec www.openshift.io-builder ./run_functional_tests.sh
+#docker exec wwwopenshiftio-builder ./run_functional_tests.sh
 
-if [ $? -eq 0 ]; then
-  echo 'CICO: functional tests OK'
-  docker exec -u root www.openshift.io-builder cp -r /home/fabric8/workspace/public /dist
+#if [ $? -eq 0 ]; then
+#  echo 'CICO: functional tests OK'
+  docker exec wwwopenshiftio-builder npm run build:prod
+  docker exec -u root wwwopenshiftio-builder cp -r /home/fabric8/dist /
   ## All ok, deploy
-  if [ $? -eq 0 ]; then
-    echo 'CICO: build OK'
-    docker build -t fabric-ui-deploy -f Dockerfile.deploy . && \
-    docker tag fabric-ui-deploy 8.43.84.245.xip.io/fabric8io/fabric8-ui:latest && \
-    docker push 8.43.84.245.xip.io/fabric8io/fabric8-ui:latest
+#  if [ $? -eq 0 ]; then
+#    echo 'CICO: build OK'
+    docker build -t wwwopenshiftio-deploy -f Dockerfile.deploy . && \
+    docker tag wwwopenshiftio-deploy 8.43.84.245.xip.io/fabric8io/wwwopenshiftio:latest && \
+    docker push 8.43.84.245.xip.io/fabric8io/wwwopenshiftio:latest
     if [ $? -eq 0 ]; then
       echo 'CICO: image pushed, ready to update deployed app'
       exit 0
@@ -56,12 +57,12 @@ if [ $? -eq 0 ]; then
       echo 'CICO: Image push to registry failed'
       exit 2
     fi
-  else
-    echo 'CICO: app tests Failed'
-    exit 1
-  fi
-else
-  echo 'CICO: functional tests FAIL'
-  exit 1
-fi
+#  else
+#    echo 'CICO: app tests Failed'
+#    exit 1
+#  fi
+#else
+#  echo 'CICO: functional tests FAIL'
+#  exit 1
+#fi
 
