@@ -8,12 +8,12 @@ import './header.scss';
 
 export class ApiLocator {
 
-  buildApiUrl(override : string, subdomain : string, suffix : string) {
+  buildApiUrl(override: string, subdomain: string, suffix: string) {
     if (override) {
       return override;
     } else {
       // Simple check to trim www
-      let domainname : string = window.location.hostname;
+      let domainname: string = window.location.hostname;
       if (domainname.startsWith('www')) {
         domainname = window
           .location
@@ -38,31 +38,31 @@ export class ApiLocator {
 }
 
 export class Token {
-  'access_token' : string;
-  'expires_in' : number;
-  'refresh_expires_in' : number;
-  'refresh_token' : string;
-  'token_type' : string;
+  'access_token': string;
+  'expires_in': number;
+  'refresh_expires_in': number;
+  'refresh_token': string;
+  'token_type': string;
 }
 
 export class Auth {
 
   readonly APP_PATH = '/home';
-  private api : ApiLocator = new ApiLocator();
-  private apiUrl : string;
+  private api: ApiLocator = new ApiLocator();
+  private apiUrl: string;
 
-  private refreshInterval : number;
-  private clearTimeoutId : any;
+  private refreshInterval: number;
+  private clearTimeoutId: any;
 
-  private loggedIn : boolean;
+  private loggedIn: boolean;
 
-  private authToken : string;
+  private authToken: string;
 
   constructor() {
-    console.log('Auth API URL:', this.apiUrl);
     this.apiUrl = this
       .api
       .buildApiUrl(AUTH_API_URL, 'api', 'api');
+    console.log('Auth API URL:', this.apiUrl);
     this.authToken = localStorage.getItem('auth_token');
   }
 
@@ -80,7 +80,7 @@ export class Auth {
     this.updateUserMenu();
   }
 
-  setupRefreshTimer(refreshInSeconds : number) {
+  setupRefreshTimer(refreshInSeconds: number) {
     if (!this.clearTimeoutId) {
       let refreshInMs = Math.round(refreshInSeconds * .9) * 1000;
       console.log('Refreshing token in: ' + refreshInMs + ' milliseconds.');
@@ -94,7 +94,7 @@ export class Auth {
       this.clearTimeoutId = null;
       let refreshTokenUrl = this.apiUrl + '';
       let refreshToken = localStorage.getItem('refresh_token');
-      let body = JSON.stringify({"refresh_token": refreshToken});
+      let body = JSON.stringify({ "refresh_token": refreshToken });
       $.ajax({
         url: this.apiUrl + 'login/refresh',
         headers: {
@@ -114,13 +114,13 @@ export class Auth {
     }
   }
 
-  handleLogin(url : uri.URI) {
-    let query = url.query(true)as any;
+  handleLogin(url: uri.URI) {
+    let query = url.query(true) as any;
     if (url.hasQuery('token')) {
       this.loggedIn = true;
       this.authToken = query['token'];
       let redir = new URI('/home')
-        .addQuery({token: this.authToken})
+        .addQuery({ token: this.authToken })
         .toString();
       console.log('Authentication succeeded, redirecting to', redir);
       window
@@ -130,8 +130,8 @@ export class Auth {
     }
   }
 
-  handleError(url : uri.URI) {
-    let query = url.query(true)as any;
+  handleError(url: uri.URI) {
+    let query = url.query(true) as any;
     if (url.hasQuery('error')) {
       $("#errorMessage").html("abc" + query['error']);
       $("#toastNotification")
@@ -152,7 +152,7 @@ export class Auth {
         },
         method: 'GET',
         dataType: 'json',
-        success: response => {
+        success: (response: any) => {
           let user = response.data;
           if (user.attributes.imageURL) {
             $("#userimage")
@@ -173,8 +173,19 @@ export class Auth {
       $("#loggedin").hide();
     }
   }
+  
+  bindLoginLogout() {
+    
+  $("a#login").click(function () {
+      this.login();
+    });
 
-  processTokenResponse(response : any) : Token {
+    $("a#logout").click(function () {
+      this.logout();
+    });    
+  }
+
+  processTokenResponse(response: any): Token {
     let token = response as Token;
     this.authToken = token.access_token;
     localStorage.setItem('auth_token', this.authToken);
@@ -183,36 +194,67 @@ export class Auth {
   }
 }
 
+export class Waitlist {
+
+  readonly SUBMIT_REF = '808217156658529043';
+  readonly GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSenhkARBc9fc2lKWKCD0ahMVuFjPZYxYsVwemCAzj4jL-WtPw/formResponse?fbzx=' + this.SUBMIT_REF;
+
+  submit(email: string, voucherCode: string) {
+    $.ajax({
+      url: this.GOOGLE_FORM_URL,
+      type: "POST",
+      data: {
+        'entry.31873912': email,
+        'entry.170221386': voucherCode,
+        fbzx: this.SUBMIT_REF,
+        pageHistory: 0,
+        draftresponse: [null, null, "-9199359477331487980"],
+        fvv: 1
+      }
+    });
+  }
+
+  bindWaitListForm() {
+    $("#waitlistform").submit((val: any) => {
+      let email = $("#email").val();
+      let voucherCode = $("#vouchercode").val();
+      console.log(email, voucherCode);
+      event.preventDefault();
+    });
+  }
+
+}
+
 function loadScripts() {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
   (window as any).$ = $;
 
   // Add patternfly - I don't need it in the main bundle
-  $("body").append("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/" +
-      "bootstrap.min.js\"></script>");
-  $("body").append("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
-      "nfly.min.js\"></script>");
+  $("body").append("<script  src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/" +
+    "bootstrap.min.js\"></script>");
+  $("body").append("<script  src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
+    "nfly.min.js\"></script>");
+    
 }
 
 $(document)
   .ready(function () {
 
-    let auth = new Auth();
-    let url = new URI(window.location.href);
-    auth.handleLogin(url);
-
+    // Add the JS
     loadScripts();
 
+    // Create a nice representation of our URL
+    let url = new URI(window.location.href);
+
+    // Build services for the login widget
+    let auth = new Auth();
+    auth.handleLogin(url);
     auth.handleError(url);
     auth.updateUserMenu();
+    auth.bindLoginLogout();
 
-    $("a#login").click(function () {
-      auth.login();
-    });
+    // Build services for the waitlist widget
 
-    $("a#logout").click(function () {
-      auth.logout();
-    });
 
   });
