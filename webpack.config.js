@@ -37,7 +37,7 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
   entry: './app/index.ts',
-  devtool: 'source-map',
+  devtool: (isProd ? 'source-map' : 'eval-source-map'),
   output: {
     //filename: '[name]' + (isProd ? '.[hash]' : '') + '.js',
     path: (isProd ? path.join(ROOT, '/dist') : '/')

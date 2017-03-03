@@ -108,37 +108,45 @@ export class Auth {
           let token = this.processTokenResponse(responseJson.token);
           this.setupRefreshTimer(token.expires_in);
           console.log('token refreshed at:' + Date.now());
-
         }
       });
     }
   }
 
   handleLogin(url: uri.URI) {
-    let query = url.query(true) as any;
-    if (url.hasQuery('token')) {
-      this.loggedIn = true;
-      this.authToken = query['token'];
-      let redir = new URI('/home')
-        .addQuery({ token: this.authToken })
-        .toString();
-      console.log('Authentication succeeded, redirecting to', redir);
-      window
-        .localStorage
-        .setItem('auth_token', this.authToken);
-      window.location.href = redir;
+    let token = localStorage.getItem('auth_token');
+    if (token) {
+      this.authToken = token;
+      // refresh the token in five seconds to make sure we have expiry and a running timer - only do this first time in
+      if (!this.refreshInterval) {
+        this.setupRefreshTimer(15);
+      }
+      return true;
     }
+    let params: any = this.getUrlParams();
+    if ('token_json' in params) {
+      let tokenJson = decodeURIComponent(params['token_json']);
+      let token = this.processTokenResponse(JSON.parse(tokenJson));
+      this.setupRefreshTimer(token.expires_in);
+      return true;
+    }
+    return false;
+  }
+
+  getUrlParams(): Object {
+    let query = window.location.search.substr(1);
+    let result: any = {};
+    query.split('&').forEach(function (part) {
+      let item: any = part.split('=');
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
   }
 
   handleError(url: uri.URI) {
     let query = url.query(true) as any;
     if (url.hasQuery('error')) {
-      $("#errorMessage").html("abc" + query['error']);
-      $("#toastNotification")
-        .css('visibility', 'visible')
-        .hide()
-        .fadeIn()
-        .removeClass('hidden');
+      addToast("alert-danger", query['error']);
     }
   }
 
@@ -173,16 +181,16 @@ export class Auth {
       $("#loggedin").hide();
     }
   }
-  
+
   bindLoginLogout() {
-    
-  $("a#login").click(function () {
+
+    $("a#login").click(function () {
       this.login();
     });
 
     $("a#logout").click(function () {
       this.logout();
-    });    
+    });
   }
 
   processTokenResponse(response: any): Token {
@@ -199,19 +207,17 @@ export class Waitlist {
   readonly SUBMIT_REF = '808217156658529043';
   readonly GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSenhkARBc9fc2lKWKCD0ahMVuFjPZYxYsVwemCAzj4jL-WtPw/formResponse?fbzx=' + this.SUBMIT_REF;
 
+  private clearTimeoutId: number;
+  private refreshInterval: number;
+
   submit(email: string, voucherCode: string) {
-    $.ajax({
-      url: this.GOOGLE_FORM_URL,
-      type: "POST",
-      data: {
-        'entry.31873912': email,
-        'entry.170221386': voucherCode,
-        fbzx: this.SUBMIT_REF,
-        pageHistory: 0,
-        draftresponse: [null, null, "-9199359477331487980"],
-        fvv: 1
-      }
-    });
+    let sub = $("#iframe").contents().find("#formsub");
+    sub.find("#emailsub").val(email);
+    sub.find("#vouchercodesub").val(voucherCode);
+    sub.submit();
+    $("#register").attr("disabled", "true");    
+    // Start checking for waitlisting to be successful
+    this.checkWaitlisting(0);
   }
 
   bindWaitListForm() {
@@ -219,9 +225,49 @@ export class Waitlist {
       let email = $("#email").val();
       let voucherCode = $("#vouchercode").val();
       console.log(email, voucherCode);
+      this.submit(email, voucherCode);
       event.preventDefault();
     });
+    $('<iframe height="0" width="0" id="iframe" class="hidden"></iframe>')
+      .insertAfter('#waitlistform');
+
+    $("#iframe").contents().find("body")
+      .html('<form method="POST" action="' + this.GOOGLE_FORM_URL + '" id="formsub">' +
+      '<input type="text" name="entry.31873912" id="emailsub">' +
+      '<input type="text" name="entry.170221386" id="vouchercodesub">' +
+      '<input type="text" name="fbzx" value="' + this.SUBMIT_REF + '">' +
+      '<input type="text" name="pageHistory" value="0">' +
+      '<input type="text" name="draftresponse" id="[null, null, -9199359477331487980]">' +
+      '<input type="text" name="fvv" value="1">' +
+      '<input type="submit">' +
+      '</form>');
   }
+
+  setupRefreshTimer(iteration: number) {
+    let refreshInSeconds = 0.5;
+    if (!this.clearTimeoutId) {
+      let refreshInMs = Math.round(refreshInSeconds * .9) * 1000;
+      console.log('Checking for waitlisting: ' + refreshInMs + ' milliseconds.');
+      this.refreshInterval = refreshInMs;
+      this.clearTimeoutId = setTimeout(() => this.checkWaitlisting(iteration + 1), refreshInMs);
+    }
+  }
+
+  checkWaitlisting(iteration: number) {
+    if ($("#iframe").contents().find(".freebirdFormviewerViewResponseConfirmationMessage")) {
+      addToast("alert-success", "We've placed you on the waitlist! We'll be in touch soon.");
+      $("#email").attr("disabled", "true");
+      $("#vouchercode").attr("disabled", "true");
+    } else if (iteration > 60) { 
+      // Give up after 30 seconds
+      addToast("alert-danger", "Waitlisting failed. Please try again later.");
+      $("#register").removeAttr("disabled");
+    }
+    else {
+      this.setupRefreshTimer(iteration);
+    }
+  }
+
 
 }
 
@@ -235,7 +281,19 @@ function loadScripts() {
     "bootstrap.min.js\"></script>");
   $("body").append("<script  src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
     "nfly.min.js\"></script>");
-    
+
+}
+
+function addToast(cssClass: string, htmlMsg: string) {
+  $("#toastNotification")
+    .removeClass('alert-info alert-sucess alert-warning alert-danger')
+    .addClass(cssClass)
+    .css('visibility', 'visible')
+    .hide()
+    .fadeIn()
+    .removeClass('hidden');
+  $("#toastMessage").html(htmlMsg);
+
 }
 
 $(document)
@@ -255,6 +313,7 @@ $(document)
     auth.bindLoginLogout();
 
     // Build services for the waitlist widget
-
+    let waitlist = new Waitlist();
+    waitlist.bindWaitListForm();
 
   });
