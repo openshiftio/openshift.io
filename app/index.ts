@@ -121,16 +121,24 @@ export class Auth {
       if (!this.refreshInterval) {
         this.setupRefreshTimer(15);
       }
-      return true;
+      this.bindLoggedInUser();
+      return;
     }
     let params: any = this.getUrlParams();
     if ('token_json' in params) {
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
       this.setupRefreshTimer(token.expires_in);
-      return true;
+      this.bindLoggedInUser()
+      return;
     }
-    return false;
+  }
+
+  bindLoggedInUser() {
+    this.loggedIn = true;
+    this.updateUserMenu();
+    $("#waitlistform").hide();
+    $("#waitlisttext").hide();
   }
 
   getUrlParams(): Object {
@@ -183,13 +191,13 @@ export class Auth {
   }
 
   bindLoginLogout() {
-
+    let _this = this;
     $("a#login").click(function () {
-      this.login();
+      _this.login();
     });
 
     $("a#logout").click(function () {
-      this.logout();
+      _this.logout();
     });
   }
 
