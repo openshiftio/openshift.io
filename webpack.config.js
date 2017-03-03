@@ -4,7 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Helper functions
-var ROOT = path.resolve(__dirname, '.');
+const ROOT = path.resolve(__dirname, '.');
+const isProd = process.env.NODE_ENV === "development";
+
 
 const sassModules = [
   {
@@ -30,15 +32,15 @@ sassModules.forEach(val => {
 
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+    disable: !isProd
 });
 
 module.exports = {
   entry: './app/index.ts',
   devtool: 'source-map',
   output: {
-    filename: 'bundle.js',
-    path: 'dist'
+    //filename: '[name]' + (isProd ? '.[hash]' : '') + '.js',
+    path: (isProd ? path.join(ROOT, '/dist') : '/')
   },
   module: {
     rules: [
