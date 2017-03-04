@@ -77,6 +77,8 @@ export class Auth {
     clearTimeout(this.clearTimeoutId);
     this.refreshInterval = null;
     this.loggedIn = false;
+    $("#waitlistform").show()
+    $("#waitlisttext").show();
     this.updateUserMenu();
   }
 
@@ -101,13 +103,18 @@ export class Auth {
           "Authorization": "Bearer " + this.authToken,
           'Content-Type': "application/json"
         },
-        method: 'GET',
+        method: 'POST',
         dataType: 'json',
+        data: JSON.stringify({"refresh_token": refreshToken}),
         success: response => {
           let responseJson = response.json();
           let token = this.processTokenResponse(responseJson.token);
           this.setupRefreshTimer(token.expires_in);
           console.log('token refreshed at:' + Date.now());
+        },
+        error: () => {
+          this.logout();
+          console.log('Error refreshing token')
         }
       });
     }
@@ -182,6 +189,13 @@ export class Auth {
           $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
           $("#loggedout").hide();
           $("#loggedin").removeClass('hidden');
+        },
+        error: (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+          if (response.status == 401) {
+            this.refreshToken();
+          } else {
+            this.logout();
+          }
         }
       });
     } else {
@@ -223,7 +237,7 @@ export class Waitlist {
     sub.find("#emailsub").val(email);
     sub.find("#vouchercodesub").val(voucherCode);
     sub.submit();
-    $("#register").attr("disabled", "true");    
+    $("#register").attr("disabled", "true");
     // Start checking for waitlisting to be successful
     this.checkWaitlisting(0);
   }
@@ -266,7 +280,7 @@ export class Waitlist {
       addToast("alert-success", "We've placed you on the waitlist! We'll be in touch soon.");
       $("#email").attr("disabled", "true");
       $("#vouchercode").attr("disabled", "true");
-    } else if (iteration > 60) { 
+    } else if (iteration > 60) {
       // Give up after 30 seconds
       addToast("alert-danger", "Waitlisting failed. Please try again later.");
       $("#register").removeAttr("disabled");
@@ -294,14 +308,14 @@ function loadScripts() {
 
 function addToast(cssClass: string, htmlMsg: string) {
   $("#toastNotification")
-    .removeClass('alert-info alert-sucess alert-warning alert-danger')
-    .addClass(cssClass)
-    .css('visibility', 'visible')
-    .hide()
-    .fadeIn()
-    .removeClass('hidden');
+    .fadeOut(() =>
+      $("#toastNotification")
+        .removeClass('hidden')
+        .removeClass('alert-info alert-sucess alert-warning alert-danger')
+        .addClass(cssClass)
+        .fadeIn()
+    );
   $("#toastMessage").html(htmlMsg);
-
 }
 
 $(document)

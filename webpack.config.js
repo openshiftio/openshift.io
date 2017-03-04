@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Helper functions
 const ROOT = path.resolve(__dirname, '.');
 const isProd = process.env.NODE_ENV === "development";
@@ -36,7 +37,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: './app/index.ts',
+  entry: ['./app/index.ts' ],
   devtool: (isProd ? 'source-map' : 'eval-source-map'),
   output: {
     //filename: '[name]' + (isProd ? '.[hash]' : '') + '.js',
@@ -50,8 +51,9 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.scss$/,
-        use: extractSass.extract([
-          {
+        use: extractSass.extract({
+          fallback: 'style-loader',
+          use: [ {
             loader: 'css-loader'
           }, {
             loader: 'sass-loader',
@@ -61,7 +63,7 @@ module.exports = {
               })
             }
           }
-        ])
+        ]})
       }
     ]
   },
@@ -82,7 +84,8 @@ module.exports = {
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL)
     }),
-    extractSass
+    extractSass,
+    new CopyWebpackPlugin([])
 
   ],
 
