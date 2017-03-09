@@ -32,7 +32,7 @@ sassModules.forEach(val => {
 });
 
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].css",
+    filename: "/openshiftio/[name].css",
     disable: !isProd
 });
 
@@ -40,7 +40,7 @@ module.exports = {
   entry: ['./app/index.ts' ],
   devtool: (isProd ? 'source-map' : 'eval-source-map'),
   output: {
-    filename: '[name].js',
+    filename: '/openshiftio/[name].js',
     path: (isProd ? path.join(ROOT, '/dist') : '/')
   },
   module: {
