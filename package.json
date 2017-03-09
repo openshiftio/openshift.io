@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "npm run clean && webpack",
-    "build:prod": "npm run clean && webpack -p",
+    "build:prod": "npm run clean && NODE_ENV=production webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run clean && webpack-dev-server --open",
     "clean": "rimraf dist"

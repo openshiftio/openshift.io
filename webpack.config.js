@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Helper functions
 const ROOT = path.resolve(__dirname, '.');
-const isProd = process.env.NODE_ENV === "development";
+const isProd = process.env.NODE_ENV === "production";
 
 
 const sassModules = [
@@ -32,7 +32,7 @@ sassModules.forEach(val => {
 });
 
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
+    filename: "[name].css",
     disable: !isProd
 });
 
@@ -40,7 +40,7 @@ module.exports = {
   entry: ['./app/index.ts' ],
   devtool: (isProd ? 'source-map' : 'eval-source-map'),
   output: {
-    //filename: '[name]' + (isProd ? '.[hash]' : '') + '.js',
+    filename: '[name].js',
     path: (isProd ? path.join(ROOT, '/dist') : '/')
   },
   module: {
