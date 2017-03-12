@@ -6,6 +6,8 @@ import '../assets/stylesheets/variables.scss';
 import '../assets/stylesheets/custom.scss';
 import './header.scss';
 
+import {ComponentAnalyses} from './component-analyses'
+
 export class ApiLocator {
 
   buildApiUrl(override: string, subdomain: string, suffix: string) {
@@ -337,5 +339,8 @@ $(document)
     // Build services for the waitlist widget
     let waitlist = new Waitlist();
     waitlist.bindWaitListForm();
+
+    let componentAnalyses = new ComponentAnalyses();
+    componentAnalyses.buildComponentAnalyses();
 
   });
