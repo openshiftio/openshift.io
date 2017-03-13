@@ -12,39 +12,44 @@ export class StackAnalyses {
 
     buildStackAnalyses = () => {
         $('#pomTextConetntArea').show();
-        $('#pomStatus').hide();
+        $('#pomStatusSuccess').hide();
+        $('#pomStatusFailure').hide();
+        $('#stackReportCntr').hide();
         $('#stacAnalyseskbtn').on('click', () => {
-            let pomTextAreaValue = $('#pomTxtArea').val()
-            alert('am stack!' + pomTextAreaValue);
             this.callStackAnalysesApi();
         });
         $('#stackAnalysesAnchor').on('click', () => {
-            alert('am stack report!');
             this.callStackAnalysesReportApi();
         });
     }
 
     callStackAnalysesApi = () => {
+        let pomTextAreaValue = $('#pomTxtArea').val()
         $.ajax({
-            url: this.stackapiUrl + 'login/refresh',
+            url: this.stackapiUrl + 'manifestdata',
             headers: {
                 "Authorization": "Bearer ",
                 'Content-Type': "application/json"
             },
             method: 'POST',
             dataType: 'json',
-            data: JSON.stringify({}),
+            data: pomTextAreaValue,
             success: response => {
                 //TODO 
+                $('#pomStatusSuccess').show();
+                $('#pomStatusFailure').hide();
+                this.stackID = '8950acb76bc84235873d73d149cb9f61';
             },
             error: () => {
+                //$('#pomStatusSuccess').hide();
+                //$('#pomStatusFailure').show();
                 console.log('Error calling stack API')
             }
         });
 
-        //on success of API call
-        // $('#pomTextConetntArea').hide();
-        $('#pomStatus').show();
+        //TODO:: to be removed post API is up
+        $('#pomStatusSuccess').show();
+        $('#pomStatusFailure').hide();
         this.stackID = '8950acb76bc84235873d73d149cb9f61';
     }
 
@@ -54,9 +59,7 @@ export class StackAnalyses {
             method: 'GET',
             dataType: 'json',
             success: response => {
-                //TODO 
-                debugger;
-                alert('success' + response);
+                $('#stackReportCntr').show();
                 this.formRecommendationList(response)
             },
             error: () => {
@@ -105,6 +108,7 @@ export class StackAnalyses {
     }
 
     constructRecommenderUI = (recommendations: any) => {
+        $('#recommenderListView').html('');
         for (var i in recommendations) {
             var strToAdd = `<div class="list-view-pf-main-info">
                           <div class="list-view-pf-left">
