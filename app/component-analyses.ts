@@ -47,7 +47,7 @@ export class ComponentAnalyses {
         let component: string = '';
         let version: string = '';
         $('#compGridCntr').hide();
-        $('#componentStatus').show();
+        $('#componentStatus').hide();
         $("#componentanalysesform").submit((val: any) => {
             ecosystem = $("#ecosystem").val();
             component = $("#component").val();
