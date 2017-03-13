@@ -8,17 +8,18 @@ export class ComponentAnalyses {
 
     buildComponentGrid = (dataSet: Array<any>) => {
         for (var i in dataSet) {
-            console.log(i);
+            console.log(dataSet[i]);
+            debugger;
             var strToAdd = '<tr>' +
-                '<td>' + dataSet[i].gh_issues_closed_last_month + '</td>' +
-                '<td>' + dataSet[i].gh_issues_closed_last_year + '</td>' +
-                '<td>' + dataSet[i].gh_issues_opened_last_month + '<td>' +
-                '<td>' + dataSet[i].gh_issues_opened_last_year + '<td>' +
-                '<td>' + dataSet[i].gh_prs_closed_last_month + '</td>' +
-                '<td>' + dataSet[i].gh_prs_closed_last_year + '</td>' +
-                '<td>' + dataSet[i].gh_prs_opened_last_month + '<td>' +
-                '<td>' + dataSet[i].gh_prs_opened_last_year + '<td></tr>';
-            $('#compTable').append(strToAdd);
+                '<td>' + dataSet[i].ghIssueClosedLastMnth + '</td>' +
+                '<td>' + dataSet[i].ghIssueClosedLastYear + '</td>' +
+                '<td>' + dataSet[i].ghIssueOpenedLastMnth + '</td>' +
+                '<td>' + dataSet[i].ghIssueOpenedLastYear + '</td>' +
+                '<td>' + dataSet[i].ghPrsClosedLastMnth + '</td>' +
+                '<td>' + dataSet[i].ghPrsClosedLastYear + '</td>' +
+                '<td>' + dataSet[i].ghPrsOpenedLastMnth + '</td>' +
+                '<td>' + dataSet[i].ghPrsOpenedLastYear + '</td></tr>';
+            $('#compTable tbody').append(strToAdd);
         }
     }
 
@@ -27,14 +28,16 @@ export class ComponentAnalyses {
             let dataSet: Array<any> = [];
             for (let i in compAnalysesArray) {
                 console.log(compAnalysesArray[i].package)
-                dataSet.push(compAnalysesArray[i].package.gh_issues_closed_last_month)
-                dataSet.push(compAnalysesArray[i].package.gh_issues_closed_last_year)
-                dataSet.push(compAnalysesArray[i].package.gh_issues_opened_last_month)
-                dataSet.push(compAnalysesArray[i].package.gh_issues_opened_last_year)
-                dataSet.push(compAnalysesArray[i].package.gh_prs_closed_last_month)
-                dataSet.push(compAnalysesArray[i].package.gh_prs_closed_last_year)
-                dataSet.push(compAnalysesArray[i].package.gh_prs_opened_last_month)
-                dataSet.push(compAnalysesArray[i].package.gh_prs_opened_last_year)
+                let dataSetObj: any = {};
+                dataSetObj.ghIssueClosedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghIssueClosedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghIssueOpenedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghIssueOpenedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghPrsClosedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghPrsClosedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghPrsOpenedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ghPrsOpenedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSet.push(dataSetObj);
             }
             this.buildComponentGrid(dataSet);
         }
@@ -46,7 +49,8 @@ export class ComponentAnalyses {
         let ecosystem: string = '';
         let component: string = '';
         let version: string = '';
-        $('#compTable').hide();
+        $('#compGridCntr').hide();
+        $('#componentStatus').show();
         $('#stackbtn').on('click', () => {
             ecosystem = $("#ecosystem").val();
             component = $("#component").val();
@@ -58,12 +62,21 @@ export class ComponentAnalyses {
                 },
                 method: 'GET',
                 success: response => {
-                    compAnalysesArray = response.result.result.data;
-                    $('#compTable').show();
-                    this.formStackData(compAnalysesArray);
+                    if (response && response.result && response.result.result && response.result.result.data.length > 0) {
+                        compAnalysesArray = response.result.result.data;
+                        $('#compGridCntr').show();
+                        $('#componentStatus').hide();
+                        this.formStackData(compAnalysesArray);
+                    } else {
+                        $('#compGridCntr').hide();
+                        $('#componentStatus').show();
+                        $('#componentStatusMsg').text('No records found');
+                    }
                 },
                 error: () => {
-                    $('#compTable').hide();
+                    $('#compGridCntr').hide();
+                    $('#componentStatus').show();
+                    $('#componentStatusMsg').text('Failed to fetch the records');
                     console.log('Error fetching component analyses');
                 }
             });
