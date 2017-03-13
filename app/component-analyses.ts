@@ -9,14 +9,14 @@ export class ComponentAnalyses {
     buildComponentGrid = (dataSet: Array<any>) => {
         for (var i in dataSet) {
             var strToAdd = '<tr>' +
-                '<td>' + dataSet[i].ghIssueClosedLastMnth + '</td>' +
-                '<td>' + dataSet[i].ghIssueClosedLastYear + '</td>' +
-                '<td>' + dataSet[i].ghIssueOpenedLastMnth + '</td>' +
-                '<td>' + dataSet[i].ghIssueOpenedLastYear + '</td>' +
-                '<td>' + dataSet[i].ghPrsClosedLastMnth + '</td>' +
-                '<td>' + dataSet[i].ghPrsClosedLastYear + '</td>' +
-                '<td>' + dataSet[i].ghPrsOpenedLastMnth + '</td>' +
-                '<td>' + dataSet[i].ghPrsOpenedLastYear + '</td></tr>';
+                '<td>' + dataSet[i].ecosystem + '</td>' +
+                '<td>' + dataSet[i].name + '</td>' +
+                '<td>' + dataSet[i].cyclomaticComplexity + '</td>' +
+                '<td>' + dataSet[i].lineOfCode + '</td>' +
+                '<td>' + dataSet[i].numOfFiles + '</td>' +
+                '<td>' + dataSet[i].dependentsCount + '</td>' +
+                '<td>' + dataSet[i].currentVersion + '</td>' +
+                '<td>' + dataSet[i].latestVersion + '</td></tr>';
             $('#compTable tbody').append(strToAdd);
         }
     }
@@ -26,14 +26,14 @@ export class ComponentAnalyses {
             let dataSet: Array<any> = [];
             for (let i in compAnalysesArray) {
                 let dataSetObj: any = {};
-                dataSetObj.ghIssueClosedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghIssueClosedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghIssueOpenedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghIssueOpenedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghPrsClosedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghPrsClosedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghPrsOpenedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
-                dataSetObj.ghPrsOpenedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
+                dataSetObj.ecosystem = compAnalysesArray[i].version.pecosystem[0];
+                dataSetObj.name = compAnalysesArray[i].version.pname[0];
+                dataSetObj.cyclomaticComplexity = compAnalysesArray[i].version.cm_avg_cyclomatic_complexity[0];
+                dataSetObj.lineOfCode = compAnalysesArray[i].version.cm_loc[0];
+                dataSetObj.numOfFiles = compAnalysesArray[i].version.cm_num_files[0];
+                dataSetObj.dependentsCount = compAnalysesArray[i].version.dependents_count[0];
+                dataSetObj.currentVersion = compAnalysesArray[i].version.version[0];
+                dataSetObj.latestVersion = compAnalysesArray[i].package.latest_version[0];
                 dataSet.push(dataSetObj);
             }
             this.buildComponentGrid(dataSet);
