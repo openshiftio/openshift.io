@@ -40,7 +40,7 @@ docker exec wwwopenshiftio-builder npm install
 #if [ $? -eq 0 ]; then
 #  echo 'CICO: functional tests OK'
   docker exec wwwopenshiftio-builder npm run build:prod
-  docker exec -u root wwwopenshiftio-builder cp -r /home/fabric8/dist /
+  docker exec -u root wwwopenshiftio-builder cp -r /home/fabric8/wwwopenshiftio/dist /
 #else
 #  echo 'CICO: functional tests FAIL'
 #  exit 1
