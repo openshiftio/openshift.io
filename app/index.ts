@@ -30,7 +30,7 @@ export class ApiLocator {
         url = subdomain + '.' + url + '/';
       }
       if (suffix) {
-        url += suffix;
+        url += suffix + '/';
       }
       url = window.location.protocol + '//' + url;
       return url;
@@ -69,7 +69,7 @@ export class Auth {
   }
 
   login() {
-    window.location.href = this.apiUrl + '/login/authorize';
+    window.location.href = this.apiUrl + 'login/authorize';
   }
 
   logout() {
