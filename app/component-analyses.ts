@@ -48,7 +48,7 @@ export class ComponentAnalyses {
         let version: string = '';
         $('#compGridCntr').hide();
         $('#componentStatus').show();
-        $('#stackbtn').on('click', () => {
+        $("#componentanalysesform").submit((val: any) => {
             ecosystem = $("#ecosystem").val();
             component = $("#component").val();
             version = $("#version").val();
@@ -76,6 +76,7 @@ export class ComponentAnalyses {
                     $('#componentStatusMsg').text('Failed to fetch the records');
                 }
             });
+            event.preventDefault();
         });
     }
 
