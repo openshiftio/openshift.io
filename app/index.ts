@@ -6,7 +6,8 @@ import '../assets/stylesheets/variables.scss';
 import '../assets/stylesheets/custom.scss';
 import './header.scss';
 
-import {ComponentAnalyses} from './component-analyses'
+import {ComponentAnalyses} from './component-analyses';
+import {StackAnalyses} from './stack-analyses';
 
 export class ApiLocator {
 
@@ -342,5 +343,8 @@ $(document)
 
     let componentAnalyses = new ComponentAnalyses();
     componentAnalyses.buildComponentAnalyses();
+
+    let stackAnalyses = new StackAnalyses();
+    stackAnalyses.buildStackAnalyses();
 
   });
