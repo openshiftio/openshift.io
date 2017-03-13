@@ -4,6 +4,7 @@ export class StackAnalyses {
     private stackID: string;
     private similarStacks: any;
     private recommendations: any;
+    private dependencies: any;
 
     constructor() {
         this.stackapiUrl = 'http://api-bayesian.dev.rdu2c.fabric8.io/api/v1/';
@@ -71,6 +72,7 @@ export class StackAnalyses {
     formRecommendationList = (stackAnalysesData: any) => {
         if (stackAnalysesData.hasOwnProperty('recommendation')) {
             let recommendation: any = stackAnalysesData.recommendation.recommendations;
+            let dependencies: any = stackAnalysesData.components;
             if (recommendation) {
                 this.similarStacks = recommendation.similar_stacks;
                 const analysis: any = this.similarStacks[0].analysis;
@@ -80,7 +82,90 @@ export class StackAnalyses {
                 // Call the recommendations with the missing packages and version mismatches
                 this.setRecommendations(missingPackages, versionMismatch);
             }
+
+            // Check if the data has results key
+            if (stackAnalysesData.hasOwnProperty('result') && stackAnalysesData.result.length > 0) {
+                let result: any = stackAnalysesData.result[0];
+                if (result.hasOwnProperty('components')) {
+                    let components: Array<any> = result.components;
+                    // Call the stack-components with the components information so that
+                    // It can parse the necessary information and show relevant things.
+                    this.buildDependenciesUI(components);
+                }
+            }
         }
+    }
+
+    private buildDependenciesUI(dependencies: Array<any>): void {
+        let length: number = dependencies.length;
+        let dependencyTable: JQuery = $('#dependenciesTable');
+        let tableHeader: JQuery = dependencyTable.find('thead');
+        let tableBody: JQuery = dependencyTable.find('tbody');
+
+        let keys: any = {
+            name: 'name',
+            currentVersion: 'curVersion',
+            latestVersion: 'latestVersion',
+            dateAdded: 'dateAdded',
+            publicPopularity: 'pubPopularity',
+            enterpriseUsage: 'enterpriseUsage',
+            teamUsage: 'teamUsage'
+        };
+        let headers: Array<any> = [
+            {
+                name: 'Name',
+                identifier: keys['name'],
+                isSortable: true
+            }, {
+                name: 'Current Version',
+                identifier: keys['currentVersion'],
+                isSortable: true
+            }, {
+                name: 'Latest Version',
+                identifier: keys['latestVersion']
+            }, {
+                name: 'Public Popularity',
+                identifier: keys['publicPopularity']
+            }, {
+                name: 'Enterprise Usage',
+                identifier: keys['enterpriseUsage'],
+                isSortable: true
+            }
+        ];
+
+
+        let dependenciesList: Array<any> = [];
+        let dependency: any, eachOne: any;
+        for (let i: number = 0; i < length; ++ i) {
+            dependency = {};
+            eachOne = dependencies[i];
+            dependency[keys['name']] = eachOne['name'];
+            dependency[keys['currentVersion']] = eachOne['version'];
+            dependency[keys['latestVersion']] = eachOne['latest_version'] || 'NA';
+            dependency[keys['publicPopularity']] =
+                eachOne['github_details'] ? (eachOne['github_details'].stargazers_count === -1? 'NA' : eachOne['github_details'].stargazers_count) : 'NA';
+            dependency[keys['enterpriseUsage']] = eachOne['enterpriseUsage'] || 'NA';
+
+            dependenciesList.push(dependency);
+        }
+
+        this.dependencies = {
+            headers: headers,
+            list: dependenciesList
+        };
+        let headerRow: JQuery = $('<tr />').appendTo(tableHeader);
+        $.map(this.dependencies.headers, (key, value) => {
+            $(`<th>${key.name}</th>`).appendTo(headerRow);
+        });
+
+        $.map(this.dependencies.list, (key, value) => {
+            let bodyRow: JQuery = $('<tr />').appendTo(tableBody);
+            bodyRow.append(`<td>${key.name}</td>`);
+            bodyRow.append(`<td>${key.curVersion}</td>`);
+            bodyRow.append(`<td>${key.latestVersion}</td>`);
+            bodyRow.append(`<td>${key.pubPopularity}</td>`);
+            bodyRow.append(`<td>${key.enterpriseUsage}</td>`);
+        });
     }
 
     setRecommendations = (missing: any, version: any) => {
