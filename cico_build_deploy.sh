@@ -48,8 +48,8 @@ docker exec wwwopenshiftio-builder npm install
 #  if [ $? -eq 0 ]; then
 #    echo 'CICO: build OK'
     docker build -t wwwopenshiftio-deploy -f Dockerfile.deploy . && \
-    docker tag wwwopenshiftio-deploy 8.43.84.245.xip.io/fabric8io/wwwopenshiftio:latest && \
-    docker push 8.43.84.245.xip.io/fabric8io/wwwopenshiftio:latest
+    docker tag wwwopenshiftio-deploy registry.devshift.net/fabric8io/wwwopenshiftio:latest && \
+    docker push registry.devshift.net/fabric8io/wwwopenshiftio:latest
     if [ $? -eq 0 ]; then
       echo 'CICO: image pushed, ready to update deployed app'
       exit 0
