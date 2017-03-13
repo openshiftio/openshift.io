@@ -8,8 +8,6 @@ export class ComponentAnalyses {
 
     buildComponentGrid = (dataSet: Array<any>) => {
         for (var i in dataSet) {
-            console.log(dataSet[i]);
-            debugger;
             var strToAdd = '<tr>' +
                 '<td>' + dataSet[i].ghIssueClosedLastMnth + '</td>' +
                 '<td>' + dataSet[i].ghIssueClosedLastYear + '</td>' +
@@ -27,7 +25,6 @@ export class ComponentAnalyses {
         if (compAnalysesArray.length) {
             let dataSet: Array<any> = [];
             for (let i in compAnalysesArray) {
-                console.log(compAnalysesArray[i].package)
                 let dataSetObj: any = {};
                 dataSetObj.ghIssueClosedLastMnth = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
                 dataSetObj.ghIssueClosedLastYear = compAnalysesArray[i].package.gh_issues_closed_last_month[0];
@@ -77,7 +74,6 @@ export class ComponentAnalyses {
                     $('#compGridCntr').hide();
                     $('#componentStatus').show();
                     $('#componentStatusMsg').text('Failed to fetch the records');
-                    console.log('Error fetching component analyses');
                 }
             });
         });
