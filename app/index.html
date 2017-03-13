@@ -155,6 +155,55 @@
             </div>
 
           </div>
+          <!-- stack analyses-->
+          <div class="row row-cards-pf">
+            <div class="card-pf card-pf-accented">
+              <div class="card-pf-heading">
+                <h2 class="card-pf-title">
+                  Stack Analyses
+                </h2>
+              </div>
+              <div class="card-pf-body">
+                <div id="stackAnalyses">
+                  <div class="row" id="pomTextConetntArea">
+                    <div class="col-lg-12 col-sm-12">
+                      <textarea class="form-control" id="pomTxtArea" placeholder="Enter POM.xml content here"></textarea>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                      <br />
+                      <button type="button" id="stacAnalyseskbtn" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                  <br />
+                  <div id="pomStatus" class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        <span class="pficon pficon-close"></span>
+                      </button>
+                    <span class="pficon pficon-ok"></span>
+                    <strong>Great!</strong> Stack ID has been created. <a href="#" id="stackAnalysesAnchor" class="alert-link">View report</a>.
+                  </div>
+
+                  <hr />
+
+                  <div class="row" id="stackReportCntr">
+                    <div class="col-lg-12 col-sm-12">
+                      <h1 class="keep-left">Recommendations</h1>
+                      <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
+
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                      <!--TODO : add dependencies-->
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           <div class="row row-cards-pf">
