@@ -309,7 +309,7 @@ function loadScripts() {
 
 }
 
-function addToast(cssClass: string, htmlMsg: string) {
+export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastNotification")
     .fadeOut(() =>
       $("#toastNotification")

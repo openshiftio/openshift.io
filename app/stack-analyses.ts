@@ -1,3 +1,5 @@
+import { addToast } from './index'
+
 export class StackAnalyses {
 
     private stackapiUrl: string;
@@ -14,7 +16,6 @@ export class StackAnalyses {
     buildStackAnalyses = () => {
         $('#pomTextConetntArea').show();
         $('#pomStatusSuccess').hide();
-        $('#pomStatusFailure').hide();
         $('#stackReportCntr').hide();
         $('#stacAnalyseskbtn').on('click', () => {
             this.callStackAnalysesApi();
@@ -25,7 +26,7 @@ export class StackAnalyses {
     }
 
     callStackAnalysesApi = () => {
-        let pomTextAreaValue = $('#pomTxtArea').val()
+        let pomTextAreaValue = $('#pomTxtArea').val();
         $.ajax({
             url: this.stackapiUrl + 'manifestdata',
             headers: {
@@ -37,8 +38,8 @@ export class StackAnalyses {
             data: pomTextAreaValue,
             success: response => {
                 //TODO 
+                addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
                 $('#pomStatusSuccess').show();
-                $('#pomStatusFailure').hide();
                 this.stackID = '8950acb76bc84235873d73d149cb9f61';
             },
             error: () => {
@@ -50,7 +51,7 @@ export class StackAnalyses {
 
         //TODO:: to be removed post API is up
         $('#pomStatusSuccess').show();
-        $('#pomStatusFailure').hide();
+        addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
         this.stackID = '8950acb76bc84235873d73d149cb9f61';
     }
 
@@ -136,14 +137,14 @@ export class StackAnalyses {
 
         let dependenciesList: Array<any> = [];
         let dependency: any, eachOne: any;
-        for (let i: number = 0; i < length; ++ i) {
+        for (let i: number = 0; i < length; ++i) {
             dependency = {};
             eachOne = dependencies[i];
             dependency[keys['name']] = eachOne['name'];
             dependency[keys['currentVersion']] = eachOne['version'];
             dependency[keys['latestVersion']] = eachOne['latest_version'] || 'NA';
             dependency[keys['publicPopularity']] =
-                eachOne['github_details'] ? (eachOne['github_details'].stargazers_count === -1? 'NA' : eachOne['github_details'].stargazers_count) : 'NA';
+                eachOne['github_details'] ? (eachOne['github_details'].stargazers_count === -1 ? 'NA' : eachOne['github_details'].stargazers_count) : 'NA';
             dependency[keys['enterpriseUsage']] = eachOne['enterpriseUsage'] || 'NA';
 
             dependenciesList.push(dependency);
