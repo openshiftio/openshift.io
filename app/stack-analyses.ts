@@ -16,42 +16,12 @@ export class StackAnalyses {
         $('#pomTextConetntArea').show();
         $('#pomStatusSuccess').hide();
         $('#stackReportCntr').hide();
-        $('#stacAnalyseskbtn').on('click', () => {
-            this.callStackAnalysesApi();
-        });
         $('#stackAnalysesAnchor').on('click', () => {
             this.callStackAnalysesReportApi();
         });
-    }
-
-    callStackAnalysesApi = () => {
-        let pomTextAreaValue = $('#pomTxtArea').val();
-        $.ajax({
-            url: this.stackapiUrl + 'manifestdata',
-            headers: {
-                "Authorization": "Bearer ",
-                'Content-Type': "application/json"
-            },
-            method: 'POST',
-            dataType: 'json',
-            data: pomTextAreaValue,
-            success: response => {
-                //TODO 
-                addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
-                $('#pomStatusSuccess').show();
-                this.stackID = '8c25f973a57341a28291f5b9e8d4a698';
-            },
-            error: () => {
-                //$('#pomStatusSuccess').hide();
-                //$('#pomStatusFailure').show();
-                console.log('Error calling stack API')
-            }
+        $('#stacAnalysesFileUpload').on('click', () => {
+            this.uploadStackAnalysesFile();
         });
-
-        //TODO:: to be removed post API is up
-        $('#pomStatusSuccess').show();
-        addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
-        this.stackID = '8c25f973a57341a28291f5b9e8d4a698';
     }
 
     callStackAnalysesReportApi = () => {
@@ -60,8 +30,12 @@ export class StackAnalyses {
             method: 'GET',
             dataType: 'json',
             success: response => {
-                $('#stackReportCntr').show();
-                this.formRecommendationList(response)
+                if (response.hasOwnProperty('error')) {
+                    addToast("alert-warning",response.error);
+                } else {
+                    $('#stackReportCntr').show();
+                    this.formRecommendationList(response)
+                }
             },
             error: () => {
                 console.log('Error calling stack report API')
@@ -73,7 +47,7 @@ export class StackAnalyses {
         if (stackAnalysesData.hasOwnProperty('recommendation')) {
             let recommendation: any = stackAnalysesData.recommendation.recommendations;
             let dependencies: any = stackAnalysesData.components;
-            if (recommendation && recommendation.hasOwnProperty('similar_stacks') && recommendation.similar_stacks.length>0) {
+            if (recommendation && recommendation.hasOwnProperty('similar_stacks') && recommendation.similar_stacks.length > 0) {
                 this.similarStacks = recommendation.similar_stacks;
                 const analysis: any = this.similarStacks[0].analysis;
                 let missingPackages: Array<any> = analysis.missing_packages;
@@ -210,6 +184,35 @@ export class StackAnalyses {
                         </div>`;
             $('#recommenderListView').append(strToAdd);
         }
+    }
+
+    uploadStackAnalysesFile = () => {
+        let data = new FormData();
+        $.each((<HTMLInputElement>document.getElementById('stackAnalysesFile')).files, function (key: any, value: any) {
+            data.append('manifest[]', value);
+        });
+
+        $.ajax({
+            url: this.stackapiUrl + 'stack-analyses',
+            type: 'POST',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: data => {
+                if (typeof data.error === 'undefined') {
+                    addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
+                    $('#pomStatusSuccess').show();
+                    this.stackID = data.id;
+                }
+                else {
+                    console.log('ERRORS: ' + data.error);
+                }
+            },
+            error: () => {
+                console.log('ERRORS: ');
+            }
+        });
     }
 
 }

@@ -165,13 +165,12 @@
               </div>
               <div class="card-pf-body">
                 <div id="stackAnalyses">
-                  <div class="row" id="pomTextConetntArea">
-                    <div class="col-lg-12 col-sm-12">
-                      <textarea class="form-control" id="pomTxtArea" placeholder="Enter POM.xml content here"></textarea>
-                    </div>
+                  <div class="blank-slate-pf">
+                    <h1>Select manifest file to upload:</h1>
+                    <input type="file" class="btn btn-primary" id="stackAnalysesFile" style="display:inline">
                     <div class="col-lg-12 col-sm-12">
                       <br />
-                      <button type="button" id="stacAnalyseskbtn" class="btn btn-primary">Submit</button>
+                      <button type="button" id="stacAnalysesFileUpload" class="btn btn-primary">Upload</button>
                     </div>
                   </div>
                   <br />
@@ -192,13 +191,13 @@
                     <div class="col-lg-12 col-sm-12">
                       <h1 class="keep-left">Dependencies</h1>
                       <div id="dependenciesListView" class="list-group-item list-view-pf-stacked">
-                          <!-- Table HTML -->
-                          <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
-                              <thead>
-                              </thead>
-                              <tbody>
-                              </tbody> 
-                          </table>
+                        <!-- Table HTML -->
+                        <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
+                          <thead>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
