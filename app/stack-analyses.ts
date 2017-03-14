@@ -147,20 +147,24 @@ export class StackAnalyses {
         this.recommendations = [];
         for (let i in missing) {
             if (missing.hasOwnProperty(i)) {
+                let key: any = Object.keys(missing[i]);
+                let value: any;
                 this.recommendations.push({
                     suggestion: 'Recommended',
                     action: 'Add',
-                    message: i + ' ' + missing[i]
+                    message: key[0] + ' ' + missing[i][key[0]]
                 });
             }
         }
 
         for (let i in version) {
             if (version.hasOwnProperty(i)) {
+                let key: any = Object.keys(missing[i]);
+                let value: any;
                 this.recommendations.push({
                     suggestion: 'Recommended',
                     action: 'Upgrade',
-                    message: i + ' ' + version[i]
+                    message: key[0] + ' ' + version[i][key[0]]
                 });
             }
         }
