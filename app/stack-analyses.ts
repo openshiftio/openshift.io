@@ -9,8 +9,7 @@ export class StackAnalyses {
     private dependencies: any;
 
     constructor() {
-        this.stackapiUrl = 'http://api-bayesian.dev.rdu2c.fabric8.io/api/v1/';
-        //'http://bayesian-api-bayesian-staging.b6ff.rh-idev.openshiftapps.com/api/v1/';
+        this.stackapiUrl = 'http://bayesian-api-bayesian-staging.b6ff.rh-idev.openshiftapps.com/api/v1/';
     }
 
     buildStackAnalyses = () => {
@@ -40,7 +39,7 @@ export class StackAnalyses {
                 //TODO 
                 addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
                 $('#pomStatusSuccess').show();
-                this.stackID = '8950acb76bc84235873d73d149cb9f61';
+                this.stackID = '8c25f973a57341a28291f5b9e8d4a698';
             },
             error: () => {
                 //$('#pomStatusSuccess').hide();
@@ -52,7 +51,7 @@ export class StackAnalyses {
         //TODO:: to be removed post API is up
         $('#pomStatusSuccess').show();
         addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
-        this.stackID = '8950acb76bc84235873d73d149cb9f61';
+        this.stackID = '8c25f973a57341a28291f5b9e8d4a698';
     }
 
     callStackAnalysesReportApi = () => {
@@ -74,7 +73,7 @@ export class StackAnalyses {
         if (stackAnalysesData.hasOwnProperty('recommendation')) {
             let recommendation: any = stackAnalysesData.recommendation.recommendations;
             let dependencies: any = stackAnalysesData.components;
-            if (recommendation) {
+            if (recommendation && recommendation.hasOwnProperty('similar_stacks') && recommendation.similar_stacks.length>0) {
                 this.similarStacks = recommendation.similar_stacks;
                 const analysis: any = this.similarStacks[0].analysis;
                 let missingPackages: Array<any> = analysis.missing_packages;
@@ -137,6 +136,8 @@ export class StackAnalyses {
 
         let dependenciesList: Array<any> = [];
         let dependency: any, eachOne: any;
+        $(tableBody).empty();
+        $(tableHeader).empty();
         for (let i: number = 0; i < length; ++i) {
             dependency = {};
             eachOne = dependencies[i];
@@ -158,7 +159,6 @@ export class StackAnalyses {
         $.map(this.dependencies.headers, (key, value) => {
             $(`<th>${key.name}</th>`).appendTo(headerRow);
         });
-
         $.map(this.dependencies.list, (key, value) => {
             let bodyRow: JQuery = $('<tr />').appendTo(tableBody);
             bodyRow.append(`<td>${key.name}</td>`);
