@@ -1,9 +1,14 @@
+import { ApiLocator } from './index';
+
 export class ComponentAnalyses {
 
     private stackApiUrl: string;
+    private api: ApiLocator = new ApiLocator();
 
     constructor() {
-        this.stackApiUrl = 'http://bayesian-api-bayesian-staging.b6ff.rh-idev.openshiftapps.com/api/v1/';
+        this.stackApiUrl = this
+            .api
+            .buildApiUrl(STACK_API_URL, 'api', 'api');
     }
 
     buildComponentGrid = (dataSet: Array<any>) => {
