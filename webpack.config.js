@@ -82,7 +82,8 @@ module.exports = {
        */
     new HtmlWebpackPlugin({template: 'app/index.html', chunksSortMode: 'dependency'}),
     new DefinePlugin({
-      AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL)
+      AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
+      STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL)
     }),
     extractSass,
     new CopyWebpackPlugin([])

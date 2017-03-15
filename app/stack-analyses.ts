@@ -1,15 +1,18 @@
-import { addToast } from './index'
+import { addToast, ApiLocator } from './index';
 
 export class StackAnalyses {
 
     private stackapiUrl: string;
+    private api: ApiLocator = new ApiLocator();
     private stackID: string;
     private similarStacks: any;
     private recommendations: any;
     private dependencies: any;
 
     constructor() {
-        this.stackapiUrl = 'http://bayesian-api-bayesian-staging.b6ff.rh-idev.openshiftapps.com/api/v1/';
+        this.stackapiUrl = this
+            .api
+            .buildApiUrl(STACK_API_URL, 'api', 'api');
     }
 
     buildStackAnalyses = () => {
@@ -31,7 +34,7 @@ export class StackAnalyses {
             dataType: 'json',
             success: response => {
                 if (response.hasOwnProperty('error')) {
-                    addToast("alert-warning",response.error);
+                    addToast("alert-warning", response.error);
                 } else {
                     $('#stackReportCntr').show();
                     this.formRecommendationList(response)
