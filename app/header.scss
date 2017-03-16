@@ -24,6 +24,12 @@ $pf-custom-navbar-debug-border:0;
   border-top-width:$pf-custom-navbar-top-border-width;
   .navbar-header{
     border-bottom-width: $pf-custom-navbar-header-border-width;
+    .navbar-brand {
+      padding: 0 20px;
+    }
+  }
+  .navbar-utility {
+    font-size: $font-size-base;
   }
   // Note: The socondary persistent nav uses bottom margin to regulat the height of the overall navbar
   // together with the height of the nav header and top colored border
@@ -45,7 +51,7 @@ $pf-custom-navbar-debug-border:0;
   }
   // Note the height of the a element is the element with the most effect on navigation height
   a{
-    padding-top:$pf-custom-navbar-item-padding !important;
+    // padding-top:$pf-custom-navbar-item-padding !important;
     padding-bottom:$pf-custom-navbar-item-padding !important;
     margin:0 !important;
 
