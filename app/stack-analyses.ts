@@ -12,7 +12,7 @@ export class StackAnalyses {
     constructor() {
         this.stackapiUrl = this
             .api
-            .buildApiUrl(STACK_API_URL, 'api', 'api');
+            .buildApiUrl(STACK_API_URL, 'recommender.api', 'api/v1');
     }
 
     buildStackAnalyses = () => {

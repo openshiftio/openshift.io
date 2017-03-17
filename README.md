@@ -6,7 +6,7 @@ Backend API
 
 Make sure you set the URL to the backend. You can run it locally by adding below to environment variables
 
-add export FABRIC8_WIT_API_URL="http://demo.api.almighty.io/api/"  and  FABRIC8_STACK_API_URL="http://bayesian-api-bayesian-staging.b6ff.rh-idev.openshiftapps.com/api/v1/" to your .bash_profile and reload the shell.
+add export FABRIC8_WIT_API_URL="http://demo.api.almighty.io/api/"  and  FABRIC8_STACK_API_URL="http://recommender.api.prod-preview.openshift.io/api/v1/" to your .bash_profile and reload the shell.
 
 VS Code
 
