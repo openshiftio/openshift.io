@@ -132,7 +132,7 @@
                 Already a part of the OpenShift.io Developer Preview?
               </h3>
               <button type="button" class="btn btn-outline col-xs-12 col-sm-12 col-md-12" id="login">LOG IN</button>
-            <form>
+            </form>
           </div>
         </div>
       </div>
@@ -219,7 +219,7 @@
           <div class="card-pf card-pf-accented">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Recommender
+                Analysis of Component
               </h2>
             </div>
             <div class="card-pf-body" id="fabric8-analysis">
@@ -234,34 +234,11 @@
                   <div class="form-group">
                     <input type="text" class="form-control" id="version" placeholder="Version">
                   </div>
-                  <button type="submit" id="stackbtn" class="btn btn-primary pull-right">Submit</button>
+                  <button type="submit" id="stackbtn" class="btn btn-primary">Submit</button>
                 </form>
 
                 <hr />
                 <div id="compGridCntr">
-                  <!-- Toolbar -->
-                  <div class="row toolbar-pf table-view-pf-toolbar" id="toolbar1">
-                    <div class="col-sm-12">
-                      <form class="toolbar-pf-actions">
-                        <div class="form-group toolbar-pf-filter">
-                          <label class="sr-only" for="filter">Issue Closed Last Month</label>
-                          <div class="input-group">
-                            <div class="input-group-btn">
-                              <button type="button" class="btn btn-default dropdown-toggle" id="filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Issue Closed Last Month <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li><a href="#" id="filter1">Issue Closed Last Month</a></li>
-                                <li><a href="#" id="filter2">Issue Closed Last Year</a></li>
-                                <li><a href="#" id="filter3">Issue Opened Last Month</a></li>
-                                <li><a href="#" id="filter4">Issue Opened Last Year</a></li>
-                                <li><a href="#" id="filter5">PRs Closed Last Month</a></li>
-                              </ul>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Filter..." autocomplete="off" id="filterInput">
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
                   <!-- Table HTML -->
                   <table class="table table-striped table-bordered table-hover" id="compTable">
                     <thead>
