@@ -8,7 +8,7 @@ export class ComponentAnalyses {
     constructor() {
         this.stackApiUrl = this
             .api
-            .buildApiUrl(STACK_API_URL, 'api', 'api');
+            .buildApiUrl(STACK_API_URL, 'recommender.api', 'api/v1');
     }
 
     buildComponentGrid = (dataSet: Array<any>) => {
