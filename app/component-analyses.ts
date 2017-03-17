@@ -12,6 +12,7 @@ export class ComponentAnalyses {
     }
 
     buildComponentGrid = (dataSet: Array<any>) => {
+        $('#compTable tbody').empty();
         for (var i in dataSet) {
             var strToAdd = '<tr>' +
                 '<td>' + dataSet[i].ecosystem + '</td>' +
