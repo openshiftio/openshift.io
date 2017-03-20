@@ -1,6 +1,7 @@
 @import 'custom-variables';
 @import 'custom-mixins';
 
+// this is to match the Red Hat Developers site
 body {
     font-family: Overpass;
 }
@@ -31,15 +32,18 @@ body {
         font-size: .7em;
     }
 }
+.form-control {
+    font-size: $font-size-base*1.5;
+    &::placeholder {
+        font-style: normal;
+    }
+}
 .beta-form {
     input {
         height: 50px;
         border: 1px solid $color-pf-black-300;
         border-radius: 4px;
         background-color: $color-pf-white;
-        &::placeholder {
-            font-size: 1.5em;
-        }
     }
 }
 .beta-submit {
@@ -52,13 +56,14 @@ body {
 }
 .btn-outline {
     @extend .beta-submit;
-    border: 2px solid $color-pf-blue-200;
-    background-color: transparent;
-    background-image: none;
-    &:hover, &:active, &:focus {
-        color: darken($color-pf-white, 5%);
-        background-image: linear-gradient(to bottom, $color-pf-black-900 0, $color-pf-black 100%);
-    }
+    // will be added back in as part of the visual design
+    // border: 2px solid $color-pf-blue-200;
+    // background-color: transparent;
+    // background-image: none;
+    // &:hover, &:active, &:focus {
+    //     color: darken($color-pf-white, 5%);
+    //     background-image: linear-gradient(to bottom, $color-pf-black-900 0, $color-pf-black 100%);
+    // }
 }
 
 @media (max-width: $grid-float-breakpoint){
