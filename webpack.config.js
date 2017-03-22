@@ -32,12 +32,12 @@ sassModules.forEach(val => {
 });
 
 const extractSass = new ExtractTextPlugin({
-    filename: "/openshiftio/[name].css",
-    disable: !isProd
+  filename: "/openshiftio/[name].css",
+  disable: !isProd
 });
 
 module.exports = {
-  entry: ['./app/index.ts' ],
+  entry: ['./app/index.ts'],
   devtool: (isProd ? 'source-map' : 'eval-source-map'),
   output: {
     filename: '/openshiftio/[name].js',
@@ -53,7 +53,7 @@ module.exports = {
         test: /\.scss$/,
         use: extractSass.extract({
           fallback: 'style-loader',
-          use: [ {
+          use: [{
             loader: 'css-loader'
           }, {
             loader: 'sass-loader',
@@ -63,7 +63,8 @@ module.exports = {
               })
             }
           }
-        ]})
+          ]
+        })
       },
       /* File loader for supporting fonts, for example, in CSS files.
        */
@@ -74,11 +75,26 @@ module.exports = {
             loader: "url-loader",
             query: {
               limit: 3000,
-              name: 'assets/fonts/[name].[ext]'
+              name: '/openshiftio/assets/fonts/[name].[ext]'
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.png$|\.jpg$|\.gif$|\.jpeg$/,
+        loaders: [
+          {
+            loader: "url-loader",
+            query: {
+              limit: 3000,
+              name: '/openshiftio/assets/images/[name].[ext]'
+            }
+          }
+        ]
+      }, {
+        test: /\.html$/,
+        use: ['html-loader']
+      },
     ]
   },
   resolve: {
@@ -94,7 +110,7 @@ module.exports = {
        *
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
-    new HtmlWebpackPlugin({template: 'app/index.html', chunksSortMode: 'dependency'}),
+    new HtmlWebpackPlugin({ template: 'app/index.html', chunksSortMode: 'dependency' }),
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL)

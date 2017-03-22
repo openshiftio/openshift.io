@@ -2,7 +2,6 @@ import 'core-js/es6/string';
 
 import * as $ from 'jquery';
 import * as URI from 'urijs';
-import '../assets/stylesheets/variables.scss';
 import '../assets/stylesheets/custom.scss';
 import './header.scss';
 
