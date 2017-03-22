@@ -138,7 +138,16 @@ export class Auth {
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
       this.setupRefreshTimer(token.expires_in);
-      this.bindLoggedInUser()
+      this.getUser(token.access_token, (response: any) => {
+        let user = response.data;
+        window.location.href = '/' + user.attributes.username;
+      }, (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+          if (response.status == 401) {
+            this.refreshToken();
+          } else {
+            this.logout();
+          }
+        });
       return;
     }
   }
@@ -169,15 +178,7 @@ export class Auth {
 
   updateUserMenu() {
     if (this.authToken) {
-      $.ajax({
-        url: this.apiUrl + 'user',
-        headers: {
-          "Authorization": "Bearer " + this.authToken,
-          'Content-Type': "application/json"
-        },
-        method: 'GET',
-        dataType: 'json',
-        success: (response: any) => {
+      this.getUser(this.authToken, (response: any) => {
           let user = response.data;
           if (user.attributes.imageURL) {
             $("#userimage")
@@ -192,17 +193,33 @@ export class Auth {
           $("#loggedout").hide();
           $("#loggedin").removeClass('hidden');
         },
-        error: (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+        (response: JQueryXHR, textStatus: string, errorThrown: string) => {
           if (response.status == 401) {
             this.refreshToken();
           } else {
             this.logout();
           }
         }
-      });
+      );
     } else {
       $("#loggedout").show();
       $("#loggedin").hide();
+    }
+  }
+
+  getUser(authToken: string, success: any, error: any) {
+    if (authToken) {
+      $.ajax({
+        url: this.apiUrl + 'user',
+        headers: {
+          "Authorization": "Bearer " + this.authToken,
+          'Content-Type': "application/json"
+        },
+        method: 'GET',
+        dataType: 'json',
+        success: success,
+        error: error
+      });
     }
   }
 
