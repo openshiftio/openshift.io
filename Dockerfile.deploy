@@ -9,6 +9,4 @@ USER 997
 
 RUN rm /usr/share/nginx/html/*
 
-ENV ANALYTICS_WRITE_KEY="22be67f6e9d86531504c8f89ab6ac6e81389b78a"
-
 COPY dist /usr/share/nginx/html
