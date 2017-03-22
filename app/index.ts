@@ -208,7 +208,7 @@ export class Auth {
 
   bindLoginLogout() {
     let _this = this;
-    $("a#login").click(function () {
+    $("a#login, button#login").click(function () {
       _this.login();
     });
 
