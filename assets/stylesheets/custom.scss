@@ -1,9 +1,11 @@
+$overpass-font-path: '~/../fonts/overpass/';
 @import 'custom-variables';
 @import 'custom-mixins';
+@import 'custom-fonts';
 
 // this is to match the Red Hat Developers site
 body {
-    font-family: Overpass;
+    font-family: 'Overpass', sans-serif;
 }
 
 //colors

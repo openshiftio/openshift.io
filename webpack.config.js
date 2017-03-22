@@ -64,6 +64,20 @@ module.exports = {
             }
           }
         ]})
+      },
+      /* File loader for supporting fonts, for example, in CSS files.
+       */
+      {
+        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+        loaders: [
+          {
+            loader: "url-loader",
+            query: {
+              limit: 3000,
+              name: 'assets/fonts/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
