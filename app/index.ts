@@ -5,8 +5,8 @@ import * as URI from 'urijs';
 import '../assets/stylesheets/custom.scss';
 import './header.scss';
 
-import {ComponentAnalyses} from './component-analyses';
-import {StackAnalyses} from './stack-analyses';
+import { ComponentAnalyses } from './component-analyses';
+import { StackAnalyses } from './stack-analyses';
 
 export class ApiLocator {
 
@@ -69,10 +69,12 @@ export class Auth {
   }
 
   login() {
+    analytics.trackLogin();
     window.location.href = this.apiUrl + 'login/authorize';
   }
 
   logout() {
+    analytics.trackLogout();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('refresh_token');
     this.authToken = null;
@@ -107,9 +109,9 @@ export class Auth {
         },
         method: 'POST',
         dataType: 'json',
-        data: JSON.stringify({"refresh_token": refreshToken}),
+        data: JSON.stringify({ "refresh_token": refreshToken }),
         success: response => {
-          let responseJson = response.json();
+          let responseJson = response.data;
           let token = this.processTokenResponse(responseJson.token);
           this.setupRefreshTimer(token.expires_in);
           console.log('token refreshed at:' + Date.now());
@@ -135,19 +137,20 @@ export class Auth {
     }
     let params: any = this.getUrlParams();
     if ('token_json' in params) {
+      history.pushState(null, "", location.href.split("?")[0]);
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
       this.setupRefreshTimer(token.expires_in);
       this.getUser(token.access_token, (response: any) => {
         let user = response.data;
-        window.location.href = '/' + user.attributes.username;
+        //window.location.href = '/' + user.attributes.username;
       }, (response: JQueryXHR, textStatus: string, errorThrown: string) => {
-          if (response.status == 401) {
-            this.refreshToken();
-          } else {
-            this.logout();
-          }
-        });
+        if (response.status == 401) {
+          this.refreshToken();
+        } else {
+          this.logout();
+        }
+      });
       return;
     }
   }
@@ -179,20 +182,20 @@ export class Auth {
   updateUserMenu() {
     if (this.authToken) {
       this.getUser(this.authToken, (response: any) => {
-          let user = response.data;
-          if (user.attributes.imageURL) {
-            $("#userimage")
-              .attr("src", user.attributes.imageURL)
-              .removeClass("hidden");
-          } else {
-            $("#nouserimage").removeClass("hidden");
-          }
-          $("#name").html(user.attributes.fullName);
-          $("#profilelink").attr("href", "/" + user.attributes.username);
-          $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
-          $("#loggedout").hide();
-          $("#loggedin").removeClass('hidden');
-        },
+        let user = response.data;
+        if (user.attributes.imageURL) {
+          $("#userimage")
+            .attr("src", user.attributes.imageURL)
+            .removeClass("hidden");
+        } else {
+          $("#nouserimage").removeClass("hidden");
+        }
+        $("#name").html(user.attributes.fullName);
+        $("#profilelink").attr("href", "/" + user.attributes.username);
+        $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
+        $("#loggedout").hide();
+        $("#loggedin").removeClass('hidden');
+      },
         (response: JQueryXHR, textStatus: string, errorThrown: string) => {
           if (response.status == 401) {
             this.refreshToken();
@@ -217,7 +220,10 @@ export class Auth {
         },
         method: 'GET',
         dataType: 'json',
-        success: success,
+        success: response => {
+          analytics.identifyUser(response.data);
+          success(response);
+        },
         error: error
       });
     }
@@ -256,6 +262,8 @@ export class Waitlist {
     sub.find("#emailsub").val(email);
     sub.find("#vouchercodesub").val(voucherCode);
     sub.submit();
+    analytics.identifyWaitlist(email);
+    analytics.trackWaitlisting(voucherCode);
     $("#register").attr("disabled", "true");
     // Start checking for waitlisting to be successful
     this.checkWaitlisting(0);
@@ -316,13 +324,11 @@ function loadScripts() {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
   (window as any).$ = $;
-
   // Add patternfly - I don't need it in the main bundle
-  $("body").append("<script  src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/" +
+  $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/" +
     "bootstrap.min.js\"></script>");
-  $("body").append("<script  src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
+  $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
     "nfly.min.js\"></script>");
-
 }
 
 export function addToast(cssClass: string, htmlMsg: string) {
@@ -366,4 +372,109 @@ $(document)
     stackAnalyses.buildStackAnalyses();
 
   });
-  
+
+export class Analytics {
+
+  loadAnalytics() {
+    var analytics = (window as any).analytics = (window as any).analytics || [];
+    if (!analytics.initialize) {
+      if (analytics.invoked) {
+        window.console && console.error && console.error("Segment snippet included twice.");
+      } else {
+        analytics.invoked = !0;
+        analytics.methods = [
+          "trackSubmit",
+          "trackClick",
+          "trackLink",
+          "trackForm",
+          "pageview",
+          "identify",
+          "reset",
+          "group",
+          "track",
+          "ready",
+          "alias",
+          "debug",
+          "page",
+          "once",
+          "off",
+          "on"
+        ];
+        analytics.factory = function (t: any) {
+          return function () {
+            var e = Array.prototype.slice.call(arguments);
+            e.unshift(t);
+            analytics.push(e);
+            return analytics
+          }
+        };
+        for (var t = 0; t < analytics.methods.length; t++) {
+          var e = analytics.methods[t];
+          analytics[e] = analytics.factory(e)
+        }
+        analytics.load = function (t: any) {
+          var e = document.createElement("script");
+          e.type = "text/javascript";
+          e.async = !0;
+          e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+          var n = document.getElementsByTagName("script")[0];
+          n.parentNode.insertBefore(e, n)
+        };
+        analytics.SNIPPET_VERSION = "4.0.0";
+        analytics.load(ANALYTICS_WRITE_KEY);
+        analytics.page('landing');
+      }
+    }
+  }
+
+  identifyUser(user: any): any {
+    let traits = {
+      avatar: user.attributes.imageURL,
+      email: user.attributes.email,
+      username: user.attributes.username,
+      website: user.attributes.url,
+      name: user.attributes.fullName,
+      description: user.attributes.bio
+    };
+    this.analytics.
+      identify(
+      user.id, traits);
+  }
+
+  identifyWaitlist(email: string): any {
+    let traits = {
+      email: email,
+    };
+    this.analytics
+      .identify(traits);
+  }
+
+  trackWaitlisting(accessCode: string) {
+    this.analytics.track('waitlisted', {
+      accessCode: accessCode
+    });
+  }
+
+  trackError(action: string, error: any) {
+    this.analytics.track('error', {
+      error: error,
+      action: action
+    });
+  }
+
+  trackLogin() {
+    this.analytics.track('login');
+  }
+
+  trackLogout() {
+    this.analytics.track('logout');
+  }
+
+  private get analytics(): any {
+    return (window as any).analytics;
+  }
+}
+
+let analytics = new Analytics();
+
+analytics.loadAnalytics();
