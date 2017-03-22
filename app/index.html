@@ -212,112 +212,98 @@
       </div>
     </div>
     <!-- Recommender -->
-    <div class="container-fluid">
-      <div class="row row-cards-pf">
-        <div class="col-sm-12 col-md-8 col-md-offset-2">
-          <div class="card-pf">
-            <div class="card-pf-heading">
-              <h2 class="card-pf-title">
-                Analysis of Component
-              </h2>
+     <div class="container-fluid">
+      <div class="row overview-row">
+        <h1 class="textCenter">Looking for Component Recommendations?</h1>
+        <p class="textCenter">
+          Search our database for our latest recommendations
+        </p>
+        <div class="textCenter" id="componentanalyses">
+          <form class="form-inline" id="componentanalysesform">
+            <div class="form-group">
+              <input type="text" class="form-control" id="ecosystem" placeholder="Ecosystem">
             </div>
-            <div class="card-pf-body" id="fabric8-analysis">
-              <div id="componentanalyses">
-                <form class="form-inline" id="componentanalysesform">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="ecosystem" placeholder="Ecosystem">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="component" placeholder="Component">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="version" placeholder="Version">
-                  </div>
-                  <button type="submit" id="stackbtn" class="btn btn-primary">Submit</button>
-                </form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="component" placeholder="Component">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="version" placeholder="Version">
+            </div>
+            <button type="submit" id="stackbtn" class="btn btn-default">Submit</button>
+          </form>
 
-                <hr />
-                <div id="compGridCntr">
-                  <!-- Table HTML -->
-                  <table class="table table-striped table-bordered table-hover" id="compTable">
-                    <thead>
-                      <tr>
-                        <th>Ecosystem</th>
-                        <th>Name</th>
-                        <th>Cyclomatic Complexity</th>
-                        <th>Line Of Code</th>
-                        <th>Number Of Files</th>
-                        <th>Dependents Count</th>
-                        <th>Current Version</th>
-                        <th>Latest Version</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="blank-slate-pf" id="componentStatus">
-                  <span id="componentStatusMsg"></span>
-                </div>
-              </div>
-            </div>
+          <hr />
+          <div id="compGridCntr">
+            <!-- Table HTML -->
+            <table class="table table-striped table-bordered table-hover" id="compTable">
+              <thead>
+                <tr>
+                  <th>Ecosystem</th>
+                  <th>Name</th>
+                  <th>Cyclomatic Complexity</th>
+                  <th>Line Of Code</th>
+                  <th>Number Of Files</th>
+                  <th>Dependents Count</th>
+                  <th>Current Version</th>
+                  <th>Latest Version</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="blank-slate-pf" id="componentStatus">
+            <span id="componentStatusMsg"></span>
           </div>
         </div>
       </div>
     </div>
     <!-- stack analyses-->
-    <div class="container-fluid">
-      <div class="row row-cards-pf">
-        <div class="col-sm-12 col-md-8 col-md-offset-2">
-          <div class="card-pf">
-            <div class="card-pf-heading">
-              <h2 class="card-pf-title">
-                Analysis of Stack
-              </h2>
+     <div class="container-fluid">
+      <div class="row feature-row">
+        <h1 class="text-white textCenter">Analyze Your Own Stack</h1>
+        <p class="text-white textCenter">
+          Select manifest file to run through our analyzer
+        </p>
+          <div id="stackAnalyses">
+            <div class="blank-slate-pf container">
+               <label for="stackAnalysesFile" class="custom-file-upload">
+                   <i class="fa fa-arrow-circle-o-up"></i> Choose a File to Analyze
+               </label>
+              <input type="file" name="file" id="stackAnalysesFile">
+              <div id="fileList"></div>
             </div>
-            <div class="card-pf-body">
-              <div id="stackAnalyses">
-                <div class="blank-slate-pf">
-                  <h1>Select manifest file to upload:</h1>
-                  <input type="file" class="btn btn-primary" id="stackAnalysesFile" style="display:inline">
-                  <div class="col-lg-12 col-sm-12">
-                    <br />
-                    <button type="button" id="stacAnalysesFileUpload" class="btn btn-primary">Upload</button>
-                  </div>
+            <div class="col-lg-12 col-sm-12 textCenter">
+                <button type="button" id="stacAnalysesFileUpload" class="btn btn-default btn-lg">Upload</button>
+            </div>
+            <br />
+            <div id="pomStatusSuccess" class="textCenter">
+              <a href="#" id="stackAnalysesAnchor" class="alert-link textCenter">View report</a>
+            </div>
+            <br />
+            <div class="row" id="stackReportCntr">
+              <div class="col-lg-12 col-sm-12">
+                <h1 class="keep-left">Recommendations</h1>
+                <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
+
                 </div>
-                <br />
-                <div id="pomStatusSuccess">
-                    <a href="#" id="stackAnalysesAnchor" class="alert-link">View report</a>
-                </div>
+              </div>
 
-                <hr />
-
-                <div class="row" id="stackReportCntr">
-                  <div class="col-lg-12 col-sm-12">
-                    <h1 class="keep-left">Recommendations</h1>
-                    <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
-
-                    </div>
-                  </div>
-
-                  <div class="col-lg-12 col-sm-12">
-                    <h1 class="keep-left">Dependencies</h1>
-                    <div id="dependenciesListView" class="list-group-item list-view-pf-stacked">
-                      <!-- Table HTML -->
-                      <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
-                        <thead>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+              <div class="col-lg-12 col-sm-12">
+                <h1 class="keep-left">Dependencies</h1>
+                <div id="dependenciesListView" class="list-group-item list-view-pf-stacked">
+                  <!-- Table HTML -->
+                  <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </main>
   <footer>
