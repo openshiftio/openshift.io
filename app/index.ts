@@ -8,6 +8,12 @@ import './header.scss';
 import { ComponentAnalyses } from './component-analyses';
 import { StackAnalyses } from './stack-analyses';
 
+declare global {
+  interface Window {
+      analytics: SegmentAnalytics.AnalyticsJS;
+  }
+}
+
 export class ApiLocator {
 
   buildApiUrl(override: string, subdomain: string, suffix: string) {
@@ -472,8 +478,8 @@ export class Analytics {
     this.analytics.track('logout');
   }
 
-  private get analytics(): any {
-    return (window as any).analytics;
+  private get analytics(): SegmentAnalytics.AnalyticsJS {
+    return window.analytics;
   }
 }
 
