@@ -21,9 +21,10 @@ $pf-custom-navbar-debug-border:0;
 
 .navbar-pf
 {
-  border-top-width:$pf-custom-navbar-top-border-width;
+  // border-top-width:$pf-custom-navbar-top-border-width;
   .navbar-header{
-    border-bottom-width: $pf-custom-navbar-header-border-width;
+    // border-bottom-width: $pf-custom-navbar-header-border-width;
+      height: $pf-custom-navbar-item-height;
     .navbar-brand {
       padding: 0 20px;
     }
@@ -52,11 +53,10 @@ $pf-custom-navbar-debug-border:0;
   // Note the height of the a element is the element with the most effect on navigation height
   a{
     // padding-top:$pf-custom-navbar-item-padding !important;
-    padding-bottom:$pf-custom-navbar-item-padding !important;
+    // padding-bottom:$pf-custom-navbar-item-padding !important;
     margin:0 !important;
-
     display:inline-block;
-    height:$pf-custom-navbar-item-height !important;
+    // height:$pf-custom-navbar-item-height !important;
     // border:solid $pf-custom-navbar-debug-border orangered !important;
     vertical-align: top !important;
     position:relative !important;
