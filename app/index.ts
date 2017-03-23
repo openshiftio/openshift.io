@@ -10,7 +10,7 @@ import { StackAnalyses } from './stack-analyses';
 
 declare global {
   interface Window {
-      analytics: SegmentAnalytics.AnalyticsJS;
+    analytics: SegmentAnalytics.AnalyticsJS;
   }
 }
 
@@ -149,7 +149,7 @@ export class Auth {
       this.setupRefreshTimer(token.expires_in);
       this.getUser(token.access_token, (response: any) => {
         let user = response.data;
-        //window.location.href = '/' + user.attributes.username;
+        window.location.href = '/' + user.attributes.username;
       }, (response: JQueryXHR, textStatus: string, errorThrown: string) => {
         if (response.status == 401) {
           this.refreshToken();
@@ -436,46 +436,58 @@ export class Analytics {
   }
 
   identifyUser(user: any): any {
-    let traits = {
-      avatar: user.attributes.imageURL,
-      email: user.attributes.email,
-      username: user.attributes.username,
-      website: user.attributes.url,
-      name: user.attributes.fullName,
-      description: user.attributes.bio
-    };
-    this.analytics.
-      identify(
-      user.id, traits);
+    if (this.analytics) {
+      let traits = {
+        avatar: user.attributes.imageURL,
+        email: user.attributes.email,
+        username: user.attributes.username,
+        website: user.attributes.url,
+        name: user.attributes.fullName,
+        description: user.attributes.bio
+      };
+      this.analytics.
+        identify(
+        user.id, traits);
+    }
   }
 
   identifyWaitlist(email: string): any {
-    let traits = {
-      email: email,
-    };
-    this.analytics
-      .identify(traits);
+    if (this.analytics) {
+      let traits = {
+        email: email,
+      };
+      this.analytics
+        .identify(traits);
+    }
   }
 
   trackWaitlisting(accessCode: string) {
-    this.analytics.track('waitlisted', {
-      accessCode: accessCode
-    });
+    if (this.analytics) {
+      this.analytics.track('waitlisted', {
+        accessCode: accessCode
+      });
+    }
   }
 
   trackError(action: string, error: any) {
-    this.analytics.track('error', {
-      error: error,
-      action: action
-    });
+    if (this.analytics) {
+      this.analytics.track('error', {
+        error: error,
+        action: action
+      });
+    }
   }
 
   trackLogin() {
-    this.analytics.track('login');
+    if (this.analytics) {
+      this.analytics.track('login');
+    }
   }
 
   trackLogout() {
-    this.analytics.track('logout');
+    if (this.analytics) {
+      this.analytics.track('logout');
+    }
   }
 
   private get analytics(): SegmentAnalytics.AnalyticsJS {
