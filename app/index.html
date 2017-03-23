@@ -306,45 +306,43 @@
         <p class="text-white textCenter">
           Select manifest file to run through our analyzer
         </p>
-          <div id="stackAnalyses">
-            <div class="blank-slate-pf container">
-               <label for="stackAnalysesFile" class="custom-file-upload">
-                   <i class="fa fa-arrow-circle-o-up"></i> Choose a File to Analyze
-               </label>
-              <input type="file" name="file" id="stackAnalysesFile">
-              <div id="fileList"></div>
-            </div>
-            <div class="col-lg-12 col-sm-12 textCenter">
-                <button type="button" id="stacAnalysesFileUpload" class="btn btn-default btn-lg">Upload</button>
-            </div>
-            <br />
-            <div id="pomStatusSuccess" class="textCenter">
-              <a href="#" id="stackAnalysesAnchor" class="alert-link textCenter">View report</a>
-            </div>
-            <br />
-            <div class="row" id="stackReportCntr">
-              <div class="col-lg-12 col-sm-12">
-                <h1 class="keep-left">Recommendations</h1>
-                <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
-
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-sm-12">
-                <h1 class="keep-left">Dependencies</h1>
-                <div id="dependenciesListView" class="list-group-item list-view-pf-stacked">
-                  <!-- Table HTML -->
-                  <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+        <div id="stackAnalyses">
+          <div class="blank-slate-pf container">
+            <label for="stackAnalysesFile" class="custom-file-upload">
+              <i class="fa fa-arrow-circle-o-up"></i> Choose a File to Analyze
+            </label>
+            <input type="file" name="file" id="stackAnalysesFile">
+            <div id="fileList"></div>
+          </div>
+          <div class="col-lg-12 col-sm-12 textCenter">
+            <button type="button" id="stacAnalysesFileUpload" class="btn btn-default btn-lg">Upload</button>
+          </div>
+          <br />
+          <br />
+          <div id="pomStatusSuccess" class="textCenter">
+            <a href="#" id="stackAnalysesAnchor" class="alert-link textCenter">View report</a>
           </div>
         </div>
+      </div>
+      <br />
+      <div class="row overview-row" id="stackReportCntr">
+        <div class="col-lg-12 col-sm-12">
+          <h1 class="textCenter">Recommendations</h1>
+          <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
+          </div>
+        </div>
+        <div class="col-lg-12 col-sm-12">
+          <h1 class="textCenter">Dependencies</h1>
+          <div id="dependenciesListView" class="list-group-item list-view-pf-stacked">
+            <table class="table table-striped table-bordered table-hover" id="dependenciesTable">
+              <thead>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <footer>
