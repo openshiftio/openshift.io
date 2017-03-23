@@ -62,6 +62,21 @@ export class StackAnalyses {
 
                 // Call the recommendations with the missing packages and version mismatches
                 this.setRecommendations(missingPackages, versionMismatch);
+            } else {
+                $('#recommenderListView').html('');
+                let strToAdd = `<div class="list-view-pf-main-info">
+                          <div class="list-view-pf-left">
+                            <span class="pficon pficon-ok"></span>
+                          </div>
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-text">
+                               <b>No Recommendations.</b> Your stack looks great!
+                              </div>
+                            </div>
+                          </div>
+                        </div>`;
+                $('#recommenderListView').append(strToAdd);
             }
 
             // Check if the data has results key
