@@ -105,11 +105,12 @@ body
 .row-log-in {
   margin-bottom: 20px;
 }
-.overview-row {
+.row-black {
+  background-color: $color-pf-black-900;
+  color: $color-pf-white;
   min-height: 200px;
 }
-.feature-row {
-  background-color: $color-pf-black-900;
+.row-white {
   min-height: 200px;
 }
 

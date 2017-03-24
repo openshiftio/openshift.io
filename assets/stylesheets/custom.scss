@@ -26,6 +26,9 @@ body {
 .dib{ display: inline-block; }
 .db{ display: block; }
 .textCenter{ text-align: $textCenter; }
+.textRight {
+    text-align: right;
+}
 
 .hero-text {
     font-size: 3em;
@@ -72,6 +75,14 @@ body {
     //     color: darken($color-pf-white, 5%);
     //     background-image: linear-gradient(to bottom, $color-pf-black-900 0, $color-pf-black 100%);
     // }
+}
+
+.img-placeholder {
+    // width: 615px;
+    border: 1px solid $color-pf-black-400;
+    width: 100%;
+    min-width: 100%;
+    height: 265px;
 }
 
 @media (max-width: $grid-float-breakpoint){
