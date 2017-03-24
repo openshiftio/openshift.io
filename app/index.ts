@@ -146,17 +146,7 @@ export class Auth {
       history.pushState(null, "", location.href.split("?")[0]);
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
-      this.setupRefreshTimer(token.expires_in);
-      this.getUser(token.access_token, (response: any) => {
-        let user = response.data;
-        window.location.href = '/' + user.attributes.username;
-      }, (response: JQueryXHR, textStatus: string, errorThrown: string) => {
-        if (response.status == 401) {
-          this.refreshToken();
-        } else {
-          this.logout();
-        }
-      });
+      this.setupRefreshTimer(token.expires_in), (window.location.href = '/_home');
       return;
     }
   }
