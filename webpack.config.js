@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 // Helper functions
 const ROOT = path.resolve(__dirname, '.');
 const isProd = process.env.NODE_ENV === "production";
@@ -116,7 +117,14 @@ module.exports = {
       ANALYTICS_WRITE_KEY: JSON.stringify(process.env.ANALYTICS_WRITE_KEY || "disabled")
     }),
     extractSass,
-    new CopyWebpackPlugin([])
+    new CopyWebpackPlugin([]),
+    /*
+     * Generate FavIcons from the master svg in all formats
+     */
+    new FaviconsWebpackPlugin({
+      logo: './assets/images/favicon32x32.png',
+      prefix: 'openshiftio/icons/'
+    }),
 
   ],
 
