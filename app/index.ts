@@ -145,9 +145,11 @@ export class Auth {
     if ('token_json' in params) {
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
-      let t = localStorage.getItem('auth_token');
       this.setupRefreshTimer(token.expires_in);
-      window.location.href = `/_home${window.location.search}`;
+      // Put a short delay here, as local storage takes a few MS to update
+      setTimeout(function () {
+        window.location.href = `/_home`;
+      }, 100)
       return;
     }
   }
