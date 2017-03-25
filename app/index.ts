@@ -143,10 +143,11 @@ export class Auth {
     }
     let params: any = this.getUrlParams();
     if ('token_json' in params) {
-      history.pushState(null, "", location.href.split("?")[0]);
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
-      this.setupRefreshTimer(token.expires_in), (window.location.href = '/_home');
+      let t = localStorage.getItem('auth_token');
+      this.setupRefreshTimer(token.expires_in);
+      window.location.href = `/_home${window.location.search}`;
       return;
     }
   }
