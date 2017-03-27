@@ -122,7 +122,7 @@ module.exports = {
      * Generate FavIcons from the master svg in all formats
      */
     new FaviconsWebpackPlugin({
-      logo: './assets/images/favicon32x32.png',
+      logo: './assets/images/favicon.svg',
       prefix: 'openshiftio/icons/'
     }),
 
