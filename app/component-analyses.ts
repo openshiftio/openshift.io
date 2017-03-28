@@ -27,6 +27,19 @@ export class ComponentAnalyses {
         }
     }
 
+    buildCveGrid = (dataSetCVE: Array<any>) => {
+        $('#compCVETable tbody').empty();
+        for (let i in dataSetCVE) {
+            let dataSetCveIDScore: Array<any> = [];
+            dataSetCveIDScore = dataSetCVE[i].split(':');
+            var strToAdd = '<tr>' +
+                '<td>' + dataSetCveIDScore[0] + '</td>' +
+                '<td>' + dataSetCveIDScore[1] + '</td></tr>';
+            $('#compCVETable tbody').append(strToAdd);
+
+        }
+    }
+
     formStackData = (compAnalysesArray: any) => {
         if (compAnalysesArray.hasOwnProperty('version') && compAnalysesArray.hasOwnProperty('package')) {
             let dataSet: Array<any> = [];
@@ -39,6 +52,11 @@ export class ComponentAnalyses {
             dataSetObj.dependentsCount = compAnalysesArray.version.dependents_count[0];
             dataSetObj.currentVersion = compAnalysesArray.version.version[0];
             dataSetObj.latestVersion = compAnalysesArray.package.latest_version[0];
+            if (compAnalysesArray.version.hasOwnProperty('cve_ids')) {
+                $('#compGridCntrCVE').show();
+                dataSetObj.CVElist = compAnalysesArray.version.cve_ids;
+                this.buildCveGrid(dataSetObj.CVElist);
+            }
             dataSet.push(dataSetObj);
             this.buildComponentGrid(dataSet);
         }
@@ -51,6 +69,7 @@ export class ComponentAnalyses {
         let component: string = '';
         let version: string = '';
         $('#compGridCntr').hide();
+        $('#compGridCntrCVE').hide();
         $('#componentStatus').hide();
         $('#componentSpinner').hide();
         $("#componentanalysesform").submit((val: any) => {
@@ -74,6 +93,7 @@ export class ComponentAnalyses {
                         this.formStackData(compAnalysesArray);
                     } else {
                         $('#compGridCntr').hide();
+                        $('#compGridCntrCVE').hide();
                         $('#componentStatus').show();
                         $('#componentStatusMsg').text('No records found');
                         $('#componentSpinner').hide();
@@ -82,6 +102,7 @@ export class ComponentAnalyses {
                 error: () => {
                     $('#componentSpinner').hide();
                     $('#compGridCntr').hide();
+                    $('#compGridCntrCVE').hide();
                     $('#componentStatus').show();
                     $('#componentStatusMsg').text('Failed to fetch the records');
                 }
