@@ -1,0 +1,55 @@
+.intro {
+    // background: url(../assets/images/openshift_logo.svg) no-repeat bottom center scroll;
+    background-color: #151515;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: $color-pf-white;
+    // display: table;
+    width: 100%;
+    height: auto;
+    min-height: 540px;
+    padding: 50px 0;
+    text-align: center;
+    .brand-heading {
+        width: 30%;
+        margin: 0 auto;
+        @media(max-width:768px) {
+            width: 70%;
+        }
+    }
+    .intro-body {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    @media(min-width:768px) {
+        // height: 100%;
+        // padding: 0;
+        .intro-body {
+            .intro-text {
+                font-size: 26px;
+            }
+        }
+    }
+}
+.submit-show {
+    margin-top: 50px;
+}
+.beta-submit {
+    border-radius: 4px;
+    font-size: 1.5em;
+    @media (min-width: 1175px) { 
+         font-size: 1.5em;
+    }
+    @media (max-width: 500px) {
+        font-size: 1.5em;
+    }
+}
+.features-content {
+    height: 165px;
+    .learn-more {
+        position: absolute;
+        bottom: 0;
+    }
+}
