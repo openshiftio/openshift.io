@@ -20,6 +20,7 @@ export class StackAnalyses {
         $('#pomTextConetntArea').show();
         $('#pomStatusSuccess').hide();
         $('#stackReportCntr').hide();
+        $('#stackSpinner').hide();
         $('#stackAnalysesAnchor').on('click', () => {
             this.callStackAnalysesReportApi();
         });
@@ -32,19 +33,24 @@ export class StackAnalyses {
     }
 
     callStackAnalysesReportApi = () => {
+        event.preventDefault();
+        $('#stackSpinner').show();
         $.ajax({
             url: this.stackapiUrl + 'stack-analyses/' + this.stackID,
             method: 'GET',
             dataType: 'json',
             success: response => {
                 if (response.hasOwnProperty('error')) {
-                    addToast("alert-warning", response.error);
+                    $('#stackSpinner').hide();
+                    addToast("alert-warning", "Analysis is in progress, Try after some time");
                 } else {
+                    $('#stackSpinner').hide();
                     $('#stackReportCntr').show();
                     this.formRecommendationList(response)
                 }
             },
             error: () => {
+                $('#stackSpinner').hide();
                 console.log('Error calling stack report API')
             }
         });
@@ -228,7 +234,7 @@ export class StackAnalyses {
         $.each((<HTMLInputElement>document.getElementById('stackAnalysesFile')).files, function (key: any, value: any) {
             data.append('manifest[]', value);
         });
-
+        $('#stackSpinner').show();
         $.ajax({
             url: this.stackapiUrl + 'stack-analyses',
             type: 'POST',
@@ -238,15 +244,18 @@ export class StackAnalyses {
             processData: false,
             success: data => {
                 if (typeof data.error === 'undefined') {
+                    $('#stackSpinner').hide();
                     addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
                     $('#pomStatusSuccess').show();
                     this.stackID = data.id;
                 }
                 else {
+                    $('#stackSpinner').hide();
                     console.log('ERRORS: ' + data.error);
                 }
             },
             error: () => {
+                $('#stackSpinner').hide();
                 console.log('ERRORS: ');
             }
         });
