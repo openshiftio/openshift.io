@@ -54,10 +54,13 @@ export class ComponentAnalyses {
         let version: string = '';
         $('#compGridCntr').hide();
         $('#componentStatus').hide();
+        $('#componentSpinner').hide();
         $("#componentanalysesform").submit((val: any) => {
             ecosystem = $("#ecosystem").val();
             component = $("#component").val();
             version = $("#version").val();
+            $('#componentSpinner').show();
+            $('#componentStatusMsg').text('');
             $.ajax({
                 url: stackUri + 'component-analyses/' + ecosystem + '/' + component + '/' + version,
                 headers: {
@@ -69,14 +72,17 @@ export class ComponentAnalyses {
                         compAnalysesArray = response.result.result.data;
                         $('#compGridCntr').show();
                         $('#componentStatus').hide();
+                        $('#componentSpinner').hide();
                         this.formStackData(compAnalysesArray);
                     } else {
                         $('#compGridCntr').hide();
                         $('#componentStatus').show();
                         $('#componentStatusMsg').text('No records found');
+                        $('#componentSpinner').hide();
                     }
                 },
                 error: () => {
+                    $('#componentSpinner').hide();
                     $('#compGridCntr').hide();
                     $('#componentStatus').show();
                     $('#componentStatusMsg').text('Failed to fetch the records');
