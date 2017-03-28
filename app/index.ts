@@ -89,6 +89,7 @@ export class Auth {
     this.loggedIn = false;
     $("#waitlistform").show();
     $("#waitlisttext").show();
+    $(".login-hide").show();
     $("#home").hide();
     this.updateUserMenu();
   }
@@ -160,6 +161,7 @@ export class Auth {
     this.updateUserMenu();
     $("#waitlistform").hide();
     $("#waitlisttext").hide();
+    $(".login-hide").hide();
     $("#home").show();
   }
 
@@ -305,9 +307,15 @@ export class Waitlist {
 
   checkWaitlisting(iteration: number) {
     if ($("#iframe").contents().find(".freebirdFormviewerViewResponseConfirmationMessage")) {
-      addToast("alert-success", "We've placed you on the waitlist! We'll be in touch soon.");
+      // addToast("alert-success", "We've placed you on the waitlist! We'll be in touch soon.");
       $("#email").attr("disabled", "true");
       $("#vouchercode").attr("disabled", "true");
+      $("#waitlistform").hide();
+      $(".submit-show")
+          .removeClass('hidden')
+          .show();
+      $(".submit-hide").hide();
+      $("#userLogin").hide();
     } else if (iteration > 60) {
       // Give up after 30 seconds
       addToast("alert-danger", "Waitlisting failed. Please try again later.");
@@ -317,8 +325,6 @@ export class Waitlist {
       this.setupRefreshTimer(iteration);
     }
   }
-
-
 }
 
 function loadScripts() {
@@ -344,8 +350,35 @@ export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastMessage").html(htmlMsg);
 }
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function() {
+    $('a.page-scroll').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();
+    });
+});
+
+function collapseNavbar() {
+    if ($(".navbar").offset().top > 100) {
+        $(".navbar-fixed-top").addClass("top-nav-collapse");
+    } else {
+        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+    }
+}
+
+$(window).scroll(collapseNavbar);
+$(document).ready(collapseNavbar);
+
 $(document)
   .ready(function () {
+
+    collapseNavbar;
 
     // Add the JS
     loadScripts();

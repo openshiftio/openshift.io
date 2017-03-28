@@ -1,5 +1,4 @@
 import { addToast, ApiLocator } from './index';
-import './recommender.scss';
 
 export class StackAnalyses {
 

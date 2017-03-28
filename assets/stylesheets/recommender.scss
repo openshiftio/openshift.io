@@ -25,3 +25,15 @@
         color: #000;
     }
 }
+
+.recommender-inputs {
+    .form-control {
+        width: 250px !important;
+    }
+    button {
+        background-color: $color-pf-white;
+        color: $color-pf-red-200;
+        height: 30px;
+        border-radius: 4px;
+    }
+}

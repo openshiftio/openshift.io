@@ -8,82 +8,86 @@ body {
     font-family: 'Overpass', sans-serif;
 }
 
-//colors
-.color-grey{ color: $color-pf-black-800 !important; }
+.btn {
+    white-space: normal !important;
+    word-wrap: break-word;
+    font-size: $font-size-base;
+}
 
-// custom classes
-.containerPadd{ padding: em(96) 0 em(66) 0; }
-.containerPadd-nologin{ padding-bottom: 0; }
-.truncate{
-    @include truncate;
+h1 {
+    font-size: 2.5em;
+    font-weight: 600;
 }
-.truncate-ellipsis{
-    display: table;
-    table-layout: fixed;
-    white-space: nowrap;
+
+.textCenter{
+    text-align: center;
 }
-.dn{ display: none; }
-.dib{ display: inline-block; }
-.db{ display: block; }
-.textCenter{ text-align: $textCenter; }
 .textRight {
     text-align: right;
-}
-
-.hero-text {
-    font-size: 3em;
-    font-weight: 600;
-    .hero-text-sub {
-        font-size: .7em;
-    }
-}
-.form-control {
-    font-size: $font-size-base*1.5;
-    &::placeholder {
-        font-style: normal;
-    }
-}
-.beta-form {
-    input {
-        height: 50px;
-        border: 1px solid $color-pf-black-300;
-        border-radius: 4px;
-        background-color: $color-pf-white;
-    }
-}
-.beta-submit {
-    height: 55px;
-    border-radius: 4px;
-    font-size: 1.5em;
-    @media (min-width: 1175px) { 
-         font-size: 2em;
-    }
-    @media (max-width: 500px) {
-        font-size: 1em;
-    }
 }
 .text-white {
     color: $color-pf-white;
 }
-.btn-outline {
-    @extend .beta-submit;
-    // will be added back in as part of the visual design
-    // border: 2px solid $color-pf-blue-200;
-    // background-color: transparent;
-    // background-image: none;
-    // &:hover, &:active, &:focus {
-    //     color: darken($color-pf-white, 5%);
-    //     background-image: linear-gradient(to bottom, $color-pf-black-900 0, $color-pf-black 100%);
-    // }
+.text-red {
+    color: $color-pf-red-100;
+}
+.row-spacer {
+    margin-top: 100px;
 }
 
-.img-placeholder {
-    // width: 615px;
-    border: 1px solid $color-pf-black-400;
-    width: 100%;
-    min-width: 100%;
-    height: 265px;
+// brand overwrites
+.btn-lg {
+    padding: 12px 20px;
 }
+.btn-primary {
+    background-image: none;
+    background-color: #c00;
+    border-color: #c00;
+    color: #fff;
+    &:hover {
+        background-color: #b30000;
+        border-color: #b30000;
+    }
+}
+.btn-open-red {
+    background-image: none;
+    background-color: transparent !important;
+    border-color: #c00 !important;
+    color: #fff !important;
+    &:hover {
+        background-color: #b30000 !important;
+        color: #fff !important;
+    }
+}
+.btn-accent {
+    background-image: none;
+    background: #08c0fc !important;
+    border-color: #08c0fc !important;
+    color: #fff !important;
+    &:hover {
+        background: #03afe8 !important;
+        border-color: #03afe8 !important;
+        color: #fff !important;
+    }
+}
+.btn-link {
+    color: #06c !important;
+    &:hover {
+        color: #0051a3 !important;
+    }
+}
+.btn-white {
+    background-image: none;
+    background: #fff;
+    border-color: #fff;
+    color: #c00;
+    &:hover {
+        background: #f2f2f2;
+        border-color: #f2f2f2;
+        color: #c00;
+    }
+}
+//
 
 @media (max-width: $grid-float-breakpoint){
     .mobdn{ display: none; }
@@ -104,3 +108,6 @@ body {
 
 
 @import 'layout';
+@import 'features.scss';
+@import 'recommender.scss';
+@import 'analysis.scss';
