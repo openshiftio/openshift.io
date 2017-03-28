@@ -28,20 +28,18 @@ export class ComponentAnalyses {
     }
 
     formStackData = (compAnalysesArray: any) => {
-        if (compAnalysesArray.length) {
+        if (compAnalysesArray.hasOwnProperty('version') && compAnalysesArray.hasOwnProperty('package')) {
             let dataSet: Array<any> = [];
-            for (let i in compAnalysesArray) {
-                let dataSetObj: any = {};
-                dataSetObj.ecosystem = compAnalysesArray[i].version.pecosystem[0];
-                dataSetObj.name = compAnalysesArray[i].version.pname[0];
-                dataSetObj.cyclomaticComplexity = compAnalysesArray[i].version.cm_avg_cyclomatic_complexity[0];
-                dataSetObj.lineOfCode = compAnalysesArray[i].version.cm_loc[0];
-                dataSetObj.numOfFiles = compAnalysesArray[i].version.cm_num_files[0];
-                dataSetObj.dependentsCount = compAnalysesArray[i].version.dependents_count[0];
-                dataSetObj.currentVersion = compAnalysesArray[i].version.version[0];
-                dataSetObj.latestVersion = compAnalysesArray[i].package.latest_version[0];
-                dataSet.push(dataSetObj);
-            }
+            let dataSetObj: any = {};
+            dataSetObj.ecosystem = compAnalysesArray.version.pecosystem[0];
+            dataSetObj.name = compAnalysesArray.version.pname[0];
+            dataSetObj.cyclomaticComplexity = compAnalysesArray.version.cm_avg_cyclomatic_complexity[0];
+            dataSetObj.lineOfCode = compAnalysesArray.version.cm_loc[0];
+            dataSetObj.numOfFiles = compAnalysesArray.version.cm_num_files[0];
+            dataSetObj.dependentsCount = compAnalysesArray.version.dependents_count[0];
+            dataSetObj.currentVersion = compAnalysesArray.version.version[0];
+            dataSetObj.latestVersion = compAnalysesArray.package.latest_version[0];
+            dataSet.push(dataSetObj);
             this.buildComponentGrid(dataSet);
         }
     }
@@ -65,8 +63,8 @@ export class ComponentAnalyses {
                 },
                 method: 'GET',
                 success: response => {
-                    if (response && response.result && response.result.result && response.result.result.data.length > 0) {
-                        compAnalysesArray = response.result.result.data;
+                    if (response && response.result && response.result.data) {
+                        compAnalysesArray = response.result.data;
                         $('#compGridCntr').show();
                         $('#componentStatus').hide();
                         this.formStackData(compAnalysesArray);
