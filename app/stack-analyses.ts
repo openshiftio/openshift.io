@@ -42,7 +42,7 @@ export class StackAnalyses {
             success: response => {
                 if (response.hasOwnProperty('error')) {
                     $('#stackSpinner').hide();
-                    addToast("alert-warning", "Analysis is in progress, Try after some time");
+                    addToast("alert-warning", "Analyses is in progress, Try after some time");
                 } else {
                     $('#stackSpinner').hide();
                     $('#stackReportCntr').show();
@@ -245,7 +245,7 @@ export class StackAnalyses {
             success: data => {
                 if (typeof data.error === 'undefined') {
                     $('#stackSpinner').hide();
-                    addToast("alert-success", "Successfully generated Stack ID! Reports can be viewed now.");
+                    addToast("alert-success", "Stack analyses request has been successfully initiated");
                     $('#pomStatusSuccess').show();
                     this.stackID = data.id;
                 }
