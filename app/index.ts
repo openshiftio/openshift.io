@@ -87,8 +87,9 @@ export class Auth {
     clearTimeout(this.clearTimeoutId);
     this.refreshInterval = null;
     this.loggedIn = false;
-    $("#waitlistform").show()
+    $("#waitlistform").show();
     $("#waitlisttext").show();
+    $("#home").hide();
     this.updateUserMenu();
   }
 
@@ -159,6 +160,7 @@ export class Auth {
     this.updateUserMenu();
     $("#waitlistform").hide();
     $("#waitlisttext").hide();
+    $("#home").show();
   }
 
   getUrlParams(): Object {
@@ -350,6 +352,9 @@ $(document)
 
     // Create a nice representation of our URL
     let url = new URI(window.location.href);
+    
+    // Hide Home menu item
+    $("#home").hide();
 
     // Build services for the login widget
     let auth = new Auth();
