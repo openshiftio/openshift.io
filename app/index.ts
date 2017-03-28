@@ -150,7 +150,7 @@ export class Auth {
       // Put a short delay here, as local storage takes a few MS to update
       setTimeout(function () {
         window.location.href = `/_home`;
-      }, 100)
+      }, 1000)
       return;
     }
   }
