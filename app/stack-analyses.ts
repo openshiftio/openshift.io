@@ -42,6 +42,7 @@ export class StackAnalyses {
             success: response => {
                 if (response.hasOwnProperty('error')) {
                     $('#stackSpinner').hide();
+                    $('#stackReportCntr').hide();
                     addToast("alert-warning", "Analyses is in progress, Try after some time");
                 } else {
                     $('#stackSpinner').hide();
