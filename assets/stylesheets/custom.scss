@@ -8,6 +8,48 @@ body {
     font-family: 'Overpass', sans-serif;
 }
 
+#return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 1200;
+}
+#return-to-top i {
+    color: $color-pf-white;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+#return-to-top:hover i {
+    color: $color-pf-white;
+    top: 5px;
+}
+
 .btn {
     white-space: normal !important;
     word-wrap: break-word;
@@ -35,60 +77,6 @@ h1 {
     margin-top: 100px;
 }
 
-// brand overwrites
-.btn-lg {
-    padding: 12px 20px;
-}
-.btn-primary {
-    background-image: none;
-    background-color: #c00;
-    border-color: #c00;
-    color: #fff;
-    &:hover {
-        background-color: #b30000;
-        border-color: #b30000;
-    }
-}
-.btn-open-red {
-    background-image: none;
-    background-color: transparent !important;
-    border-color: #c00 !important;
-    color: #fff !important;
-    &:hover {
-        background-color: #b30000 !important;
-        color: #fff !important;
-    }
-}
-.btn-accent {
-    background-image: none;
-    background: #08c0fc !important;
-    border-color: #08c0fc !important;
-    color: #fff !important;
-    &:hover {
-        background: #03afe8 !important;
-        border-color: #03afe8 !important;
-        color: #fff !important;
-    }
-}
-.btn-link {
-    color: #06c !important;
-    &:hover {
-        color: #0051a3 !important;
-    }
-}
-.btn-white {
-    background-image: none;
-    background: #fff;
-    border-color: #fff;
-    color: #c00;
-    &:hover {
-        background: #f2f2f2;
-        border-color: #f2f2f2;
-        color: #c00;
-    }
-}
-//
-
 @media (max-width: $grid-float-breakpoint){
     .mobdn{ display: none; }
     .list-view-pf {
@@ -108,6 +96,7 @@ h1 {
 
 
 @import 'layout';
+@import 'buttons';
 @import 'features.scss';
 @import 'recommender.scss';
 @import 'analysis.scss';

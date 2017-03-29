@@ -79,7 +79,7 @@
 html, body {
   width: 100%;
   height: 100%;
-          position: relative; 
+  position: relative; 
 }
 
 body {
@@ -93,27 +93,50 @@ body {
   display:flex;
   font-size: $font-size-base;
 }
+#signUp {
+    background: url(hero-background.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: left;
+    color: $color-pf-white;
+    width: 100%;
+    height: auto;
+    min-height: 540px;
+    padding: 50px 0;
+    margin-top: -1px; // for firefox
+}
 #features {
   background-color: $color-pf-black-200;
   padding-bottom: 50px;
 }
 #recommender {
-  background-color: $color-pf-green-400;
+  background: url(recommendation-background.png);
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: left;
   color: $color-pf-white;
   min-height: 200px;
   padding-top: 50px;
   padding-bottom: 50px;
 }
 #analysis {
-  background-color: $color-pf-black-300;
+  background: url(analyze-background.png);
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: left;
   min-height: 200px;
   padding-top: 50px;
   padding-bottom: 50px;
 }
 .form-control {
     font-size: $font-size-base;
-    height: 30px;
-    border-radius: 4px;
+    height: 50px;
     &::placeholder {
         font-style: normal;
     }
@@ -131,38 +154,17 @@ hr {
 }
 
 // an app component is a marker class for angular component dom elements
-.app-component
-{
+.app-component {
   //root app component
-  &.app
-  {
-    >header{
-
-    }
-    >main
-    {
-    }
-    >footer{
-      .footer
-      {
+  &.app {
+    >footer {
+      .footer {
         text-align: $textCenter;
         font-size: $font-size-small;
         border-top: 1px solid $color-pf-blue-300;
       }
 
     }
-  }
-
-  // when app-component is the child of a bootstrap column div
-  div[class^="col-"] &
-  {
-    // margin-left:-$grid-gutter-width/2;
-    // margin-right:-$grid-gutter-width/2;
-  }
-  div[class*=" col-"] &
-  {
-    // margin-left:-$grid-gutter-width/2;
-    // margin-right:-$grid-gutter-width/2;
   }
 
   // Note: making relative positioning helps positioning but creates extra margins
@@ -175,29 +177,24 @@ hr {
 
 $content-padding:0;
 
-header
-{
+header {
   padding:$content-padding;
 }
 
-footer
-{
+footer {
   padding:$content-padding;
 }
 
 // helps to ensure that scrolling does not cross app footer or header
-.view-container
-{
+.view-container {
   position:relative;
-  >.view
-  {
+  >.view {
     @extend .fill-container;
-    &.with-rows
-    {
+    &.with-rows {
       padding-left:$grid-gutter-width/2;
       padding-right:$grid-gutter-width/2;
     }
-    >main,section,aside{
+    >main,section,aside {
       padding:$content-padding;
       overflow: auto;
     }
@@ -205,34 +202,29 @@ footer
 }
 
 // chromeless dialog suppresses all chrome in the ng2-bootstrap modal component
-.chromeless-modal
-{
-  .modal-content
-  {
+.chromeless-modal {
+  .modal-content {
     display:flex;
     border:solid 0 lime;
     padding:0;
     margin:0;
-    .modal-header{
+    .modal-header {
       display:none;
     }
-    .modal-footer{
+    .modal-footer {
       display:none;
     }
-    .modal-body{
+    .modal-body {
       flex:1;
       display:flex;
       border:solid 0 orangered;
       padding:0;
-      .chromeless-modal-content
-      {
+      .chromeless-modal-content {
         flex:1;
         display:flex;
         border:solid 0 brown;
         padding:0;
-
       }
     }
-
   }
 }

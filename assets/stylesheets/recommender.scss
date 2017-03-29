@@ -2,17 +2,17 @@
     input[type="file"] {
         display: none;
     }
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-    }
 }   
 
 #compGridCntr{
-    .table>thead {
-        color: #000;
+    .table {
+        border: 1px solid $color-pf-white;
+        border-radius: 4px;
+        >thead {
+            background-image: none;
+            background-color: $color-pf-white;
+            color: #000;
+        }
     }
 }
 
@@ -28,12 +28,7 @@
 
 .recommender-inputs {
     .form-control {
+        height: 50px;
         width: 250px !important;
-    }
-    button {
-        background-color: $color-pf-white;
-        color: $color-pf-red-200;
-        height: 30px;
-        border-radius: 4px;
     }
 }

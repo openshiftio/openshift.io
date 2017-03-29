@@ -23,7 +23,7 @@ export class StackAnalyses {
         $('#stackAnalysesAnchor').on('click', () => {
             this.callStackAnalysesReportApi();
         });
-        $('#stacAnalysesFileUpload').on('click', () => {
+        $('#stackAnalysesFileUpload').on('click', () => {
             this.uploadStackAnalysesFile();
         });
         $('#stackAnalysesFile').on('change', () => {
@@ -42,7 +42,7 @@ export class StackAnalyses {
                 if (response.hasOwnProperty('error')) {
                     $('#stackSpinner').hide();
                     $('#stackReportCntr').hide();
-                    addToast("alert-warning", "Analyses is in progress, Try after some time");
+                    addToast("alert-warning", "Your stack analyses is currently in progress.");
                 } else {
                     $('#stackSpinner').hide();
                     $('#stackReportCntr').show();
@@ -77,7 +77,7 @@ export class StackAnalyses {
                           <div class="list-view-pf-body">
                             <div class="list-view-pf-description">
                               <div class="list-group-item-text">
-                               <b>No Recommendations.</b> Your stack looks great!
+                               <b>We have no recommendations for you.</b> Your stack looks great!
                               </div>
                             </div>
                           </div>
@@ -222,11 +222,11 @@ export class StackAnalyses {
         var input = <HTMLInputElement>document.getElementById('stackAnalysesFile');
         var output = document.getElementById('fileList');
 
-        output.innerHTML = '<ul>';
+        // output.innerHTML = '<ul>';
         for (var i = 0; i < input.files.length; ++i) {
-            output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
+            output.innerHTML += '<span>' + input.files.item(i).name + '</span>';
         }
-        output.innerHTML += '</ul>';
+        // output.innerHTML += '</ul>';
     }
 
     uploadStackAnalysesFile = () => {
@@ -245,7 +245,7 @@ export class StackAnalyses {
             success: data => {
                 if (typeof data.error === 'undefined') {
                     $('#stackSpinner').hide();
-                    addToast("alert-success", "Stack analyses request has been successfully initiated");
+                    addToast("alert-success", "Your stack analyses request has been successfully initiated.");
                     $('#pomStatusSuccess').show();
                     this.stackID = data.id;
                 }
