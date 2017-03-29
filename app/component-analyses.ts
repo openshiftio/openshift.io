@@ -95,7 +95,7 @@ export class ComponentAnalyses {
                         $('#compGridCntr').hide();
                         $('#compGridCntrCVE').hide();
                         $('#componentStatus').show();
-                        $('#componentStatusMsg').text('No records found');
+                        $('#componentStatusMsg').text('No records found for this component');
                         $('#componentSpinner').hide();
                     }
                 },
@@ -104,7 +104,7 @@ export class ComponentAnalyses {
                     $('#compGridCntr').hide();
                     $('#compGridCntrCVE').hide();
                     $('#componentStatus').show();
-                    $('#componentStatusMsg').text('Failed to fetch the records');
+                    $('#componentStatusMsg').text('Our records could not match this search');
                 }
             });
             event.preventDefault();

@@ -91,6 +91,7 @@ export class Auth {
     $("#waitlisttext").show();
     $(".login-hide").show();
     $("#home").hide();
+    $("#explore-nav").show();
     this.updateUserMenu();
   }
 
@@ -163,6 +164,7 @@ export class Auth {
     $("#waitlisttext").hide();
     $(".login-hide").hide();
     $("#home").show();
+    $("#explore-nav").hide();
   }
 
   getUrlParams(): Object {
@@ -307,7 +309,6 @@ export class Waitlist {
 
   checkWaitlisting(iteration: number) {
     if ($("#iframe").contents().find(".freebirdFormviewerViewResponseConfirmationMessage")) {
-      // addToast("alert-success", "We've placed you on the waitlist! We'll be in touch soon.");
       $("#email").attr("disabled", "true");
       $("#vouchercode").attr("disabled", "true");
       $("#waitlistform").hide();
@@ -350,18 +351,18 @@ export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastMessage").html(htmlMsg);
 }
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
-$(function() {
-    $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
+// ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {
+        $('#return-to-top').fadeIn(200);
+    } else {
+        $('#return-to-top').fadeOut(200);
+    }
+});
+$('#return-to-top').click(function() {
+    $('body,html').animate({
+        scrollTop : 0
+    }, 500);
 });
 
 function collapseNavbar() {
@@ -388,6 +389,7 @@ $(document)
     
     // Hide Home menu item
     $("#home").hide();
+    $("#explore-nav").show();
 
     // Build services for the login widget
     let auth = new Auth();

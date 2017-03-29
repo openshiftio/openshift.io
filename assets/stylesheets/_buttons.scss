@@ -1,0 +1,74 @@
+// brand overwrites
+.btn-lg {
+    padding: 12px 20px;
+}
+.btn-default {
+    background-image: none;
+    background-color: #4c4c4c;
+    border-color: #4c4c4c;
+    color: #fff;
+    &:hover, &:focus, &:active {
+        background-color: #3f3f3f;
+        border-color: #3f3f3f;
+    }
+}
+.btn-primary {
+    background-image: none;
+    background-color: #c00;
+    border-color: #c00;
+    color: #fff;
+    &:hover, &:focus, &:active {
+        background-color: #b30000;
+        border-color: #b30000;
+    }
+}
+.btn-open-red {
+    background-image: none;
+    background-color: transparent;
+    border-color: #c00;
+    color: #fff;
+    &:hover {
+        background-color: #b30000;
+        color: #fff;
+    }
+}
+.btn-bordered-blue {
+    background: #fff;
+    border-color: #06c;
+    color: #06c;
+    &:hover, &:focus, &:active, .active {
+        box-shadow: none;
+        background: #08c0fc;
+        border-color: #08c0fc;
+        color: #fff;
+    }
+}
+.btn-accent {
+    background-image: none;
+    background: #08c0fc;
+    border-color: #08c0fc;
+    color: #fff;
+    &:hover {
+        background: #03afe8;
+        border-color: #03afe8;
+        color: #fff;
+    }
+}
+.btn-link {
+    color: #06c;
+    &:hover {
+        color: #0051a3;
+    }
+}
+.btn-white {
+    background-image: none;
+    background: #fff;
+    border-color: #fff;
+    color: #c00;
+    &:hover {
+        background: #f2f2f2;
+        border-color: #f2f2f2;
+        color: #c00;
+    }
+}
+//
