@@ -488,8 +488,8 @@ export class Analytics {
       aa.type = "text/javascript";
       aa.async = !0;
       aa.src = ("https:" === document.location.protocol ? "https://" : "http://") + dpal;
-      var n = document.getElementsByTagName("script")[0];
-      n.parentNode.insertBefore(e, n);
+      var n = document.getElementsByTagName("head")[0];
+      n.appendChild(aa);
 
     }
   }
