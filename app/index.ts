@@ -478,9 +478,9 @@ export class Analytics {
       // Create a nice representation of our URL
       let url = new URI(window.location.href);
       let dpal: string;
-      let domain = url.domain();
-      if (dpals.hasOwnProperty(domain)) {
-        dpal = dpals[domain];
+      let hostname = url.hostname();
+      if (dpals.hasOwnProperty(hostname)) {
+        dpal = dpals[hostname];
       } else {
         dpal = 'www.redhat.com/dtm.js';
       }
