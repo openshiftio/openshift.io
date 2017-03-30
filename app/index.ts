@@ -328,7 +328,7 @@ export class Waitlist {
   }
 }
 
-function loadScripts() {
+function loadScripts(url: any) {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
   (window as any).$ = $;
@@ -337,7 +337,35 @@ function loadScripts() {
     "bootstrap.min.js\"></script>");
   $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
     "nfly.min.js\"></script>");
-  $("body").append("<script type=\"text/javascript\">if ((\"undefined\" !== typeof _satellite) && (\"function\" === typeof _satellite.pageBottom)) {_satellite.pageBottom();}</script>");
+  if (ANALYTICS_WRITE_KEY != 'disabled') {
+
+    // Load Adobe DTM
+    let dpals = {
+      'prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
+      'www.prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
+      'openshift.io': 'www.redhat.com/dtm.js',
+      'www.openshift.io': 'www.redhat.com/dtm.js',
+    } as any;
+    let dpal: string;
+    let hostname = url.hostname();
+    if (dpals.hasOwnProperty(hostname)) {
+      dpal = dpals[hostname];
+    } else {
+      dpal = 'www.redhat.com/dtm.js';
+    }
+
+    $.ajax({
+      url: ('https:' === document.location.protocol ? 'https://' : 'http://') + dpal,
+      dataType: 'script',
+      success: () => {
+        let satellite: any = (window as any)._satellite;
+        if (satellite && typeof satellite.pageBottom === 'function') {
+          satellite.pageBottom();
+        }
+      }
+    });
+  }
+
 }
 
 export function addToast(cssClass: string, htmlMsg: string) {
@@ -382,11 +410,12 @@ $(document)
 
     collapseNavbar;
 
+    let url = new URI(window.location.href);
     // Add the JS
-    loadScripts();
+    loadScripts(url);
 
     // Create a nice representation of our URL
-    let url = new URI(window.location.href);
+
 
     // Hide Home menu item
     $("#home").hide();
@@ -467,30 +496,6 @@ export class Analytics {
           analytics.page('landing');
         }
       }
-
-      // Load Adobe DTM
-      let dpals = {
-        'prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
-        'www.prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
-        'openshift.io': 'www.redhat.com/dtm.js',
-        'www.openshift.io': 'www.redhat.com/dtm.js',
-      } as any;
-      // Create a nice representation of our URL
-      let url = new URI(window.location.href);
-      let dpal: string;
-      let hostname = url.hostname();
-      if (dpals.hasOwnProperty(hostname)) {
-        dpal = dpals[hostname];
-      } else {
-        dpal = 'www.redhat.com/dtm.js';
-      }
-      let aa = document.createElement("script");
-      aa.type = "text/javascript";
-      aa.async = !0;
-      aa.src = ("https:" === document.location.protocol ? "https://" : "http://") + dpal;
-      var n = document.getElementsByTagName("head")[0];
-      n.appendChild(aa);
-
     }
   }
 
