@@ -313,8 +313,8 @@ export class Waitlist {
       $("#vouchercode").attr("disabled", "true");
       $("#waitlistform").hide();
       $(".submit-show")
-          .removeClass('hidden')
-          .show();
+        .removeClass('hidden')
+        .show();
       $(".submit-hide").hide();
       $("#userLogin").hide();
     } else if (iteration > 60) {
@@ -337,6 +337,7 @@ function loadScripts() {
     "bootstrap.min.js\"></script>");
   $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
     "nfly.min.js\"></script>");
+  $("body").append("<script type=\"text/javascript\">if ((\"undefined\" !== typeof _satellite) && (\"function\" === typeof _satellite.pageBottom)) {_satellite.pageBottom();}</script>");
 }
 
 export function addToast(cssClass: string, htmlMsg: string) {
@@ -352,25 +353,25 @@ export function addToast(cssClass: string, htmlMsg: string) {
 }
 
 // ===== Scroll to Top ==== 
-$(window).scroll(function() {
-    if ($(this).scrollTop() >= 50) {
-        $('#return-to-top').fadeIn(200);
-    } else {
-        $('#return-to-top').fadeOut(200);
-    }
+$(window).scroll(function () {
+  if ($(this).scrollTop() >= 50) {
+    $('#return-to-top').fadeIn(200);
+  } else {
+    $('#return-to-top').fadeOut(200);
+  }
 });
-$('#return-to-top').click(function() {
-    $('body,html').animate({
-        scrollTop : 0
-    }, 500);
+$('#return-to-top').click(function () {
+  $('body,html').animate({
+    scrollTop: 0
+  }, 500);
 });
 
 function collapseNavbar() {
-    if ($(".navbar").offset().top > 100) {
-        $(".navbar-fixed-top").addClass("top-nav-collapse");
-    } else {
-        $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    }
+  if ($(".navbar").offset().top > 100) {
+    $(".navbar-fixed-top").addClass("top-nav-collapse");
+  } else {
+    $(".navbar-fixed-top").removeClass("top-nav-collapse");
+  }
 }
 
 $(window).scroll(collapseNavbar);
@@ -386,7 +387,7 @@ $(document)
 
     // Create a nice representation of our URL
     let url = new URI(window.location.href);
-    
+
     // Hide Home menu item
     $("#home").hide();
     $("#explore-nav").show();
@@ -416,6 +417,7 @@ export class Analytics {
 
   loadAnalytics() {
     if (ANALYTICS_WRITE_KEY != 'disabled') {
+      // Load Segment.io
       var analytics = (window as any).analytics = (window as any).analytics || [];
       if (!analytics.initialize) {
         if (analytics.invoked) {
@@ -465,6 +467,30 @@ export class Analytics {
           analytics.page('landing');
         }
       }
+
+      // Load Adobe DTM
+      let dpals = {
+        'prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
+        'www.prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
+        'openshift.io': 'www.redhat.com/dtm.js',
+        'www.openshift.io': 'www.redhat.com/dtm.js',
+      } as any;
+      // Create a nice representation of our URL
+      let url = new URI(window.location.href);
+      let dpal: string;
+      let domain = url.domain();
+      if (dpals.hasOwnProperty(domain)) {
+        dpal = dpals[domain];
+      } else {
+        dpal = 'www.redhat.com/dtm.js';
+      }
+      let aa = document.createElement("script");
+      aa.type = "text/javascript";
+      aa.async = !0;
+      aa.src = ("https:" === document.location.protocol ? "https://" : "http://") + dpal;
+      var n = document.getElementsByTagName("script")[0];
+      n.parentNode.insertBefore(e, n);
+
     }
   }
 
