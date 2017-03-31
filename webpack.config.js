@@ -38,7 +38,7 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
   entry: ['./app/index.ts'],
-  devtool: (isProd ? 'source-map' : 'inline-source-map'),
+  devtool: (isProd ? 'inline-source-map' : 'inline-source-map'),
   output: {
     filename: '/openshiftio/[name].js',
     path: (isProd ? path.join(ROOT, '/dist') : '/')
