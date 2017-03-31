@@ -216,6 +216,11 @@ export class Auth {
   }
 
   getUser(authToken: string, success: any, error: any) {
+    let satellite: any = (window as any)._satellite;
+    let adobeMarketingCloudVisitorId: string;
+    if (satellite && satellite.hasOwnProperty('getVisitorId') && satellite.getVisitorId().hasOwnProperty('getMarketingCloudVisitorID')) {
+      adobeMarketingCloudVisitorId = satellite.getVisitorId().getMarketingCloudVisitorID();
+    }
     if (authToken) {
       $.ajax({
         url: this.apiUrl + 'user',
@@ -226,7 +231,7 @@ export class Auth {
         method: 'GET',
         dataType: 'json',
         success: response => {
-          analytics.identifyUser(response.data);
+          analytics.identifyUser(response.data, adobeMarketingCloudVisitorId);
           success(response);
         },
         error: error
@@ -341,6 +346,7 @@ function loadScripts(url: any) {
 
     // Load Adobe DTM
     let dpals = {
+      'default': 'www.redhat.com/dtm-staging.js',
       'prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
       'www.prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
       'openshift.io': 'www.redhat.com/dtm.js',
@@ -351,7 +357,7 @@ function loadScripts(url: any) {
     if (dpals.hasOwnProperty(hostname)) {
       dpal = dpals[hostname];
     } else {
-      dpal = 'www.redhat.com/dtm.js';
+      dpal = dpals['default'];
     }
 
     $.ajax({
@@ -499,7 +505,7 @@ export class Analytics {
     }
   }
 
-  identifyUser(user: any): any {
+  identifyUser(user: any, adobeMarketingCloudVisitorId: string): any {
     if (this.analytics) {
       let traits = {
         avatar: user.attributes.imageURL,
@@ -507,7 +513,8 @@ export class Analytics {
         username: user.attributes.username,
         website: user.attributes.url,
         name: user.attributes.fullName,
-        description: user.attributes.bio
+        description: user.attributes.bio,
+        adobeMarketingCloudVisitorId: adobeMarketingCloudVisitorId
       };
       this.analytics.
         identify(
