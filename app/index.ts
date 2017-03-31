@@ -120,8 +120,7 @@ export class Auth {
         dataType: 'json',
         data: JSON.stringify({ "refresh_token": refreshToken }),
         success: response => {
-          let responseJson = response.data;
-          let token = this.processTokenResponse(responseJson.token);
+          let token = this.processTokenResponse(response.token);
           this.setupRefreshTimer(token.expires_in);
           console.log('token refreshed at:' + Date.now());
         },
