@@ -154,7 +154,7 @@ export class Auth {
       // Put a short delay here, as local storage takes a few MS to update
       setTimeout(function () {
         window.location.href = `/_home`;
-      }, 1000)
+      }, 1000);
       return;
     }
   }
@@ -361,19 +361,19 @@ function loadScripts(url: any) {
       url: ('https:' === document.location.protocol ? 'https://' : 'http://') + dpal,
       dataType: 'script',
       success: () => {
-        let satellite: any = (window as any)._satellite;
-        if (satellite && typeof satellite.pageBottom === 'function') {
-          satellite.pageBottom();
-        }
-        if (
-          satellite &&
-          typeof satellite.getVisitorId === 'function' &&
-          typeof satellite.getVisitorId.getMarketingCloudVisitorID === 'function'
-        ) {
-          let w = window as any;
-          w.openshiftio = w.openshiftio || {};
-          w.openshiftio.adobeMarketingCloudVisitorId = satellite.getVisitorId().getMarketingCloudVisitorID();
-        }
+        setTimeout(function () {
+          let satellite: any = (window as any)._satellite;
+          if (satellite && typeof satellite.pageBottom === 'function') {
+            satellite.pageBottom();
+          }
+          if (
+            satellite &&
+            typeof satellite.getVisitorId === 'function' &&
+            typeof satellite.getVisitorId.getMarketingCloudVisitorID === 'function'
+          ) {
+            localStorage['openshiftio.adobeMarketingCloudVisitorId'] = satellite.getVisitorId().getMarketingCloudVisitorID();
+          }
+        }, 200);
       }
     });
   }
