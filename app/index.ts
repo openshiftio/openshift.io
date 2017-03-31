@@ -364,15 +364,13 @@ function loadScripts(url: any) {
         if (satellite && typeof satellite.pageBottom === 'function') {
           satellite.pageBottom();
         }
-        setTimeout(function () {
-          if (
-            satellite &&
-            typeof satellite.getVisitorId === 'function' &&
-            typeof satellite.getVisitorId().getMarketingCloudVisitorID === 'function'
-          ) {
-            localStorage['openshiftio.adobeMarketingCloudVisitorId'] = satellite.getVisitorId().getMarketingCloudVisitorID();
-          }
-        }, 200);
+        if (
+          satellite &&
+          typeof satellite.getVisitorId === 'function' &&
+          typeof satellite.getVisitorId().getMarketingCloudVisitorID === 'function'
+        ) {
+          localStorage['openshiftio.adobeMarketingCloudVisitorId'] = satellite.getVisitorId().getMarketingCloudVisitorID();
+        }
       }
     });
   }
