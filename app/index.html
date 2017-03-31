@@ -410,9 +410,21 @@
         <div class="col-md-offset-2">
           <div class="col-sm-12 col-md-6">
             <h1>Analyze Your Own Stack</h1>
-            <p>
-              Select a manifest file to run through our analyzer and see your results here.
-            </p>
+            <div class="dropdown dropdown-kebab-pf">
+              <span data-toggle="dropdown" class="pficon pficon-info">
+              Select a manifest file to run through our analyzer and see your results here.</span>
+              <div class="dropdown-menu infotip">
+                <div class="arrow"></div>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    The manifest is a special file that can contain information about the files packaged
+                  </li>
+                  <li class="list-group-item">
+                    i.e for maven it's pom.xml, nodejs apllication it's package.json
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="col-sm-12 col-md-3">
             <div class="analyze-box">
@@ -423,7 +435,7 @@
                 <label for="stackAnalysesFile" class="custom-file-upload btn btn-bordered-blue">
                   <i class="pficon pficon-import"></i> Choose File For Analysis
                 </label>
-                <input type="file" name="file" id="stackAnalysesFile">
+                <input type="file" name="file" id="stackAnalysesFile" accept=".xml,.json">
                 <div class="file-to-analyze">
                   File to Analyze:
                   <b><span id="fileList" class="upload-files"></span></b>
