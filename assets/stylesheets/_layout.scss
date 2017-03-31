@@ -129,8 +129,13 @@ body {
   .recommender-header{
     margin-bottom: 20px;
   }
-  .dropdown-kebab-pf p{
+  .dropdown-kebab-pf{
+    p{
     font-size: 13px;
+    }
+    span{
+      cursor: pointer;
+    }
   }
   .dropdown-menu{
     color: #000;
