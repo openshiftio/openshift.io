@@ -224,7 +224,7 @@ export class StackAnalyses {
 
         // output.innerHTML = '<ul>';
         for (var i = 0; i < input.files.length; ++i) {
-            output.innerHTML += '<span>' + input.files.item(i).name + '</span>';
+            output.innerHTML = '<span>' + input.files.item(i).name + '</span>';
         }
         // output.innerHTML += '</ul>';
     }
