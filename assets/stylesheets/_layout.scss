@@ -133,6 +133,11 @@ body {
   min-height: 200px;
   padding-top: 50px;
   padding-bottom: 50px;
+  .dropdown-kebab-pf {
+    span {
+      cursor: pointer;
+    }
+  }
 }
 .form-control {
     font-size: $font-size-base;
