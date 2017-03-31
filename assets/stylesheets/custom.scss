@@ -118,19 +118,14 @@ h1 {
     background-color: #c00;
     color: $color-pf-white;
     height: 100%;
-}
-.social-links {
-    list-style: none;
-    padding-left: 0;
-    li {
+    .social-nav {
         &:first-child {
             padding-left: 0;
         }
-        float: left;
-        padding-left: 5px;
         padding-right: 5px;
-        a {
-            color: $color-pf-white;
+        padding-left: 5px;
+        a:hover {
+            text-decoration: none;
         }
     }
 }
@@ -161,6 +156,9 @@ h1 {
     }
     .footer-nav-links {
         display: none;
+    }
+    .footer-info {
+        top: 25px;
     }
 }
 
