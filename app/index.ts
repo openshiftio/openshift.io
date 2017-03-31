@@ -231,7 +231,7 @@ export class Auth {
         method: 'GET',
         dataType: 'json',
         success: response => {
-          analytics.identifyUser(response.data, adobeMarketingCloudVisitorId);
+          analytics.identifyUser(response.data);
           success(response);
         },
         error: error
@@ -367,6 +367,16 @@ function loadScripts(url: any) {
         let satellite: any = (window as any)._satellite;
         if (satellite && typeof satellite.pageBottom === 'function') {
           satellite.pageBottom();
+        }
+        if (
+          analytics &&
+          satellite &&
+          typeof satellite.getVisitorId === 'function' &&
+          typeof satellite.getVisitorId.getMarketingCloudVisitorID === 'function'
+        ) {
+          let w = window as any;
+          w.openshiftio = w.openshiftio || {};
+          w.openshiftio.adobeMarketingCloudVisitorId = satellite.getVisitorId().getMarketingCloudVisitorID();
         }
       }
     });
@@ -505,7 +515,7 @@ export class Analytics {
     }
   }
 
-  identifyUser(user: any, adobeMarketingCloudVisitorId: string): any {
+  identifyUser(user: any): any {
     if (this.analytics) {
       let traits = {
         avatar: user.attributes.imageURL,
@@ -513,9 +523,13 @@ export class Analytics {
         username: user.attributes.username,
         website: user.attributes.url,
         name: user.attributes.fullName,
-        description: user.attributes.bio,
-        adobeMarketingCloudVisitorId: adobeMarketingCloudVisitorId
-      };
+        description: user.attributes.bio
+      } as any;
+      let w = window as any;
+      w.openshiftio = w.openshiftio || {};
+      if (w.openshiftio.adobeMarketingCloudVisitorId) {
+        traits.adobeMarketingCloudVisitorId = w.openshiftio.adobeMarketingCloudVisitorId;
+      }
       this.analytics.
         identify(
         user.id, traits);
