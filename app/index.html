@@ -320,11 +320,8 @@
     <!-- Recommender -->
     <section class="container-fluid" id="recommender">
       <div class="row">
-        <div class="col-md-offset-2">
+        <div class="col-md-offset-3 recommender-header">
           <h1>Looking for Component Recommendations?</h1>
-          <p>
-            Search our database for our latest recommendations
-          </p>
         </div>
       </div>
       <div class="row">
@@ -332,17 +329,39 @@
           <div id="componentanalyses" class="recommender-inputs">
             <form class="form-inline" id="componentanalysesform">
               <div class="form-group">
-                <input type="text" class="form-control" id="ecosystem" placeholder="Ecosystem">
+                <input type="text" class="form-control" id="ecosystem" placeholder="Ecosystem i.e maven"
+                data-toggle="tooltip" title="Ecosystem i.e maven">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="component" placeholder="Component">
+                <input type="text" class="form-control" id="component" placeholder="Component i.e commons-fileupload:commons-fileupload"
+                data-toggle="tooltip" title="Component i.e commons-fileupload:commons-fileupload">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="version" placeholder="Version">
+                <input type="text" class="form-control" id="version" placeholder="Version i.e 1.3"
+                data-toggle="tooltip" title="Version i.e 1.3">
               </div>
               <button type="submit" id="stackbtn" class="btn btn-lg btn-white">FIND RECOMMENDATIONS</button>
             </form>
-            <br />
+          </div>
+          <div class="dropdown dropdown-kebab-pf">
+            <p data-toggle="dropdown">
+            <span class="pficon pficon-info" style="cursor: pointer;"></span>
+            Search our database for our latest recommendations
+          </p>
+          <div class="dropdown-menu infotip">
+              <div class="arrow"></div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  Ecosystem can be maven, npm
+                </li>
+                <li class="list-group-item">
+                  Component are like package for respective ecosystem i.e commons-fileupload:commons-fileupload for maven.
+                </li>
+                <li class="list-group-item">
+                  Version is the component version , which needs to be analysed i.e 1.3 for commons-fileupload:commons-fileupload.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-sm-12">
