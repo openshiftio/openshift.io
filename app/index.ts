@@ -216,11 +216,6 @@ export class Auth {
   }
 
   getUser(authToken: string, success: any, error: any) {
-    let satellite: any = (window as any)._satellite;
-    let adobeMarketingCloudVisitorId: string;
-    if (satellite && satellite.hasOwnProperty('getVisitorId') && satellite.getVisitorId().hasOwnProperty('getMarketingCloudVisitorID')) {
-      adobeMarketingCloudVisitorId = satellite.getVisitorId().getMarketingCloudVisitorID();
-    }
     if (authToken) {
       $.ajax({
         url: this.apiUrl + 'user',
@@ -369,7 +364,6 @@ function loadScripts(url: any) {
           satellite.pageBottom();
         }
         if (
-          analytics &&
           satellite &&
           typeof satellite.getVisitorId === 'function' &&
           typeof satellite.getVisitorId.getMarketingCloudVisitorID === 'function'
