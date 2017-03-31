@@ -520,10 +520,8 @@ export class Analytics {
         name: user.attributes.fullName,
         description: user.attributes.bio
       } as any;
-      let w = window as any;
-      w.openshiftio = w.openshiftio || {};
-      if (w.openshiftio.adobeMarketingCloudVisitorId) {
-        traits.adobeMarketingCloudVisitorId = w.openshiftio.adobeMarketingCloudVisitorId;
+      if (localStorage['openshiftio.adobeMarketingCloudVisitorId']) {
+        traits.adobeMarketingCloudVisitorId = localStorage['openshiftio.adobeMarketingCloudVisitorId'];
       }
       this.analytics.
         identify(
