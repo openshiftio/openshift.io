@@ -122,6 +122,19 @@ body {
   min-height: 200px;
   padding-top: 50px;
   padding-bottom: 50px;
+  input::-webkit-input-placeholder {
+    font-size: 13px;
+    line-height: 3;
+  }
+  .recommender-header{
+    margin-bottom: 20px;
+  }
+  .dropdown-kebab-pf p{
+    font-size: 13px;
+  }
+  .dropdown-menu{
+    color: #000;
+  }
 }
 #analysis {
   background: url(../images/analyze-background-80.jpg);
