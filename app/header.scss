@@ -3,6 +3,7 @@
 .view-width-100 {
   width:100vw !important;
 }
+
 .navbar-custom {
     background-color: black;
     // border-bottom: 1px solid rgba(black, 0.3);
@@ -21,13 +22,17 @@
         }
     }
     .navbar-brand {
-      height: 100%;
+        @media (min-width: 768px) {
+            margin-left: -75px !important;
+        }
+        height: 100%;
         img {
-          width: 70%;
-          @media (max-width: 450px) {
-            margin-top: 5px;
-            width: 225px;
-          }
+            width: 70%;
+            @media (max-width: 597px) {
+                margin-top: 5px;
+                width: 225px;
+            }
+            
         }
         &:focus {
             outline: none;
@@ -39,7 +44,7 @@
     .brand-left{
         // margin-right: 120px;
         position: fixed;
-        left: 38%;
+        left: 34%;
         @media (max-width: 1201px) { 
             position: relative;
             left: 0;

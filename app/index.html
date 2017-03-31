@@ -23,7 +23,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse" aria-expanded="false">
           Menu <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand page-scroll" href="#page-top">
+        <a class="navbar-brand page-scroll" href="/">
           <img src="../assets/images/openshift-io_white.png" alt="OpenShift.io" />
         </a>
       </div>
@@ -153,8 +153,8 @@
                 <input type="text" class="form-control" id="vouchercode" placeholder="Enter your access code">
               </div>-->
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg beta-submit col-sm-12" id="register">REGISTER FOR THE DEVELOPER PREVIEW</button>
-                <span id="helpBlock" class="help-block textCenter">
+                <button type="submit" class="btn btn-primary beta-submit col-sm-12" id="register">REGISTER FOR THE DEVELOPER PREVIEW</button>
+                <span id="helpBlock" class="help-block">
                   Early access is limited and will be provided as resources become available.
                 </span>
               </div>
@@ -320,7 +320,7 @@
     <!-- Recommender -->
     <section class="container-fluid" id="recommender">
       <div class="row">
-        <div class="col-md-offset-3">
+        <div class="col-md-offset-2">
           <h1>Looking for Component Recommendations?</h1>
           <p>
             Search our database for our latest recommendations
@@ -328,7 +328,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-offset-3">
+        <div class="col-md-offset-2">
           <div id="componentanalyses" class="recommender-inputs">
             <form class="form-inline" id="componentanalysesform">
               <div class="form-group">
@@ -391,8 +391,8 @@
     <!-- stack analyses-->
     <section class="container-fluid" id="analysis">
       <div class="row">
-        <div class="col-md-offset-3">
-          <div class="col-sm-12 col-md-5">
+        <div class="col-md-offset-2">
+          <div class="col-sm-12 col-md-6">
             <h1>Analyze Your Own Stack</h1>
             <p>
               Select a manifest file to run through our analyzer and see your results here.
@@ -404,7 +404,7 @@
                 <p>
                   File Upload
                 </p>
-                <label for="stackAnalysesFile" class="custom-file-upload btn btn-bordered-blue btn-lg">
+                <label for="stackAnalysesFile" class="custom-file-upload btn btn-bordered-blue">
                   <i class="pficon pficon-import"></i> Choose File For Analysis
                 </label>
                 <input type="file" name="file" id="stackAnalysesFile">
@@ -414,7 +414,7 @@
 
                 </div>
                 <div>
-                  <button type="button" id="stackAnalysesFileUpload" class="btn btn-default btn-lg">Analyze</button>
+                  <button type="button" id="stackAnalysesFileUpload" class="btn btn-default">Analyze</button>
                   <div id="stackSpinner" class="spinner stack-spinner"></div>
                   <span id="pomStatusSuccess">
                     <a href="#" id="stackAnalysesAnchor" class="alert-link view-report">View report</a>
@@ -427,7 +427,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-md-offset-3">
+        <div class="col-sm-12 col-md-6 col-md-offset-2">
           <div class="row overview-row" id="stackReportCntr">
             <h1 class="textCenter">Recommendations</h1>
             <div id="recommenderListView" class="list-group-item list-view-pf-stacked recommendation-group-item recommendation-list">
@@ -445,25 +445,81 @@
         </div>
       </div>
     </section>
-    <footer>
-      <div id="footer_container" class="footer">
-        <div class="col-xs-12 textCenter">
-          Copyright &copy; 2017 Red Hat &reg;
+    <section>
+      <footer>
+        <div id="footer_container" class="footer">
+          <div class="container-fluid footer-container">
+            <div class="row footer-nav">
+              <div class="col-sm-12 col-md-8 col-md-offset-2">
+                <div class="col-xs-6 col-sm-3">
+                  <h3>
+                    <b><a href="https://developers.redhat.com/" target="top">RED HAT DEVELOPERS</a></b>
+                  </h3>
+                  <div class="footer-nav-links">
+                    <a href="https://developers.redhat.com/products/#developer_tools" target="top">Developer Tools</a>
+                  </div>
+                  <div class="footer-nav-links">
+                    <a href="https://developers.redhat.com/blog" target="top">Blog</a>
+                  </div>
+                  <div class="footer-nav-links">
+                    <a href="https://developers.redhat.com/resources/#!" target="top">Help</a>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                  <h3 class="text-white">
+                    <b>COMMUNITY</b>
+                  </h3>
+                  <div class="footer-nav-links">
+                    <a href="https://fabric8.io/" target="top">Fabric8</a>
+                  </div>
+                  <div class="footer-nav-links">
+                    <a href="https://github.com/eclipse/che" target="top">Eclipse Che</a>
+                  </div>
+                  <div class="footer-nav-links">
+                    <a href="https://www.openshift.org" target="top">OpenShift.org</a>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1 social-block" style="min-height: 100%; height: 100%; padding-bottom: 30px;">
+                  <h3>
+                    <b>JOIN US</b>
+                  </h3>
+                  <p>
+                    We provide an end-to-end developer experience, enabling the continuous deployment of microservices, successful planning strategies and a robust community.
+                  </p>
+                  <div class="footer-nav-links">
+                    <a href="https://www.facebook.com/openshiftio/" target="top">
+                        <i class="fa fa-facebook-official fa-2x"></i>
+                      </a>
+                  </div>
+                  <div class="footer-nav-links">
+                      <a href="https://twitter.com/openshiftio" target="top">
+                        <i class="fa fa-twitter-square fa-2x"></i>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 footer-logo">
+                <div class="col-xs-4 col-sm-2 col-md-2 col-md-offset-1">
+                  <a href="https://www.redhat.com" target="top">
+                    <img src="../assets/images/Logo_RH_RGB_Reverse.svg" alt="OpenShift.io" />
+                  </a>
+                </div>
+                <div class="col-xs-8 col-sm-10 col-md-6 textCenter">
+                  <p class="footer-info">
+                    Copyright &copy;2017 Red Hat, Inc.
+                    <a href="https://www.redhat.com/en/about/privacy-policy" target="top">Privacy Statement</a>
+                    <a href="https://www.openshift.com/legal/terms.html" target="top">Terms of Use</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </section>
   </main>
-  <!--<footer>
-    <div id="footer_container" class="footer">
-      <div class="col-md-4">
-      </div>
-      <div class="col-md-4">
-        Copyright &copy; 2017 Red Hat
-      </div>
-      <div class="col-md-4">
-      </div>
-    </div>
-  </footer>-->
 </body>
 
 </html>
