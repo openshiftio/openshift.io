@@ -149,6 +149,8 @@ export class Auth {
       let tokenJson = decodeURIComponent(params['token_json']);
       let token = this.processTokenResponse(JSON.parse(tokenJson));
       this.setupRefreshTimer(token.expires_in);
+      // Clear the tokens from the URL, they are toooo long
+      history.pushState(null, "", location.href.split("?")[0]);
       // Put a short delay here, as local storage takes a few MS to update
       setTimeout(function () {
         window.location.href = `/_home`;
