@@ -91,7 +91,6 @@ export class Auth {
     $("#waitlisttext").show();
     $(".login-hide").show();
     $("#home").hide();
-    $("#explore-nav").show();
     this.updateUserMenu();
   }
 
@@ -165,7 +164,6 @@ export class Auth {
     $("#waitlisttext").hide();
     $(".login-hide").hide();
     $("#home").show();
-    $("#explore-nav").hide();
   }
 
   getUrlParams(): Object {
@@ -428,7 +426,6 @@ $(document)
 
     // Hide Home menu item
     $("#home").hide();
-    $("#explore-nav").show();
 
     // Build services for the login widget
     let auth = new Auth();
