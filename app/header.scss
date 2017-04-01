@@ -49,6 +49,9 @@
             position: relative;
             left: 0;
         }
+        @media (min-width: 1920px) {
+            left: 40%;
+        }
     }
     .brand-right {
         float: right;
