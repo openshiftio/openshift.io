@@ -43,7 +43,7 @@ export class ComponentAnalyses {
             compAnalysesArray.version.dependents_count[0] : "NA";
         cardDataSetObjSummary.icon = "fa-cubes";
         cardDataSetSummary.push(cardDataSetObjSummary);
-        this.buildStackCardTemplate(cardDataSetSummary, "summary-card-contents", 12);
+        this.buildStackCardTemplate(cardDataSetSummary, "summary-card-contents", 4);
     }
 
     formStackCardVersion = (compAnalysesArray: any) => {
