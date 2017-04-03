@@ -76,7 +76,7 @@ export class Auth {
 
   login() {
     analytics.trackLogin();
-    window.location.href = this.apiUrl + 'login/authorize';
+    window.location.href = this.apiUrl + 'login/authorize?link=true';
   }
 
   logout() {
