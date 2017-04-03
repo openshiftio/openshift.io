@@ -323,8 +323,11 @@
           <div id="componentanalyses" class="recommender-inputs">
             <form class="form-inline" id="componentanalysesform">
               <div class="form-group">
-                <input type="text" class="form-control" id="ecosystem" placeholder="Ecosystem i.e maven"
-                data-toggle="tooltip" title="Ecosystem i.e maven">
+                <select id="ecosystem" class="form-control">
+                  <option value="maven">Maven</option>
+                  <option value="npm">Npm</option>
+                  <option value="pypi">Python</option>
+                </select>
               </div>
               <div class="form-group">
                 <input type="text" class="form-control" id="component" placeholder="Component i.e commons-fileupload:commons-fileupload"
