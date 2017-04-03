@@ -32,3 +32,38 @@
         width: 250px !important;
     }
 }
+
+.card-cntr {
+    padding: 15px 25px 15px 25px;
+    color: #000;
+
+    .overview-cards {
+        .make-center{
+            text-align: center;
+        }
+
+        .f8-icon-size {
+            font-size: 30px;
+        }
+        .overview-star-icon {
+            color: #E8AE3C;
+        }
+        .overview-fork-icon {
+            color: #E08030;
+        }
+        .overview-depen-icon {
+            color: #3788C9;
+        }
+        .f8-chart-numeric {
+            font-size: 25px;
+            font-weight: 100;
+        }
+        .f8-chart-description {
+            font-size: 15px;
+            font-weight: 100;
+        }
+        .overview-code-metric-icon {
+            color: #3f9c35;
+        }
+    }
+}

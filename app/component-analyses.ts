@@ -11,54 +11,111 @@ export class ComponentAnalyses {
             .buildApiUrl(STACK_API_URL, 'recommender.api', 'api/v1');
     }
 
-    buildComponentGrid = (dataSet: Array<any>) => {
-        $('#compTable tbody').empty();
-        for (var i in dataSet) {
-            var strToAdd = '<tr>' +
-                '<td>' + dataSet[i].ecosystem + '</td>' +
-                '<td>' + dataSet[i].name + '</td>' +
-                '<td>' + dataSet[i].cyclomaticComplexity + '</td>' +
-                '<td>' + dataSet[i].lineOfCode + '</td>' +
-                '<td>' + dataSet[i].numOfFiles + '</td>' +
-                '<td>' + dataSet[i].dependentsCount + '</td>' +
-                '<td>' + dataSet[i].currentVersion + '</td>' +
-                '<td>' + dataSet[i].latestVersion + '</td></tr>';
-            $('#compTable tbody').append(strToAdd);
-        }
-    }
-
-    buildCveGrid = (dataSetCVE: Array<any>) => {
-        $('#compCVETable tbody').empty();
-        for (let i in dataSetCVE) {
-            let dataSetCveIDScore: Array<any> = [];
-            dataSetCveIDScore = dataSetCVE[i].split(':');
-            var strToAdd = '<tr>' +
-                '<td>' + dataSetCveIDScore[0] + '</td>' +
-                '<td>' + dataSetCveIDScore[1] + '</td></tr>';
-            $('#compCVETable tbody').append(strToAdd);
-
-        }
-    }
-
-    formStackData = (compAnalysesArray: any) => {
-        if (compAnalysesArray.hasOwnProperty('version') && compAnalysesArray.hasOwnProperty('package')) {
-            let dataSet: Array<any> = [];
-            let dataSetObj: any = {};
-            dataSetObj.ecosystem = compAnalysesArray.version.pecosystem[0];
-            dataSetObj.name = compAnalysesArray.version.pname[0];
-            dataSetObj.cyclomaticComplexity = compAnalysesArray.version.cm_avg_cyclomatic_complexity[0];
-            dataSetObj.lineOfCode = compAnalysesArray.version.cm_loc[0];
-            dataSetObj.numOfFiles = compAnalysesArray.version.cm_num_files[0];
-            dataSetObj.dependentsCount = compAnalysesArray.version.dependents_count[0];
-            dataSetObj.currentVersion = compAnalysesArray.version.version[0];
-            dataSetObj.latestVersion = compAnalysesArray.package.latest_version[0];
-            if (compAnalysesArray.version.hasOwnProperty('cve_ids')) {
+    formCardData = (compAnalysesArray: any) => {
+        if (compAnalysesArray.data[0].hasOwnProperty("version") &&
+            compAnalysesArray.data[0].hasOwnProperty("package")) {
+            this.formStackCardSummary(compAnalysesArray);
+            this.formStackCardVersion(compAnalysesArray);
+            this.formStackCardCodeMetric(compAnalysesArray);
+            if (compAnalysesArray.data[0].version.hasOwnProperty('cve_ids')) {
                 $('#compGridCntrCVE').show();
-                dataSetObj.CVElist = compAnalysesArray.version.cve_ids;
-                this.buildCveGrid(dataSetObj.CVElist);
+                this.buildCveList(compAnalysesArray.data[0].version.cve_ids);
             }
-            dataSet.push(dataSetObj);
-            this.buildComponentGrid(dataSet);
+        }
+    }
+
+    formStackCardSummary = (compAnalysesArray: any) => {
+        let cardDataSetSummary: Array<any> = [];
+        let cardDataSetObjSummary: any = {};
+        let compAnalysesArrayData = compAnalysesArray.data[0];
+        cardDataSetObjSummary.alias = "Ecosystem";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.pecosystem[0];
+        cardDataSetObjSummary.icon = "fa-cube";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Name";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.pname[0];
+        cardDataSetObjSummary.icon = "fa-info";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Dependencies";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.dependents_count[0] > 0 ?
+            compAnalysesArray.version.dependents_count[0] : "NA";
+        cardDataSetObjSummary.icon = "fa-cubes";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        this.buildStackCardTemplate(cardDataSetSummary, "summary-card-contents", 12);
+    }
+
+    formStackCardVersion = (compAnalysesArray: any) => {
+        let cardDataSetSummary: Array<any> = [];
+        let cardDataSetObjSummary: any = {};
+        let compAnalysesArrayData = compAnalysesArray.data[0];
+        let compAnalysesRecommend = compAnalysesArray.recommendation;
+        cardDataSetObjSummary.alias = "Current";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.version[0];
+        cardDataSetObjSummary.icon = "fa-star";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Latest";
+        cardDataSetObjSummary.value = compAnalysesArrayData.package.latest_version[0] || "NA";
+        cardDataSetObjSummary.icon = "fa-star";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Recommended";
+        cardDataSetObjSummary.value = compAnalysesRecommend.hasOwnProperty('change_to') ? compAnalysesRecommend.change_to : "NA";
+        cardDataSetObjSummary.icon = "fa-check-square-o";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        this.buildStackCardTemplate(cardDataSetSummary, "version-card-contents", 4);
+    }
+
+    formStackCardCodeMetric = (compAnalysesArray: any) => {
+        let cardDataSetSummary: Array<any> = [];
+        let cardDataSetObjSummary: any = {};
+        let compAnalysesArrayData = compAnalysesArray.data[0];
+        cardDataSetObjSummary.alias = "Lines of code";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.cm_loc[0];
+        cardDataSetObjSummary.icon = "fa-code";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Cyclomatic Complexity";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.cm_avg_cyclomatic_complexity[0] > 0 ?
+            compAnalysesArray.version.cm_avg_cyclomatic_complexity[0] : "NA";
+        cardDataSetObjSummary.icon = "fa-circle";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        cardDataSetObjSummary = {};
+        cardDataSetObjSummary.alias = "Number Of Files";
+        cardDataSetObjSummary.value = compAnalysesArrayData.version.cm_num_files[0];
+        cardDataSetObjSummary.icon = "fa-file-code-o";
+        cardDataSetSummary.push(cardDataSetObjSummary);
+        this.buildStackCardTemplate(cardDataSetSummary, "codemetric-card-contents", 4);
+    }
+
+    buildCveList = (compAnalysesCVE: any) => {
+        $('#cve-card-contents').empty();
+        for (let i in compAnalysesCVE) {
+            let dataSetCveIDScore: Array<any> = [];
+            dataSetCveIDScore = compAnalysesCVE[i].split(':');
+            var strToAdd = `<li class="list-group-item">${dataSetCveIDScore[0]} , CVSS score of ${dataSetCveIDScore[1]}</li>`;
+            $('#cve-card-contents').append(strToAdd);
+
+        }
+    }
+
+    buildStackCardTemplate = (cardDataSetSummary: any, cardcontentId: any, classGrid: any) => {
+        $('#' + cardcontentId).empty();
+        for (var i in cardDataSetSummary) {
+            var strToAdd = `<div class="col-md-${classGrid}">
+                            <div class="row f8-icon-size overview-code-metric-icon">
+                                <i class="fa ${cardDataSetSummary[i].icon}"></i>
+                            </div>
+                            <div class="row f8-chart-numeric">
+                                ${cardDataSetSummary[i].value}
+                            </div>
+                            <div class="row f8-chart-description">
+                                <p>${cardDataSetSummary[i].alias}</p>
+                            </div>
+                            </div>`;
+            $('#' + cardcontentId).append(strToAdd);
         }
     }
 
@@ -86,11 +143,11 @@ export class ComponentAnalyses {
                 method: 'GET',
                 success: response => {
                     if (response && response.result && response.result.data) {
-                        compAnalysesArray = response.result.data;
+                        compAnalysesArray = response.result;
                         $('#compGridCntr').show();
                         $('#componentStatus').hide();
                         $('#componentSpinner').hide();
-                        this.formStackData(compAnalysesArray);
+                        this.formCardData(compAnalysesArray);
                     } else {
                         $('#compGridCntr').hide();
                         $('#compGridCntrCVE').hide();

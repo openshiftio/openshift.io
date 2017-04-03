@@ -338,43 +338,77 @@
             </form>
           </div>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-12 card-cntr">
           <div id="componentSpinner" class="spinner spinner-inverse"></div>
-          <div id="compGridCntr">
-            <!-- Table HTML -->
-            <table class="table" id="compTable">
-              <thead>
-                <tr>
-                  <th>Ecosystem</th>
-                  <th>Name</th>
-                  <th>Cyclomatic Complexity</th>
-                  <th>Line Of Code</th>
-                  <th>Number Of Files</th>
-                  <th>Dependents Count</th>
-                  <th>Current Version</th>
-                  <th>Latest Version</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+
+          <div id="compGridCntr" class="row">
+            <div class="col-md-offset-1">
+              <div class="col-md-3">
+                <div class="overview-cards card-pf card-pf-utilization">
+                  <div>
+                    <h2 class="card-pf-title">
+                      Summary
+                    </h2>
+                  </div>
+                  <div class="card-pf-body">
+                    <div id="summary-card-contents" class="row make-center">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="overview-cards card-pf card-pf-utilization">
+                      <div>
+                        <h2 class="card-pf-title">
+                          Version
+                        </h2>
+                      </div>
+                      <div class="card-pf-body">
+                        <div id="version-card-contents" class="row make-center">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="overview-cards card-pf card-pf-utilization">
+                      <div>
+                        <h2 class="card-pf-title">
+                          Code Metrics
+                        </h2>
+                      </div>
+                      <div class="card-pf-body">
+                        <div id="codemetric-card-contents" class="row make-center">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="compGridCntrCVE" class="row">
+                  <div class="col-md-12">
+                    <div class="overview-cards card-pf card-pf-utilization">
+                      <div>
+                        <h2 class="card-pf-title">
+                          CVE
+                        </h2>
+                      </div>
+                      <div class="card-pf-body">
+                        <div class="row make-center">
+                          <ul id="cve-card-contents" class="list-group">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--CVE-->
-          <div id="compGridCntrCVE">
-            <!-- Table HTML -->
-            <table class="table table-bordered table-hover" id="compCVETable">
-              <thead>
-                <tr>
-                  <th>CVE ID</th>
-                  <th>CVSS score</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
+
           <br/>
-          <!--CVE-->
           <div id="componentStatus" class="textCenter">
             <span id="componentStatusMsg" class="alert alert-info" role="alert"></span>
           </div>
