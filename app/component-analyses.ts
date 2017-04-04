@@ -14,6 +14,7 @@ export class ComponentAnalyses {
     formCardData = (compAnalysesArray: any) => {
         if (compAnalysesArray.data[0].hasOwnProperty("version") &&
             compAnalysesArray.data[0].hasOwnProperty("package")) {
+            $('#compGridCntr').show();
             this.formStackCardSummary(compAnalysesArray);
             this.formStackCardVersion(compAnalysesArray);
             this.formStackCardCodeMetric(compAnalysesArray);
@@ -144,7 +145,6 @@ export class ComponentAnalyses {
                 success: response => {
                     if (response && response.result && response.result.data) {
                         compAnalysesArray = response.result;
-                        $('#compGridCntr').show();
                         $('#componentStatus').hide();
                         $('#componentSpinner').hide();
                         this.formCardData(compAnalysesArray);
