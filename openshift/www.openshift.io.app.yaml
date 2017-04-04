@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: wwwopenshiftio
+  creationTimestamp: null
+objects:
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: null
+    generation: 1
+    labels:
+      service: wwwopenshiftio
+    name: wwwopenshiftio
+  spec:
+    replicas: 1
+    selector:
+      service: wwwopenshiftio
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          service: wwwopenshiftio
+      spec:
+        containers:
+        - image: registry.devshift.net/fabric8io/wwwopenshiftio:${IMAGE_TAG}
+          imagePullPolicy: Always
+          name: wwwopenshiftio
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    labels:
+      service: wwwopenshiftio
+    name: wwwopenshiftio
+  spec:
+    ports:
+    - name: "8080"
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      service: wwwopenshiftio
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      service: wwwopenshiftio
+    name: www-openshift-io
+  spec:
+    host: ''
+    port:
+      targetPort: "8080"
+    to:
+      kind: Service
+      name: wwwopenshiftio
+      weight: 100
+    wildcardPolicy: None
+  status: {}
+parameters:
+- name: IMAGE_TAG
+  value: latest
+
