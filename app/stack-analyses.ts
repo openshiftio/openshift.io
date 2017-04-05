@@ -219,6 +219,7 @@ export class StackAnalyses {
     }
 
     updateFileList = () => {
+        $('#stackAnalysesFileUpload').removeAttr('disabled');
         var input = <HTMLInputElement>document.getElementById('stackAnalysesFile');
         var output = document.getElementById('fileList');
 
