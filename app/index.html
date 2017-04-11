@@ -449,18 +449,22 @@
                 <label for="stackAnalysesFile" class="custom-file-upload btn btn-bordered-blue">
                   <i class="pficon pficon-import"></i> Choose File For Analysis
                 </label>
-                <input type="file" name="file" id="stackAnalysesFile" accept=".xml,.json">
+                <input type="file" name="file" id="stackAnalysesFile" accept=".xml,.json,.txt">
                 <div class="file-to-analyze">
                   File to Analyze:
                   <b><span id="fileList" class="upload-files"></span></b>
 
                 </div>
-                <div>
+                <div class="row">
+                  <div class="col-md-3">
                   <button type="button" id="stackAnalysesFileUpload" class="btn btn-default">Analyze</button>
+                  </div>
+                  <div class="col-md-3">
                   <div id="stackSpinner" class="spinner stack-spinner"></div>
-                  <span id="pomStatusSuccess">
-                    <a href="#" id="stackAnalysesAnchor" class="alert-link view-report">View report</a>
-                  </span>
+                  </div>
+                  <div id="pomStatusSuccess" class="col-md-6">
+                    <a href="#" id="stackAnalysesAnchor" class="alert-link">View report</a>
+                  </div>
                 </div>
               </div>
             </div>
