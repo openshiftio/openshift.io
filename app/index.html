@@ -329,13 +329,21 @@
                   <option value="pypi">Python</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div id="grpComponent" class="form-group">
                 <input type="text" class="form-control" id="component" placeholder="Component i.e commons-fileupload:commons-fileupload"
                 data-toggle="tooltip" title="Component i.e commons-fileupload:commons-fileupload">
+                <div>
+                  <span id="componentIcon"></span>
+						      <div id="componentErrorMsg" class="text-danger"></div>
+                </div>
               </div>
-              <div class="form-group">
+              <div id="grpVersion" class="form-group">
                 <input type="text" class="form-control" id="version" placeholder="Version i.e 1.3"
                 data-toggle="tooltip" title="Version i.e 1.3">
+                <div>
+                  <span id="versionIcon"></span>
+                  <div id="versionErrorMsg" class="text-danger"></div>
+                </div>
               </div>
               <button type="submit" id="stackbtn" class="btn btn-lg btn-white">FIND RECOMMENDATIONS</button>
             </form>
@@ -456,7 +464,7 @@
 
                 </div>
                 <div>
-                  <button type="button" id="stackAnalysesFileUpload" class="btn btn-default">Analyze</button>
+                  <button type="button" id="stackAnalysesFileUpload" class="btn btn-default" disabled>Analyze</button>
                   <div id="stackSpinner" class="spinner stack-spinner"></div>
                   <span id="pomStatusSuccess">
                     <a href="#" id="stackAnalysesAnchor" class="alert-link view-report">View report</a>

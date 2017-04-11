@@ -31,6 +31,16 @@
         height: 50px;
         width: 250px !important;
     }
+    .form-inline .form-group {
+        vertical-align: top;
+    }
+    .form-inline{
+        .form-group{
+            span{
+                top: 13px;
+            }
+        }
+    }
 }
 
 .card-cntr {

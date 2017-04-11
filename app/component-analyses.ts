@@ -119,51 +119,101 @@ export class ComponentAnalyses {
         }
     }
 
+    validateComponentName = () => {
+        let formField = $('#component');
+        let ok = (formField.val() != null && formField.val().length != 0);
+        let grpEle = document.getElementById('grpComponent');
+        if (grpEle != null) {
+            if (ok) {
+                grpEle.className = "form-group has-success has-feedback";
+                document.getElementById('componentIcon').className = "glyphicon glyphicon-ok form-control-feedback";
+                document.getElementById('componentErrorMsg').innerHTML = "";
+            }
+            else {
+                grpEle.className = "form-group has-error has-feedback";
+                document.getElementById('componentIcon').className = "glyphicon glyphicon-remove form-control-feedback";
+                document.getElementById('componentErrorMsg').innerHTML = "Please enter component name";
+            }
+            return ok;
+        }
+    }
+
+    validateVersion = () => {
+        var formField = $('#version');
+        var ok = (formField.val() != null && formField.val().length != 0);
+        var grpEle = document.getElementById('grpVersion');
+        if (grpEle != null) {
+            if (ok) {
+                grpEle.className = "form-group has-success has-feedback";
+                document.getElementById('versionIcon').className = "glyphicon glyphicon-ok form-control-feedback";
+                document.getElementById('versionErrorMsg').innerHTML = "";
+            }
+            else {
+                grpEle.className = "form-group has-error has-feedback";
+                document.getElementById('versionIcon').className = "glyphicon glyphicon-remove form-control-feedback";
+                document.getElementById('versionErrorMsg').innerHTML = "Please enter proper version";
+            }
+            return ok;
+        }
+    }
+
+    initComponentLayout = () => {
+        $('#compGridCntr').hide();
+        $('#compGridCntrCVE').hide();
+        $('#componentStatus').hide();
+        $('#componentSpinner').hide();
+        $('#component').on('blur', () => {
+            this.validateComponentName();
+        });
+        $('#version').on('blur', () => {
+            this.validateVersion();
+        });
+    }
+
     buildComponentAnalyses = () => {
         let stackUri = this.stackApiUrl;
         let compAnalysesArray: Array<any>;
         let ecosystem: string = '';
         let component: string = '';
         let version: string = '';
-        $('#compGridCntr').hide();
-        $('#compGridCntrCVE').hide();
-        $('#componentStatus').hide();
-        $('#componentSpinner').hide();
+        this.initComponentLayout();
         $("#componentanalysesform").submit((val: any) => {
-            ecosystem = $("#ecosystem").val();
-            component = $("#component").val();
-            version = $("#version").val();
-            $('#componentSpinner').show();
-            $('#componentStatusMsg').text('');
-            $.ajax({
-                url: stackUri + 'component-analyses/' + ecosystem + '/' + component + '/' + version,
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                method: 'GET',
-                success: response => {
-                    if (response && response.result && response.result.data) {
-                        compAnalysesArray = response.result;
-                        $('#compGridCntr').show();
-                        $('#componentStatus').hide();
+            if (this.validateComponentName() && this.validateVersion()) {
+                ecosystem = $("#ecosystem").val();
+                component = $("#component").val();
+                version = $("#version").val();
+                $('#componentSpinner').show();
+                $('#componentStatusMsg').text('');
+                $.ajax({
+                    url: stackUri + 'component-analyses/' + ecosystem + '/' + component + '/' + version,
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    method: 'GET',
+                    success: response => {
+                        if (response && response.result && response.result.data) {
+                            compAnalysesArray = response.result;
+                            $('#compGridCntr').show();
+                            $('#componentStatus').hide();
+                            $('#componentSpinner').hide();
+                            this.formCardData(compAnalysesArray);
+                        } else {
+                            $('#compGridCntr').hide();
+                            $('#compGridCntrCVE').hide();
+                            $('#componentStatus').show();
+                            $('#componentStatusMsg').text('No records found for this component');
+                            $('#componentSpinner').hide();
+                        }
+                    },
+                    error: () => {
                         $('#componentSpinner').hide();
-                        this.formCardData(compAnalysesArray);
-                    } else {
                         $('#compGridCntr').hide();
                         $('#compGridCntrCVE').hide();
                         $('#componentStatus').show();
-                        $('#componentStatusMsg').text('No records found for this component');
-                        $('#componentSpinner').hide();
+                        $('#componentStatusMsg').text('Our records could not match this search');
                     }
-                },
-                error: () => {
-                    $('#componentSpinner').hide();
-                    $('#compGridCntr').hide();
-                    $('#compGridCntrCVE').hide();
-                    $('#componentStatus').show();
-                    $('#componentStatusMsg').text('Our records could not match this search');
-                }
-            });
+                });
+            }
             event.preventDefault();
         });
     }
