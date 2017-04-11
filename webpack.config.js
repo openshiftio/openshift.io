@@ -114,7 +114,8 @@ module.exports = {
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL),
-      ANALYTICS_WRITE_KEY: JSON.stringify(process.env.ANALYTICS_WRITE_KEY || "disabled")
+      ANALYTICS_WRITE_KEY: JSON.stringify(process.env.ANALYTICS_WRITE_KEY || "disabled"),
+      WAITLIST_URL: JSON.stringify(process.env.WAITLIST_URL),
     }),
     extractSass,
     new CopyWebpackPlugin([]),
