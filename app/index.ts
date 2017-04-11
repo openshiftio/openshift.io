@@ -5,9 +5,6 @@ import * as URI from 'urijs';
 import '../assets/stylesheets/custom.scss';
 import './header.scss';
 
-import { ComponentAnalyses } from './component-analyses';
-import { StackAnalyses } from './stack-analyses';
-
 declare global {
   interface Window {
     analytics: SegmentAnalytics.AnalyticsJS;
@@ -437,15 +434,6 @@ $(document)
     // Build services for the waitlist widget
     let waitlist = new Waitlist();
     waitlist.bindWaitListForm();
-
-    // Build services for analysis of compoment
-    let componentAnalyses = new ComponentAnalyses();
-    componentAnalyses.buildComponentAnalyses();
-
-    // Build services for analysis of stack
-    let stackAnalyses = new StackAnalyses();
-    stackAnalyses.buildStackAnalyses();
-
   });
 
 export class Analytics {
