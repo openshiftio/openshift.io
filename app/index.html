@@ -348,10 +348,24 @@
             <div class="col-md-offset-1">
               <div class="col-md-11">
                 <div class="overview-cards card-pf card-pf-utilization">
-                  <div>
-                    <h2 class="card-pf-title">
+                  <div class="dropdown dropdown-kebab-pf">
+                    <h2 data-toggle="dropdown" class="card-pf-title pficon pficon-info">
                       Summary
                     </h2>
+                    <div class="dropdown-menu infotip">
+                      <div class="arrow"></div>
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <b>Ecosystem</b> is application developement environment
+                        </li>
+                        <li class="list-group-item">
+                          <b>Component</b> is name of package/component
+                        </li>
+                        <li class="list-group-item">
+                          <b>Dependencies</b> indicates total number of dependencies component has
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                   <div class="card-pf-body">
                     <div id="summary-card-contents" class="row make-center">
@@ -364,10 +378,24 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="overview-cards card-pf card-pf-utilization">
-                      <div>
-                        <h2 class="card-pf-title">
+                      <div class="dropdown dropdown-kebab-pf">
+                        <h2 data-toggle="dropdown" class="card-pf-title pficon pficon-info">
                           Version
                         </h2>
+                        <div class="dropdown-menu infotip">
+                          <div class="arrow"></div>
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              <b>Current</b> indicates version of analysed component
+                            </li>
+                            <li class="list-group-item">
+                              <b>Latest</b> indicates with latest component's version
+                            </li>
+                            <li class="list-group-item">
+                              <b>Recommended</b> indicates latest version of component that is free of security and vulnerability
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                       <div class="card-pf-body">
                         <div id="version-card-contents" class="row make-center">
@@ -378,10 +406,25 @@
 
                   <div class="col-md-6">
                     <div class="overview-cards card-pf card-pf-utilization">
-                      <div>
-                        <h2 class="card-pf-title">
+                      <div class="dropdown dropdown-kebab-pf">
+                        <h2 data-toggle="dropdown" class="card-pf-title pficon pficon-info">
                           Code Metrics
                         </h2>
+                        <div class="dropdown-menu infotip">
+                          <div class="arrow"></div>
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              <b>Lines of code</b> represents total number of lines in component
+                            </li>
+                            <li class="list-group-item">
+                              <b>Cyclomatic complexity</b> is a metric, used to indicate the complexity of a program
+                              It is a quantitative measure of the number of linearly independent paths through a program's source code
+                            </li>
+                            <li class="list-group-item">
+                              <b>Number Of Files</b> represents total number of files in component
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                       <div class="card-pf-body">
                         <div id="codemetric-card-contents" class="row make-center">
@@ -393,10 +436,24 @@
                 <div id="compGridCntrCVE" class="row">
                   <div class="col-md-12">
                     <div class="overview-cards card-pf card-pf-utilization">
-                      <div>
-                        <h2 class="card-pf-title">
+                      <div class="dropdown dropdown-kebab-pf">
+                        <h2 data-toggle="dropdown" class="card-pf-title pficon pficon-info">
                           CVE
                         </h2>
+                        <div class="dropdown-menu infotip">
+                          <div class="arrow"></div>
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              <b> Common Vulnerabilities and Exposures (CVE)</b> provides a reference-method for publicly known information-security vulnerabilities and exposures
+                            </li>
+                            <li class="list-group-item">
+                              <b>Common Vulnerability Scoring System (CVSS)</b> is a free and open industry standard for assessing the severity of computer system security vulnerabilities
+                            </li>
+                            <li class="list-group-item">
+                               <b>CVSS Scores</b> range from 0 to 10, with 10 being the most severe.
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                       <div class="card-pf-body">
                         <div class="row make-center">
