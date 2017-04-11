@@ -250,80 +250,6 @@ export class Auth {
   }
 }
 
-export class Waitlist {
-
-  readonly SUBMIT_REF = '808217156658529043';
-  readonly GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSenhkARBc9fc2lKWKCD0ahMVuFjPZYxYsVwemCAzj4jL-WtPw/formResponse?fbzx=' + this.SUBMIT_REF;
-
-  private clearTimeoutId: number;
-  private refreshInterval: number;
-
-  submit(email: string, voucherCode: string) {
-    let sub = $("#iframe").contents().find("#formsub");
-    sub.find("#emailsub").val(email);
-    sub.find("#vouchercodesub").val(voucherCode);
-    sub.submit();
-    analytics.identifyWaitlist(email);
-    analytics.trackWaitlisting(voucherCode);
-    $("#register").attr("disabled", "true");
-    // Start checking for waitlisting to be successful
-    this.checkWaitlisting(0);
-  }
-
-  bindWaitListForm() {
-    $("#waitlistform").submit((val: any) => {
-      let email = $("#email").val();
-      let voucherCode = $("#vouchercode").val();
-      console.log(email, voucherCode);
-      this.submit(email, voucherCode);
-      event.preventDefault();
-    });
-    $('<iframe height="0" width="0" id="iframe" class="hidden"></iframe>')
-      .insertAfter('#waitlistform');
-
-    $("#iframe").contents().find("body")
-      .html('<form method="POST" action="' + this.GOOGLE_FORM_URL + '" id="formsub">' +
-      '<input type="text" name="entry.31873912" id="emailsub">' +
-      '<input type="text" name="entry.170221386" id="vouchercodesub">' +
-      '<input type="text" name="fbzx" value="' + this.SUBMIT_REF + '">' +
-      '<input type="text" name="pageHistory" value="0">' +
-      '<input type="text" name="draftresponse" id="[null, null, -9199359477331487980]">' +
-      '<input type="text" name="fvv" value="1">' +
-      '<input type="submit">' +
-      '</form>');
-  }
-
-  setupRefreshTimer(iteration: number) {
-    let refreshInSeconds = 0.5;
-    if (!this.clearTimeoutId) {
-      let refreshInMs = Math.round(refreshInSeconds * .9) * 1000;
-      console.log('Checking for waitlisting: ' + refreshInMs + ' milliseconds.');
-      this.refreshInterval = refreshInMs;
-      this.clearTimeoutId = setTimeout(() => this.checkWaitlisting(iteration + 1), refreshInMs);
-    }
-  }
-
-  checkWaitlisting(iteration: number) {
-    if ($("#iframe").contents().find(".freebirdFormviewerViewResponseConfirmationMessage")) {
-      $("#email").attr("disabled", "true");
-      $("#vouchercode").attr("disabled", "true");
-      $("#waitlistform").hide();
-      $(".submit-show")
-        .removeClass('hidden')
-        .show();
-      $(".submit-hide").hide();
-      $("#userLogin").hide();
-    } else if (iteration > 60) {
-      // Give up after 30 seconds
-      addToast("alert-danger", "Waitlisting failed. Please try again later.");
-      $("#register").removeAttr("disabled");
-    }
-    else {
-      this.setupRefreshTimer(iteration);
-    }
-  }
-}
-
 function loadScripts(url: any) {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
@@ -432,8 +358,7 @@ $(document)
     auth.bindLoginLogout();
 
     // Build services for the waitlist widget
-    let waitlist = new Waitlist();
-    waitlist.bindWaitListForm();
+    $('a#register').attr('href', WAITLIST_URL);
   });
 
 export class Analytics {
