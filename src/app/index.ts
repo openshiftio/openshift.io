@@ -437,24 +437,6 @@ export class Analytics {
     }
   }
 
-  identifyWaitlist(email: string): any {
-    if (this.analytics) {
-      let traits = {
-        email: email,
-      };
-      this.analytics
-        .identify(traits);
-    }
-  }
-
-  trackWaitlisting(accessCode: string) {
-    if (this.analytics) {
-      this.analytics.track('waitlisted', {
-        accessCode: accessCode
-      });
-    }
-  }
-
   trackError(action: string, error: any) {
     if (this.analytics) {
       this.analytics.track('error', {

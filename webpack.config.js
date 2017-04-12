@@ -37,7 +37,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: ['./app/index.ts'],
+  entry: ['./src/app/index.ts'],
   devtool: (isProd ? 'cheap-module-source-map' : 'inline-source-map'),
   output: {
     filename: '/openshiftio/[name].js',
@@ -110,7 +110,7 @@ module.exports = {
        *
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
-    new HtmlWebpackPlugin({ template: 'app/index.html', chunksSortMode: 'dependency' }),
+    new HtmlWebpackPlugin({ template: 'src/app/index.html', chunksSortMode: 'dependency' }),
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL),
@@ -123,7 +123,7 @@ module.exports = {
      * Generate FavIcons from the master svg in all formats
      */
     new FaviconsWebpackPlugin({
-      logo: './assets/images/favicon.svg',
+      logo: './src/assets/images/favicon.svg',
       prefix: 'openshiftio/icons/'
     }),
 
