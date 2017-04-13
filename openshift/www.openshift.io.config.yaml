@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wwwopenshiftio
+type: Opaque
+data:
+  analytics.write.key: ""
+  waitlist.url: https://openshift.default.svc.cluster.local
