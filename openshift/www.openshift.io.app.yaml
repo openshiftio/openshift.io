@@ -38,6 +38,17 @@ objects:
           ports:
           - containerPort: 80
             protocol: TCP
+          env:
+            - name: ANALYTICS_WRITE_KEY
+              valueFrom:
+              configMapKeyRef:
+                name: wwwopenshiftio
+                key: analytics.write.key
+            - name: WAITLIST_URL
+              valueFrom:
+              configMapKeyRef:
+                name: wwwopenshiftio
+                key: waitlist.url
           resources: {}
           terminationMessagePath: /dev/termination-log
           readinessProbe:
