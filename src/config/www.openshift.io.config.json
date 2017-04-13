@@ -1,3 +1,0 @@
-{
-  "waitlistUrl": "{{ .Env.WAITLIST_URL }}"
-}

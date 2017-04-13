@@ -36,30 +36,6 @@ const extractSass = new ExtractTextPlugin({
   disable: !isProd
 });
 
-let webpackCopyPlugin;
-
-if (isProd) {
-  // In prod the docker container does this
-  webpackCopyPlugin = new CopyWebpackPlugin([
-    {
-      from: 'src/config',
-      to: 'config'
-    }
-  ]);
-} else {
-  webpackCopyPlugin = new CopyWebpackPlugin([
-    {
-      from: 'src/config',
-      to: '_config',
-      transform: function env(content, path) {
-        return content.toString('utf-8').replace(/{{ .Env.([a-zA-Z0-9_-]*) }}/g, function (match, p1, offset, string) {
-          return process.env[p1];
-        });
-      }
-    }
-  ]);
-}
-
 module.exports = {
   entry: ['./src/app/index.ts'],
   devtool: (isProd ? 'cheap-module-source-map' : 'inline-source-map'),
@@ -142,7 +118,7 @@ module.exports = {
       WAITLIST_URL: JSON.stringify(process.env.WAITLIST_URL),
     }),
     extractSass,
-    webpackCopyPlugin,
+    new CopyWebpackPlugin([]),
     /*
      * Generate FavIcons from the master svg in all formats
      */

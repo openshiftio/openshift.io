@@ -11,14 +11,6 @@ declare global {
   }
 }
 
-export class OpenshiftIoConfig {
-  waitlistUrl: string;
-}
-
-export interface ConfigCallback<T> {
-  (config: T): void;
-}
-
 export class ApiLocator {
 
   buildApiUrl(override: string, subdomain: string, suffix: string) {
@@ -258,22 +250,6 @@ export class Auth {
   }
 }
 
-export function loadConfig<T>(configName: string, cb: ConfigCallback<T>) {
-  let url = `/_config/${configName}.config.json`;
-  $.ajax({
-    url: url,
-    method: 'GET',
-    dataType: 'json',
-    success: response => {
-      cb(response as T);
-      console.log('Fetched config', url);
-    },
-    error: () => {
-      console.log('Error fetching config', url);
-    }
-  });
-}
-
 function loadScripts(url: any) {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
@@ -368,11 +344,6 @@ $(document)
     // Add the JS
     loadScripts(url);
 
-    // Load the config to a global var
-    loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
-      $('a#register').attr('href', config.waitlistUrl);
-    });
-
     // Create a nice representation of our URL
 
 
@@ -385,6 +356,9 @@ $(document)
     auth.handleError(url);
     auth.updateUserMenu();
     auth.bindLoginLogout();
+
+    // Build services for the waitlist widget
+    $('a#register').attr('href', WAITLIST_URL);
   });
 
 export class Analytics {
