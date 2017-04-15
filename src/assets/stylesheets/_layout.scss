@@ -1,50 +1,25 @@
-///////////////////////////
-// Utility styles
-///////////////////////////
+///////////////////////
+// Styles relating to general html document
+///////////////////////
 
-
-@mixin padding-x($count:15) {
-  @for $i from 0 through $count {
-    .padding-#{$i} {
-      padding: #{$i}px !important;
-    }
-    .padding-top-#{$i} {
-      padding-top: #{$i}px !important;
-    }
-    .padding-left-#{$i} {
-      padding-left: #{$i}px !important;
-    }
-    .padding-bottom-#{$i} {
-      padding-bottom: #{$i}px !important;
-    }
-    .padding-right-#{$i} {
-      padding-right: #{$i}px !important;
-    }
-  }
+* {
+  box-sizing: border-box;
 }
 
-@mixin margin-x($count:15) {
-  @for $i from 0 through $count {
-    .margin-#{$i} {
-      margin: #{$i}px !important;
-    }
-    .margin-top-#{$i} {
-      margin-top: #{$i}px !important;
-    }
-    .margin-left-#{$i} {
-      margin-left: #{$i}px !important;
-    }
-    .margin-bottom-#{$i} {
-      margin-bottom: #{$i}px !important;
-    }
-    .margin-right-#{$i} {
-      margin-right: #{$i}px !important;
-    }
-  }
+html, body {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-@include padding-x;
-@include margin-x;
+body {
+  // Ensure that body element height at 'least' fills the viewport.
+  // This means it can grow beyond, but wont be less
+  min-height:100vh;
+  position:relative;
+  padding-top: 73px !important;
+  font-size: $font-size-base;
+}
 
 .width-100 {
   width:100%;
@@ -65,36 +40,8 @@
   border-width:0;
 }
 
-
-@import 'layout-debug';
-
-///////////////////////
-// Styles relating to general html document
-///////////////////////
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  position: relative; 
-}
-
-body {
-  // Ensure that body element height at 'least' fills the viewport.
-  // This means it can grow beyond, but wont be less
-  min-height:100vh;
-  position:relative;
-  margin:0;
-  padding:0;
-  padding-top: 73px !important;
-  display:flex;
-  font-size: $font-size-base;
-}
 #signUp {
-    background: url(../images/hero-background-80.jpg);
+    background: url(../images/hero-background-80.jpg) no-repeat top center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -111,53 +58,6 @@ body {
   background-color: $color-pf-black-200;
   padding-bottom: 50px;
 }
-#recommender {
-  background: url(../images/recommendation-background-80.jpg);
-      -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: left;
-  color: $color-pf-white;
-  min-height: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  input::-webkit-input-placeholder {
-    font-size: 13px;
-    line-height: 3;
-  }
-  .dropdown-kebab-pf{
-    span{
-      cursor: pointer;
-    }
-  }
-  .dropdown-menu{
-    color: #000;
-  }
-}
-#analysis {
-  background: url(../images/analyze-background-80.jpg);
-      -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: left;
-  min-height: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  .dropdown-kebab-pf {
-    span {
-      cursor: pointer;
-    }
-  }
-}
-.form-control {
-    font-size: $font-size-base;
-    height: 50px;
-    &::placeholder {
-        font-style: normal;
-    }
-}
 hr {
   border: 1px solid $color-pf-white;
   margin-top: 40px;
@@ -171,6 +71,7 @@ hr {
 // an app component is a marker class for angular component dom elements
 .app-component {
   //root app component
+  position:relative;
   &.app {
     >footer {
       .footer {
@@ -181,24 +82,7 @@ hr {
 
     }
   }
-
-  // Note: making relative positioning helps positioning but creates extra margins
-  // on nested components, but it offers good absolute positioning options for
-  // child elements
-  position:relative;
-  @include debug-app-component;
-
 };
-
-$content-padding:0;
-
-header {
-  padding:$content-padding;
-}
-
-footer {
-  padding:$content-padding;
-}
 
 // helps to ensure that scrolling does not cross app footer or header
 .view-container {
@@ -210,7 +94,6 @@ footer {
       padding-right:$grid-gutter-width/2;
     }
     >main,section,aside {
-      padding:$content-padding;
       overflow: auto;
     }
   }

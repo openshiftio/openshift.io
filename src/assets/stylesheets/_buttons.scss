@@ -1,4 +1,8 @@
-// brand overwrites
+.btn {
+    white-space: normal !important;
+    word-wrap: break-word;
+    font-size: $font-size-base;
+}
 .btn-lg {
     padding: 12px 20px;
 }
@@ -6,7 +10,7 @@
     background-image: none;
     background-color: #4c4c4c;
     border-color: #4c4c4c;
-    color: #fff;
+    color: $color-pf-white;
     &:hover, &:focus, &:active {
         background-color: #3f3f3f;
         border-color: #3f3f3f;
@@ -16,7 +20,7 @@
     background-image: none;
     background-color: #c00;
     border-color: #c00;
-    color: #fff;
+    color: $color-pf-white;
     &:hover, &:focus, &:active {
         background-color: #b30000;
         border-color: #b30000;
@@ -26,32 +30,32 @@
     background-image: none;
     background-color: transparent;
     border-color: #c00;
-    color: #fff;
+    color: $color-pf-white;
     &:hover {
         background-color: #b30000;
-        color: #fff;
+        color: $color-pf-white;
     }
 }
 .btn-bordered-blue {
-    background: #fff;
+    background: $color-pf-white;
     border-color: #06c;
     color: #06c;
     &:hover, &:focus, &:active, .active {
         box-shadow: none;
         background: #08c0fc;
         border-color: #08c0fc;
-        color: #fff;
+        color: $color-pf-white;
     }
 }
 .btn-accent {
     background-image: none;
     background: #08c0fc;
     border-color: #08c0fc;
-    color: #fff;
+    color: $color-pf-white;
     &:hover {
         background: #03afe8;
         border-color: #03afe8;
-        color: #fff;
+        color: $color-pf-white;
     }
 }
 .btn-link {
@@ -62,8 +66,8 @@
 }
 .btn-white {
     background-image: none;
-    background: #fff;
-    border-color: #fff;
+    background: $color-pf-white;
+    border-color: $color-pf-white;
     color: #c00;
     &:hover {
         background: #f2f2f2;

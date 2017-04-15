@@ -4,9 +4,12 @@
   width:100vw !important;
 }
 
+.hide {
+    display: none;
+}
+
 .navbar-custom {
-    background-color: black;
-    // border-bottom: 1px solid rgba(black, 0.3);
+    background-color: $color-pf-black;
     margin-bottom: 0;
     min-height: 75px;
     .navbar-collapse {
@@ -14,7 +17,7 @@
     }
     .navbar-toggle {
         font-size: 16px;
-        color: white;
+        color: $color-pf-white;
         padding: 15px 6px;
         &:focus,
         &:active {
@@ -32,20 +35,19 @@
                 margin-top: 5px;
                 width: 225px;
             }
-            
+
         }
         &:focus {
             outline: none;
         }
     }
     a {
-        color: white;
+        color: $color-pf-white;
     }
     .brand-left{
-        // margin-right: 120px;
         position: fixed;
         left: 34%;
-        @media (max-width: 1201px) { 
+        @media (max-width: 1201px) {
             position: relative;
             left: 0;
         }
@@ -64,7 +66,7 @@
                     -moz-transition: background .3s ease-in-out;
                 &:hover {
                     background-color: transparent;
-                    color: rgba(white, 0.8);
+                    color: rgba($color-pf-white, 0.8);
                     outline: none;
                 }
                 &:focus,
@@ -76,9 +78,9 @@
             &.active {
                 outline: none;
                 a {
-                    background-color: rgba(black, 0.3);
+                    background-color: rgba($color-pf-black, 0.3);
                     &:hover {
-                        color: white;
+                        color: $color-pf-white;
                     }
                 }
             }
@@ -88,15 +90,14 @@
         width: 20px;
     }
     @media (min-width: 768px) {
-      background: black;
-    //   border-bottom: none;
+      background: $color-pf-black;
       letter-spacing: 1px;
       padding: 0 0;
       transition: background .5s ease-in-out,padding .5s ease-in-out;
           -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
           -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
       &.top-nav-collapse {
-          background: black;
+          background: $color-pf-black;
           border-bottom: 1px solid rgba(black, 0.3);
           opacity: .8;
           &:hover {
@@ -110,15 +111,15 @@
         > .dropdown-menu {
             > li {
             > a {
-                color: black;
+                color: $color-pf-black;
                 &:hover {
-                    border-color: white;
-                    color: lightgray;
+                    border-color: $color-pf-white;
+                    color: $color-pf-black-300;
                 }
             }
         }
         margin-top: 10px;
-        }  
+        }
     }
 }
 // override default Bootstrap breakpoint for mobile navigation
