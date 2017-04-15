@@ -50,12 +50,6 @@ body {
     top: 5px;
 }
 
-.btn {
-    white-space: normal !important;
-    word-wrap: break-word;
-    font-size: $font-size-base;
-}
-
 h1 {
     font-size: 2.5em;
     font-weight: 600;
@@ -89,81 +83,8 @@ h1 {
   .containerPadd{ padding-top: em(11); }
   .containerPadd-nologin{ padding-bottom: 0; }
 }
-    
-#login:hover {
-  cursor: pointer;
-}
-
-.footer {
-    background-color: #000;
-}
-.footer-container {
-    background-color: #1e1e1e;
-    height: 250px;
-}
-.footer-nav {
-    background-color: #1e1e1e;
-    a {
-        color: $color-pf-white;
-    }
-}
-.footer-logo {
-    background-color: #000;
-    height: 115px;
-    img {
-        height: 115px;
-    }
-}
-.social-block {
-    background-color: #c00;
-    color: $color-pf-white;
-    height: 100%;
-    .social-nav {
-        &:first-child {
-            padding-left: 0;
-        }
-        padding-right: 5px;
-        padding-left: 5px;
-        a:hover {
-            text-decoration: none;
-        }
-    }
-}
-.footer-info {
-    color: #5a5a5a;
-    display: inline-block;
-    position: relative;
-    top: 45px;
-    a {
-        &:first-child {
-            padding-left: 30px;
-        }
-        &:last-child {
-            border-right: none;
-        }
-        color: inherit;
-        margin-left: 15px;
-        border-right: 1px solid #5a5a5a;
-        padding-right: 15px;
-    }
-}
-@media (max-width: 768px) {
-    .footer-container {
-        height: auto;
-    }
-    .footer-nav {
-        display: none;
-    }
-    .footer-nav-links {
-        display: none;
-    }
-    .footer-info {
-        top: 25px;
-    }
-}
 
 @import 'layout';
 @import 'buttons';
 @import 'features.scss';
-@import 'recommender.scss';
-@import 'analysis.scss';
+@import 'footer.scss';
