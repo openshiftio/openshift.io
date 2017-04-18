@@ -41,14 +41,14 @@ objects:
           env:
             - name: ANALYTICS_WRITE_KEY
               valueFrom:
-              configMapKeyRef:
-                name: wwwopenshiftio
-                key: analytics.write.key
+                configMapKeyRef:
+                  name: wwwopenshiftio
+                  key: analytics.write.key
             - name: WAITLIST_URL
               valueFrom:
-              configMapKeyRef:
-                name: wwwopenshiftio
-                key: waitlist.url
+                configMapKeyRef:
+                  name: wwwopenshiftio
+                  key: waitlist.url
           resources: {}
           terminationMessagePath: /dev/termination-log
           readinessProbe:
