@@ -1,8 +1,33 @@
-Before you start
-=================
+# www.openshift.io
 
-Backend API
------------
+This repository contains the landing page content for openshift.io, a
+free, end-to-end development environment in the cloud.
+
+## Community Feedback
+
+If you have feedback, suggestions and ideas we are to be found at the
+following places:
+
+irc at [\#openshiftio on Freenode](irc://freenode.org/#openshiftio) or [webchat](http://webchat.freenode.net/?channels=%23openshiftio)
+
+planner/issues at [openshift.io](https://openshift.io/openshiftio/openshiftio/plan)
+
+stackoverflow with tag [openshiftio](http://stackoverflow.com/questions/tagged/openshiftio)
+
+## Upstream Development
+
+The upstream for openshift.io is primarily in the [fabric8][https://fabric8.io] project.
+fabric8 is found in the following organizations:
+
+* <https://github.com/fabric8io>
+* <https://github.com/fabric8-ui>
+* <https://github.com/fabric8-analytics>
+* <https://github.com/fabric8-quickstarts>
+* <https://github.com/fabric8-images>
+
+## Building and deploying
+
+### Backend API
 
 Make sure you setup the necessary connections to the backend. You can run it locally by setting these environment variables:
 
@@ -11,12 +36,10 @@ Make sure you setup the necessary connections to the backend. You can run it loc
 
 in your .bash_profile and reload the shell.
 
-VS Code
--------
+### VS Code
 
 Run `ext install EditorConfig` to read the `.editorconfig` file
 
-To start
----------
+### To start
 
 Run `npm start`. This will start the UI with livereload enabled.
