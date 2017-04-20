@@ -17,7 +17,13 @@ objects:
     selector:
       service: wwwopenshiftio
     strategy:
-      resources: {}
+      resources:
+        requests:
+          cpu: 20m
+          memory: 50Mi
+        limits:
+          cpu: 200m
+          memory: 500Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
