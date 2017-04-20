@@ -81,7 +81,8 @@ export class Auth {
 
   login() {
     analytics.trackLogin();
-    window.location.href = this.apiUrl + 'login/authorize?link=true';
+    // Removed ?link=true in favor of getting started page
+    window.location.href = this.apiUrl + 'login/authorize';
   }
 
   logout() {
@@ -156,7 +157,7 @@ export class Auth {
       history.pushState(null, "", location.href.split("?")[0]);
       // Put a short delay here, as local storage takes a few MS to update
       setTimeout(function () {
-        window.location.href = `/_home`;
+        window.location.href = `/_gettingstarted`;
       }, 1000);
       return;
     }
