@@ -26,16 +26,19 @@
     }
     .navbar-brand {
         @media (min-width: 768px) {
-            margin-left: -75px !important;
+            // margin-left: -75px !important;
         }
         height: 100%;
         img {
-            width: 70%;
-            @media (max-width: 597px) {
-                margin-top: 5px;
-                width: 225px;
-            }
-
+          width: 70%;
+          @media (max-width: 597px) {
+            margin-top: 5px;
+            width: 225px;
+          }
+          @media (max-width: 350px) {
+            margin-top: 10px;
+            width: 185px;
+          }
         }
         &:focus {
             outline: none;
@@ -45,6 +48,7 @@
         color: $color-pf-white;
     }
     .brand-left{
+        margin-top: 10px;
         position: fixed;
         left: 34%;
         @media (max-width: 1201px) {
@@ -57,6 +61,7 @@
     }
     .brand-right {
         float: right;
+        margin-top: 10px;
     }
     .nav {
         li {

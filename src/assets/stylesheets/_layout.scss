@@ -1,34 +1,59 @@
 ///////////////////////
 // Styles relating to general html document
 ///////////////////////
-
-* {
-  box-sizing: border-box;
-}
-
 html, body {
-  width: 100%;
-  height: 100%;
+  min-height: 100%;
   position: relative;
 }
-
 body {
-  // Ensure that body element height at 'least' fills the viewport.
-  // This means it can grow beyond, but wont be less
-  min-height:100vh;
-  position:relative;
+  font-family: 'Overpass', sans-serif;
+  margin-bottom: 60px;
   padding-top: 73px !important;
   font-size: $font-size-base;
 }
-
-.width-100 {
-  width:100%;
+.navbar-custom {
+  .navbar-collapse {
+    margin-top: 0 !important;
+  }
 }
-
-.height-100 {
-  height:100%;
+.column-item {
+  min-height: 250px;
 }
-
+.row-cards {
+  margin-top: 20px;
+}
+.section-footer {
+  padding-bottom: 20px;
+}
+#signUp {
+  background: url(../images/hero-background-80.jpg) fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: left;
+  color: $color-pf-white;
+  width: 100%;
+  height: auto;
+  min-height: 475px;
+  padding: 50px 0;
+  margin-top: -1px; // for firefox
+}
+.form-control {
+  font-size: $font-size-base;
+  height: 50px;
+  &::placeholder {
+    font-style: normal;
+  }
+}
+hr {
+  border: 1px solid $color-pf-white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.row-copy {
+  margin-top: 20px;
+}
 .fill-container {
   position:absolute;
   top:0;
@@ -39,90 +64,9 @@ body {
   margin:0;
   border-width:0;
 }
-
-#signUp {
-    background: url(../images/hero-background-80.jpg) no-repeat top center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-position: left;
-    color: $color-pf-white;
-    width: 100%;
-    height: auto;
-    min-height: 540px;
-    padding: 50px 0;
-    margin-top: -1px; // for firefox
-}
-#features {
-  background-color: $color-pf-black-200;
-  padding-bottom: 50px;
-}
-hr {
-  border: 1px solid $color-pf-white;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.row-copy {
-  margin-top: 20px;
-}
-
-// an app component is a marker class for angular component dom elements
-.app-component {
-  //root app component
-  position:relative;
-  &.app {
-    >footer {
-      .footer {
-        text-align: $textCenter;
-        font-size: $font-size-small;
-        border-top: 1px solid $color-pf-blue-300;
-      }
-
-    }
-  }
-};
-
-// helps to ensure that scrolling does not cross app footer or header
-.view-container {
-  position:relative;
-  >.view {
-    @extend .fill-container;
-    &.with-rows {
-      padding-left:$grid-gutter-width/2;
-      padding-right:$grid-gutter-width/2;
-    }
-    >main,section,aside {
-      overflow: auto;
-    }
-  }
-}
-
-// chromeless dialog suppresses all chrome in the ng2-bootstrap modal component
-.chromeless-modal {
-  .modal-content {
-    display:flex;
-    border:solid 0 lime;
-    padding:0;
-    margin:0;
-    .modal-header {
-      display:none;
-    }
-    .modal-footer {
-      display:none;
-    }
-    .modal-body {
-      flex:1;
-      display:flex;
-      border:solid 0 orangered;
-      padding:0;
-      .chromeless-modal-content {
-        flex:1;
-        display:flex;
-        border:solid 0 brown;
-        padding:0;
-      }
-    }
+@media (max-width: 350px) {
+  .col-xs-12 {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
