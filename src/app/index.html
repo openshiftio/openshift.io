@@ -9,19 +9,19 @@
   <meta name="description" content="">
   <meta name="author" content="Red Hat">
   <!-- PatternFly Styles -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly.min.css" rel="stylesheet" media="screen, print">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.23.2/css/patternfly.min.css" rel="stylesheet" media="screen, print">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.23.2/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
 </head>
 
-<body class="app app-component">
+<body>
   <!-- Return to Top -->
-  <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a> -->
   <!-- Navigation -->
   <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="" style="margin-left: 10px; margin-right: 10px;">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse" aria-expanded="false">
-          Menu <i class="fa fa-bars"></i>
+          Menu
         </button>
         <a class="navbar-brand page-scroll" href="/">
           <img src="../assets/images/openshift-io_white.png" alt="OpenShift.io" />
@@ -37,7 +37,7 @@
             <a href="/_home">Home</a>
           </li>
           <li>
-            <a href="https://developers.redhat.com/" target="top">Red Hat Developers</a>
+            <a href="https://developers.redhat.com/" target="top">Red Hat Developer Program</a>
           </li>
         </ul>
         <ul class="nav navbar-nav brand-right">
@@ -120,244 +120,187 @@
     <div id="toastMessage"></div>
   </div>
 
-  <main class="view-container">
-    <section class="container-fluid" id="signUp">
-      <div class="intro">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-offset-2 col-lg-8 col-lg-offset-2">
-          <div class="brand-heading">
-            <img src="../assets/images/OpenShift-io_logo.svg" alt="OpenShift.io" class="logo" />
-          </div>
-          <h1 class="col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 submit-hide">
-            A free, end-to-end development environment in the cloud
-          </h1>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-offset-2 col-lg-8 col-lg-offset-2 login-hide">
-          <div class="beta-form col-sm-8 col-sm-offset-2">
-            <div class="form-group">
-              <a class="btn btn-primary btn-lg beta-submit col-sm-12" id="register">REGISTER FOR THE DEVELOPER PREVIEW</a>
-              <span id="helpBlock" class="help-block">
-                Early access is limited and will be provided as resources become available.
-              </span>
+  <main>
+    <section id="signUp">
+      <div class="container-fluid">
+        <div class="intro">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <div class="brand-heading">
+              <img src="../assets/images/OpenShift-io_logo.svg" alt="OpenShift.io" class="logo" />
             </div>
+            <h1 class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 submit-hide">
+              A free, end-to-end development environment in the cloud
+            </h1>
           </div>
-          <div id="userLogin" class="col-sm-8 col-sm-offset-2">
-            <form>
-              <h4>
-                Already a part of the OpenShift.io Developer Preview?
-              </h4>
-              <button type="button" class="btn btn-link" id="login">Log In <i class="fa fa-caret-right"></i></button>
-            </form>
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-offset-1 col-lg-8 col-lg-offset-2 login-hide">
+            <div class="beta-form">
+              <div class="form-group">
+                <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">REGISTER FOR THE PREVIEW</a>
+                <span id="helpBlock" class="col-sm-12 help-block">
+                  Early access is limited and will be provided as resources become available.
+                </span>
+              </div>
+            </div>
+            <div id="userLogin" class="col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
+              <form>
+                <h4>
+                  Already a part of the OpenShift.io Developer Preview?
+                </h4>
+                <button type="button" class="btn btn-outline" id="login">LOG IN</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </section>
     <!-- Features -->
-    <section class="container-fluid" id="features">
-      <div class="row row-white row-copy">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/edit_cloud.svg" />
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                An end-to-end team development environment in the cloud
-              </b>
-            </h3>
-            <p>
-              Collaborate at any scale across the development lifecycle, powered by Red Hat OpenShift.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+    <section class="section-footer" style="margin-top: 25px;">
+      <div class="container">
+        <div class="row row-cards">
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/edit_cloud.svg" />
               </div>
-            </p>
+              <h2>
+                <b>
+                  An end-to-end team development environment in the cloud
+                </b>
+              </h2>
+              <p>
+                Collaborate at any scale across the development lifecycle, powered by Red Hat OpenShift.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <hr />
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                Create continuously deployed microservices without breaking a sweat
-              </b>
-            </h3>
-            <p>
-              Easily create and deploy modern, containerized apps composed of microservices.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/container-apps.svg" />
               </div>
-            </p>
+              <h2>
+                <b>
+                  Create continuously deployed microservices without breaking a sweat
+                </b>
+              </h2>
+              <p>
+                Collaborate at any scale across the development lifecycle, powered by Red Hat OpenShift.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/container-apps.svg" />
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <hr />
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/planning-3.svg" />
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                Plan for success, regardless of project complexity
-              </b>
-            </h3>
-            <p>
-              Transform your ideas into reality, with easy-to-use agile planning tools that provide progress visibility every step of the
-              way.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/planning-3.svg" />
               </div>
-            </p>
+              <h2>
+                <b>
+                  Plan for success, regardless of project complexity
+                </b>
+              </h2>
+              <p>
+                Transform your ideas into reality, with easy-to-use agile planning tools that provide progress visibility every step of the
+                way.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <hr />
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                Install nothing; do everything
-              </b>
-            </h3>
-            <p>
-              Planning, coding, testing, creating environments, deploying and monitoring - it's all there and immediately usable.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+        <div class="row row-cards">
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/browser.svg" />
               </div>
-            </p>
+              <h2>
+                <b>
+                  Install nothing; do everything
+                </b>
+              </h2>
+              <p>
+                Planning, coding, testing, creating environments, deploying and monitoring - it's all there and immediately usable.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/browser.svg" />
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <hr />
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/analytics.svg" />
-          </div>
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                Mind-meld to make better decisions
-              </b>
-            </h3>
-            <p>
-              Gain confidence in your software stack selection with crowd-sourced and AI insights flagging concerns and also recommendations
-              on how to address them.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/analytics.svg" />
               </div>
-            </p>
+              <h2>
+                <b>
+                  Mind-meld to make better decisions
+                </b>
+              </h2>
+              <p>
+                Gain confidence in your software stack selection with crowd-sourced and AI insights flagging concerns and also recommendations
+                on how to address them.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <hr />
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-3">
-          <div class="col-xs-9 col-sm-9 col-md-8 col-lg-10 features-content">
-            <h3>
-              <b>
-                Not just a tool, but an entire community
-              </b>
-            </h3>
-            <p>
-              Your registration includes a free membership to the Red Hat Developer Program where you get access to Red Hat software for
-              development, books, cheat sheets, and a lot more.
-              <div class="learn-more">
-                <a href="#">Learn More <i class="fa fa-caret-right"></i></a>
+          <div class="col-sm-4 features">
+            <div class="features-background">
+              <div class="card-image">
+                <img src="../assets/images/community.svg" />
               </div>
-            </p>
-          </div>
-          <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <img src="../assets/images/community.svg" />
+              <h2>
+                <b>
+                  Not just a tool, but an entire community
+                </b>
+              </h2>
+              <p>
+                Your registration includes a free membership to the Red Hat Developer Program where you get access to Red Hat software for
+                development, books, cheat sheets, and a lot more.
+                <div class="learn-more">
+                  <a href="#">Learn more <i class="fa fa-caret-right"></i></a>
+                </div>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section>
-      <footer>
-        <div id="footer_container" class="footer">
-          <div class="container-fluid footer-container">
-            <div class="row footer-nav">
-              <div class="col-sm-12 col-md-8 col-md-offset-2">
-                <div class="col-xs-6 col-sm-3">
-                  <h3>
-                    <b><a href="https://developers.redhat.com/" target="top">RED HAT DEVELOPERS</a></b>
-                  </h3>
-                  <div class="footer-nav-links">
-                    <a href="https://developers.redhat.com/products/#developer_tools" target="top">Developer Tools</a>
-                  </div>
-                  <div class="footer-nav-links">
-                    <a href="https://developers.redhat.com/blog" target="top">Blog</a>
-                  </div>
-                  <div class="footer-nav-links">
-                    <a href="https://developers.redhat.com/resources/#!" target="top">Help</a>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                  <h3 class="text-white">
-                    <b>COMMUNITY</b>
-                  </h3>
-                  <div class="footer-nav-links">
-                    <a href="https://fabric8.io/" target="top">Fabric8</a>
-                  </div>
-                  <div class="footer-nav-links">
-                    <a href="https://github.com/eclipse/che" target="top">Eclipse Che</a>
-                  </div>
-                  <div class="footer-nav-links">
-                    <a href="https://www.openshift.org" target="top">OpenShift.org</a>
-                  </div>
-                </div>
-                <div class="col-sm-4 col-sm-offset-1 social-block" style="min-height: 100%; height: 100%; padding-bottom: 30px;">
-                  <h3>
-                    <b>JOIN US</b>
-                  </h3>
-                  <p>
-                    We provide an end-to-end developer experience, enabling the continuous deployment of microservices, successful planning strategies
-                    and a robust community.
-                  </p>
-                  <span class="footer-nav-links social-nav">
-                    <a href="https://www.facebook.com/openshiftio/" target="top">
-                        <i class="fa fa-facebook-official fa-2x"></i>
-                      </a>
-                  </span>
-                  <span class="footer-nav-links social-nav">
-                      <a href="https://twitter.com/openshiftio" target="top">
-                        <i class="fa fa-twitter-square fa-2x"></i>
-                      </a>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 footer-logo">
-                <div class="col-xs-4 col-sm-2 col-md-2 col-md-offset-1">
-                  <a href="https://www.redhat.com" target="top">
-                    <img src="../assets/images/Logo_RH_RGB_Reverse.svg" alt="OpenShift.io" />
-                  </a>
-                </div>
-                <div class="col-xs-8 col-sm-10 col-md-8 textCenter">
-                  <p class="footer-info">
-                    Copyright &copy;2017 Red Hat, Inc.
-                    <a href="https://www.redhat.com/en/about/privacy-policy" target="top">Privacy Statement</a>
-                    <a href="https://www.openshift.com/legal/terms.html" target="top">Terms of Use</a>
-                    <a href="https://www.redhat.com/en/about/all-policies-guidelines" target="top">All policies and guidelines</a>
-                  </p>
-                </div>
-              </div>
-            </div>
+    <footer class="footer-openshiftio">
+      <div id="footer_container" class="container">
+        <div class="row">
+          <div class="col-xs-2 col-md-2 logo">
+            <a href="https://www.redhat.com" target="top"></a>
           </div>
+          <div class="col-xs-10 col-md-10 footer-content">
+            <a href="https://www.redhat.com">Copyright &copy;2017 Red Hat, Inc.</a>
+            <span class="conditions">
+              <a href="https://www.redhat.com/en/about/privacy-policy" target="top" class="legal">Privacy Statement</a>
+              <a href="https://www.openshift.com/legal/terms.html" target="top" class="legal">Terms of Use</a>
+              <a href="https://www.redhat.com/en/about/all-policies-guidelines" target="top">All policies and guidelines</a>
+              <span class="summit">
+                <a href="https://www.facebook.com/openshiftio/" target="top">
+                  <i class="fa fa-facebook fa-lg"></i>
+                </a>
+                <a href="https://twitter.com/openshiftio" target="top">
+                  <i class="fa fa-twitter fa-lg"></i>
+                </a>
+                <a href="https://www.redhat.com/summit" target="top">
+                  <img src="../assets/images/logo-summit-4.png" />
+                </a>
+              </span>
+            </span>
+          </p>
         </div>
-      </footer>
-    </section>
+      </div>
+    </footer>
   </main>
 </body>
 

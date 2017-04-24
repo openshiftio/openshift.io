@@ -1,43 +1,52 @@
-#login:hover {
-  cursor: pointer;
+.features {
+  height: 500px;
+  margin-bottom: 20px;
+  p {
+    margin-top: 15px;
+  }
+}
+.features-background {
+  background-color: $color-pf-black-200;
+  padding: 0 30px;
+  height: 100%;
+}
+.card-image {
+  img {
+    height: 200px;
+    margin: auto 0;
+    width: 100%;
+    padding-top: 20px;
+  }
+}
+.learn-more {
+  position: absolute;
+  left: 50px;
+  bottom: 20px;
 }
 .intro {
-    text-align: center;
-    .brand-heading {
-        width: 30%;
-        margin: 0 auto;
-        @media(max-width:768px) {
-            width: 70%;
-        }
+  text-align: center;
+  .brand-heading {
+    width: 40%;
+    margin: 0 auto;
+    @media(max-width:768px) {
+      width: 70%;
     }
+    @media (max-width: 350px) {
+      width: 100%;
+    }
+  }
+  .intro-body {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  @media(min-width:768px) {
     .intro-body {
-        display: table-cell;
-        vertical-align: middle;
+      .intro-text {
+        font-size: 26px;
+      }
     }
-    @media(min-width:768px) {
-        .intro-body {
-            .intro-text {
-                font-size: 26px;
-            }
-        }
-    }
+  }
 }
 .submit-show {
-    margin-top: 50px;
-}
-.beta-submit {
-    font-size: 1.5em;
-    @media (min-width: 1175px) {
-         font-size: 1.5em;
-    }
-    @media (max-width: 500px) {
-        font-size: 1.5em;
-    }
-}
-.features-content {
-    height: 165px;
-    .learn-more {
-        position: absolute;
-        bottom: 0;
-    }
+  margin-top: 50px;
 }
