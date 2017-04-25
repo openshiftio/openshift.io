@@ -32,7 +32,7 @@ sassModules.forEach(val => {
 });
 
 const extractSass = new ExtractTextPlugin({
-  filename: "/openshiftio/[name].css",
+  filename: "/_openshiftio/[name].css",
   disable: !isProd
 });
 
@@ -64,7 +64,7 @@ module.exports = {
   entry: ['./src/app/index.ts'],
   devtool: (isProd ? 'cheap-module-source-map' : 'inline-source-map'),
   output: {
-    filename: '/openshiftio/[name].js',
+    filename: '/_openshiftio/[name].js',
     path: (isProd ? path.join(ROOT, '/dist') : '/')
   },
   module: {
@@ -99,7 +99,7 @@ module.exports = {
             loader: "url-loader",
             query: {
               limit: 3000,
-              name: '/openshiftio/assets/fonts/[name].[ext]'
+              name: '/_openshiftio/assets/fonts/[name].[ext]'
             }
           }
         ]
@@ -111,7 +111,7 @@ module.exports = {
             loader: "url-loader",
             query: {
               limit: 3000,
-              name: '/openshiftio/assets/images/[name].[ext]'
+              name: '/_openshiftio/assets/images/[name].[ext]'
             }
           }
         ]
@@ -148,7 +148,7 @@ module.exports = {
      */
     new FaviconsWebpackPlugin({
       logo: './src/assets/images/favicon.svg',
-      prefix: 'openshiftio/icons/'
+      prefix: '_openshiftio/icons/'
     }),
 
   ],
