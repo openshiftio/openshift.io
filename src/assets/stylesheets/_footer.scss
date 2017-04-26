@@ -38,6 +38,19 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  .footer-openshiftio {
+    .conditions {
+      font-size: 12px;
+      a:first-child {
+        margin-left: 35px;
+      }
+    }
+    .social {
+      display: none;
+    }
+  }
+}
 @media (max-width: 768px) {
   .footer-openshiftio {
     .conditions {
