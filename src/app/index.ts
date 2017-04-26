@@ -102,9 +102,17 @@ export class Auth {
 
   setupRefreshTimer(refreshInSeconds: number) {
     if (!this.clearTimeoutId) {
+      // refresh should be required to be less than ten minutes measured in seconds
+      let tenMinutes = 60 * 10;
+      if (refreshInSeconds > tenMinutes) {
+        refreshInSeconds = tenMinutes;
+      }
       let refreshInMs = Math.round(refreshInSeconds * .9) * 1000;
       console.log('Refreshing token in: ' + refreshInMs + ' milliseconds.');
       this.refreshInterval = refreshInMs;
+      // setTimeout() uses a 32 bit int to store the delay. So the max value allowed is 2147483647
+      // The bigger number will cause immediate refreshing
+      // but since we refresh in 10 minutes or in refreshInSeconds whatever is sooner we are good
       this.clearTimeoutId = setTimeout(() => this.refreshToken(), refreshInMs);
     }
   }
