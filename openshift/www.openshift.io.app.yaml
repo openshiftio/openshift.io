@@ -13,7 +13,7 @@ objects:
       service: wwwopenshiftio
     name: wwwopenshiftio
   spec:
-    replicas: 1
+    replicas: 3
     selector:
       service: wwwopenshiftio
     strategy:
