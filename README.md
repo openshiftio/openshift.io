@@ -1,6 +1,6 @@
-# openshift.io
+# OpenShift.io
 
-OpennShift.io is a free end-to-end development experience in the cloud.
+A free, end-to-end, cloud-native development experience.
 
 ## Community Feedback
 
