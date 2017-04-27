@@ -1,7 +1,6 @@
 # www.openshift.io
 
-This repository contains the landing page content for openshift.io, a
-free, end-to-end development environment in the cloud.
+OpennShift.io is a free end-to-end development experience in the cloud.
 
 ## Community Feedback
 
