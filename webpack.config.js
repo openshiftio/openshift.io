@@ -140,32 +140,32 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'better-decisions.html',
-      template: 'src/app/pages/better-decisions.html',
+      template: 'src/app/pages/_learn-more/better-decisions.html',
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'end-to-end.html',
-      template: 'src/app/pages/end-to-end.html',
+      template: 'src/app/pages/_learn-more/end-to-end.html',
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'install-nothing.html',
-      template: 'src/app/pages/install-nothing.html',
+      template: 'src/app/pages/_learn-more/install-nothing.html',
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'microservices.html',
-      template: 'src/app/pages/microservices.html',
+      template: 'src/app/pages/_learn-more/microservices.html',
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'planning-tools.html',
-      template: 'src/app/pages/planning-tools.html',
+      template: 'src/app/pages/_learn-more/planning-tools.html',
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'rhdp-membership.html',
-      template: 'src/app/pages/rhdp-membership.html',
+      template: 'src/app/pages/_learn-more/rhdp-membership.html',
       chunksSortMode: 'dependency'
     }),
     new DefinePlugin({
