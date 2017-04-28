@@ -134,7 +134,40 @@ module.exports = {
        *
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
-    new HtmlWebpackPlugin({ template: 'src/app/index.html', chunksSortMode: 'dependency' }),
+    new HtmlWebpackPlugin({
+      template: 'src/app/index.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'better-decisions.html',
+      template: 'src/app/pages/better-decisions.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'end-to-end.html',
+      template: 'src/app/pages/end-to-end.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'install-nothing.html',
+      template: 'src/app/pages/install-nothing.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'microservices.html',
+      template: 'src/app/pages/microservices.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'planning-tools.html',
+      template: 'src/app/pages/planning-tools.html',
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rhdp-membership.html',
+      template: 'src/app/pages/rhdp-membership.html',
+      chunksSortMode: 'dependency'
+    }),
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL),

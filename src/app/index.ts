@@ -3,7 +3,10 @@ import 'core-js/es6/string';
 import * as $ from 'jquery';
 import * as URI from 'urijs';
 import '../assets/stylesheets/custom.scss';
-import './header.scss';
+
+import Header from "./components/header";
+
+const header = new Header({ el: ".header"});
 
 declare global {
   interface Window {
@@ -343,7 +346,7 @@ export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastMessage").html(htmlMsg);
 }
 
-// ===== Scroll to Top ==== 
+// ===== Scroll to Top ====
 $(window).scroll(function () {
   if ($(this).scrollTop() >= 50) {
     $('#return-to-top').fadeIn(200);
