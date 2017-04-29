@@ -37,9 +37,6 @@
           <li id="home">
             <a href="/_home">Account Home</a>
           </li>
-          <li>
-            <a href="https://developers.redhat.com/" target="top">Red Hat Developer Program</a>
-          </li>
         </ul>
         <ul class="nav navbar-nav brand-right">
           <li class="dropdown">
@@ -116,9 +113,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 features-background text-center">
-          <img src="../../../assets/images/container-apps.svg" width="250px">
+          <img src="../../../assets/images/container-apps.svg" width="300" style="padding-top:20px">
           <h1 class="text-center">Create continuously deployed microservices without breaking a sweat</h1>
-          <p class="text-center">Easily create and deploy modern, containerized apps composed of microservices.</p>
+          <h4 class="text-center">Easily create and deploy modern, containerized apps composed of microservices.</h4>
         </div>
       </div>
     </div>
@@ -127,12 +124,15 @@
   <section class="section-footer">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12 page-header">
           <h2>Existing development tools weren’t built with containers in mind</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-4">
+    			<img src="../../../assets/images/icon-containers.png" width="250" class="img-responsive center-block">
+  		  </div>
+        <div class="col-sm-8">
           <p>Developers who have started down the microservices path have noted that it is very time consuming to begin building microservices in containers with their existing tools. The learning curve is steep and there are a lot of steps to follow to get things set up and working. Once you get your own development environment working, you have to help teammates go through the same process and learning curve.</p>
       		<p>Here’s how it usually goes: First, you need to select a software stack that is lightweight enough for microservices in containers. Then you need to pull down all of the components. There are probably some tutorials you’ll need to follow to hook the components of the stack together and some boilerplate code to copy into your IDE.</p>
       		<p>Next, you need a development environment. Desktop IDEs are traditionally intended to build and test code on the local machine under the local OS, which is often Windows or Mac OS. Code that runs fine on the desktop might not be portable to the target environment, which is Linux containers running in the cloud. Many IDEs can be configured to trigger remote builds, execute code remotely, and connect to remote debuggers, but there is a lot of setup involved and some complexity to manage. Oh, and you also have to deal with keeping the source code synchronized between your desktop and the target machine. You don’t want to have to check code in just to try building it on the target machine.</p>
@@ -144,15 +144,18 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12 page-header">
           <h2>Red Hat OpenShift.io, a cloud-native development environment</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-4">
+     			<img src="../../../assets/images/microservices-get-started.png" width="350" class="img-responsive">
+     		</div>
+        <div class="col-sm-8">
           <p>To help development teams be productive Red Hat created OpenShift.io. OpenShift.io is a free, cloud-native, team development experience for managing software projects. Optimized for creating container-based applications and microservices-based solutions in the cloud, OpenShifto.io is the ideal path to continuous value delivery and digital transformation.</p>
           <p>OpenShift.io lets you get started writing actual, functional code for your microservices project right away. When you create a space in OpenShift.io for your project, you choose from a list of quick starts. You can pick a stack appropriate for microservices, like a RESTful HTTP endpoint based on the Vert.x runtime. When you do this, a lot more is happening than just importing some boilerplate code. All of the components of your selected stack are pulled into your space, along with the information to automatically build the whole project into Linux containers. With nothing more than a browser and an internet connection, you now are ready to write the first method of your microservice, build it, test it, and deploy it. Getting to this point could have taken you days or longer if you had to assemble all of the pieces yourself.</p>
-        </div>
+       </div>
       </div>
     </div>
   </section>

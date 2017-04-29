@@ -25,8 +25,22 @@ body {
 .row-cards {
   margin-top: 20px;
 }
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.img-responsive {
+  border-radius: 4px;
+}
 .section-footer {
-  height: 100%;
+  // height: 100%;
   padding-bottom: 20px;
 }
 #signUp {
