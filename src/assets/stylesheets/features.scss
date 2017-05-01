@@ -1,6 +1,12 @@
 .features {
   height: 500px;
   margin-bottom: 20px;
+  color: #363636;
+  &:hover {
+    h3, .learn-more {
+      color: $color-rh-blue-light;
+    }
+  }
   p {
     margin-top: 15px;
   }
@@ -25,6 +31,7 @@
   }
 }
 .learn-more {
+  font-weight: 700;
   position: absolute;
   left: 50px;
   bottom: 20px;
