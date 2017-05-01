@@ -29,7 +29,12 @@ body {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eee;
-  text-align: center;
+  text-align: left;
+  padding-left: 0;
+  @media (max-width: 767px) {
+    text-align: center;
+    padding-left: 20px;
+  }
 }
 .center-block {
   display: block;
