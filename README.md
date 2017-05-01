@@ -9,7 +9,7 @@ following places:
 
 irc at [\#openshiftio on Freenode](irc://freenode.org/#openshiftio) or [webchat](http://webchat.freenode.net/?channels=%23openshiftio)
 
-planner/issues at [openshift.io](https://openshift.io/openshiftio/openshiftio/plan)
+issues at [openshift.io](https://github.com/openshiftio/openshift.io/issues)
 
 stackoverflow with tag [openshiftio](http://stackoverflow.com/questions/tagged/openshiftio)
 
