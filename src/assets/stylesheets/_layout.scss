@@ -43,6 +43,15 @@ body {
   // height: 100%;
   padding-bottom: 20px;
 }
+.paragraph-wrap {
+  float: left;
+  @media (max-width: 500px) {
+    float: none;
+  }
+}
+// .signup-footer {
+//   text-align: center;
+// }
 #signUp {
   background: url(../images/hero-background-80.jpg) fixed;
   -webkit-background-size: cover;
