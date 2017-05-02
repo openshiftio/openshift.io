@@ -38,27 +38,6 @@
 }
 .intro {
   text-align: center;
-  .brand-heading {
-    width: 40%;
-    margin: 0 auto;
-    @media(max-width:768px) {
-      width: 70%;
-    }
-    @media (max-width: 350px) {
-      width: 100%;
-    }
-  }
-  .intro-body {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  @media(min-width:768px) {
-    .intro-body {
-      .intro-text {
-        font-size: 26px;
-      }
-    }
-  }
 }
 .submit-show {
   margin-top: 50px;
