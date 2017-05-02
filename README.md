@@ -15,7 +15,7 @@ stackoverflow with tag [openshiftio](http://stackoverflow.com/questions/tagged/o
 
 ## Upstream Development
 
-The upstream for openshift.io is primarily in the [fabric8][https://fabric8.io] project.
+The upstream for openshift.io is primarily in the [fabric8](https://fabric8.io) project.
 fabric8 is found in the following organizations:
 
 * <https://github.com/fabric8io>
