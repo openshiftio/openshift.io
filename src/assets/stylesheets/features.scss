@@ -28,9 +28,13 @@
   margin-top: 50px;
 }
 .stack-images {
-  // float: right;
+  @media (max-width: 1023px) {
+    text-align: center;
+  }
   img {
-    width: 100%;
+    @media (min-width: 768px) {
+      width: 100%;
+    }
   }
 }
 a.lightbox img {
