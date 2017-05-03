@@ -58,9 +58,7 @@ body {
   border-color: $color-pf-black-150;
 }
 .intro {
-  @media (max-width: 768px) {
-    text-align: center;
-  }
+  text-align: center;
 }
 #signUp {
   background: url(../images/hero-background-80.jpg) fixed;
@@ -72,7 +70,7 @@ body {
   color: $color-pf-white;
   width: 100%;
   height: auto;
-  padding: 50px 0;
+  padding: 25px 0;
   margin-top: -1px; // for firefox
   h1 {
     margin-top: 10px;
@@ -97,13 +95,17 @@ body {
   color: $color-pf-white;
   width: 100%;
   height: auto;
-  padding: 50px 0;
+  padding: 25px 0;
   margin-top: -1px; // for firefox
   text-align: center;
+  border-top: 2px solid;
+}
+.text-right {
+  text-align: right;
 }
 .top-feature {
   margin-top: 25px;
-  margin-bottom: 45px;
+  // margin-bottom: 45px;
 }
 .form-control {
   font-size: $font-size-base;
@@ -119,14 +121,7 @@ hr {
 }
 .button-row {
   button {
-    &:first-child {
-      margin-right: 15px;
-    }
-    &:last-child {
-      @media (max-width: 665px) {
-        margin-top: 10px;
-      }
-    }
+    margin-top: 10px;
   }
 }
 .row-copy {
