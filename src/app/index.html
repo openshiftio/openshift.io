@@ -17,6 +17,38 @@
 </head>
 
 <body>
+  <div class="lightbox-target" id="space">
+    <img src="../assets/images/space-dashboard.png" />
+    <a class="lightbox-close" href="#1"></a>
+  </div>
+  <div class="lightbox-target" id="user">
+    <img src="../assets/images/user-dashboard.png" />
+    <a class="lightbox-close" href="#1"></a>
+  </div>
+  <div class="lightbox-target" id="board">
+    <img src="../assets/images/board.png" />
+    <a class="lightbox-close" href="#2"></a>
+  </div>
+  <div class="lightbox-target" id="code">
+    <img src="../assets/images/code.png" />
+    <a class="lightbox-close" href="#2"></a>
+  </div>
+  <div class="lightbox-target" id="pipelines">
+    <img src="../assets/images/pipelines.png" />
+    <a class="lightbox-close" href="#3"></a>
+  </div>
+  <div class="lightbox-target" id="wizard">
+    <img src="../assets/images/wizard.png" />
+    <a class="lightbox-close" href="#3"></a>
+  </div>
+  <div class="lightbox-target" id="report">
+    <img src="../assets/images/report.png" />
+    <a class="lightbox-close" href="#4"></a>
+  </div>
+  <div class="lightbox-target" id="lsp">
+    <img src="../assets/images/lsp.png" />
+    <a class="lightbox-close" href="#4"></a>
+  </div>
 <!-- Return to Top -->
 <!-- <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a> -->
 <!-- Navigation -->
@@ -122,166 +154,182 @@
 
   <main>
     <section id="signUp">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-sm-4" style="float: left;">
-            <img src="../assets/images/OpenShift-io_logo.svg" alt="OpenShift.io" class="logo brand-heading" />
+          <div class="col-sm-5">
+            <h1>Introducing OpenShift.io</h1>
+            <ul>
+              <li>
+                Hosted, integrated toolchain
+              </li>
+              <li>
+                Planning tools for managing and prioritizing work
+              </li>
+              <li>
+                Code editing and debugging tools built on Eclipse Che
+              </li>
+              <li>
+                Integrated and automated CI/CD pipelines
+              </li>
+              <li>
+                Dashboards and reporting tools
+              </li>
+            </ul>
           </div>
-          <div class="col-sm-8 intro">
-            <h1 class="submit-hide">
-              A free, end-to-end, cloud-native development experience.
-            </h1>
-            <span class="login-hide">
-              <div class="beta-form">
-                <div class="form-group">
-                  <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
-                  <span id="helpBlock" class="col-sm-12 help-block">
-                    Early access is limited and will be provided as resources become available.
-                  </span>
-                </div>
+          <div class="col-sm-7 intro">
+            <h2>
+              An online development environment for planning, creating and deploying hybrid cloud services.
+            </h2>
+            <div class="login-hide">
+              <div class="button-row">
+                <button class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</button>
+                <button type="button" class="btn btn-outline" id="login">LOG IN</button>
               </div>
-              <div id="userLogin" class="col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
-                <form>
-                  <h4>
-                    Already a part of the OpenShift.io Developer Preview?
-                  </h4>
-                  <button type="button" class="btn btn-outline" id="login">LOG IN</button>
-                </form>
+              <div class="form-group">
+                <span id="helpBlock" class="help-block">
+                  Early access is limited and will be provided as resources become available.
+                </span>
               </div>
-            </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
     <!-- Features -->
-    <section class="section-footer" style="margin-top: 25px;">
-      <div class="container">
+    <section class="top-feature">
+      <!-- opening statement -->
+      <div id="#1" class="container">
         <div class="row row-cards">
-          <a href="end-to-end.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/edit_cloud.svg" />
-                </div>
+          <div class="col-sm-12 cards-pf features">
+            <div class="features-background">
+              <div class="card-image col-sm-8">
+                <img src="../assets/images/icon-blueprints.png" />
                 <h3>
-                  <b>
-                    A free, end-to-end, cloud-native development experience
-                  </b>
+                  What is OpenShift.io (OSIO)?
                 </h3>
                 <p>
-                  Collaborate at any scale across the development lifecycle, powered by Red Hat OpenShift.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
+                  It is an online development environment for planning, creating and deploying hybrid cloud services. OpenShift.io provides an effortless approach to DevOps, a one-click Linux container environment for developers and better decision making through machine learning.  Through a fully integrated set of development tools with OpenShift Online, OpenShift.io reduces the time and risk of deploying modern applications. OpenShift.io is a year-old open source project, and incorporates many other open source projects including fabric8, Eclipse Che, OpenJDK, PCP, WildFly Swarm., Vert.x, Spring Boot and of course, OpenShift.
                 </p>
               </div>
-            </div>
-          </a>
-          <a href="microservices.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/container-apps.svg" />
-                </div>
-                <h3>
-                  <b>
-                    Create continuously deployed microservices without breaking a sweat
-                  </b>
-                </h3>
-                <p>
-                  Easily create and deploy modern, containerized apps composed of microservices.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
-                </p>
+              <div class="col-sm-4 stack-images">
+                <a class="lightbox" href="#user">
+                  <img src="../assets/images/user-dashboard.png" />
+                </a>
+                <a class="lightbox" href="#space">
+                  <img src="../assets/images/space-dashboard.png" />
+                </a>
               </div>
             </div>
-          </a>
-          <a href="planning-tools.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/planning-3.svg" />
-                </div>
-                <h3>
-                  <b>
-                    Plan for success, regardless of project complexity
-                  </b>
-                </h3>
-                <p>
-                  Transform your ideas into reality, with easy-to-use agile planning tools that provide visibility every step of the
-                  way.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
-                </p>
-              </div>
-            </div>
-          </a>
+          </div>
         </div>
+      </div>
+      <!-- problem statement 1 -->
+      <div id="#2" class="container">
         <div class="row row-cards">
-          <a href="install-nothing.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/browser.svg" />
-                </div>
+          <div class="col-sm-12 cards-pf features">
+            <div class="features-background">
+              <div class="card-image col-sm-8">
+                <img src="../assets/images/icon-stopwatch.png" />
                 <h3>
-                  <b>
-                    Install nothing; do everything
-                  </b>
+                  We want to support customers and partners by minimizing the time and effort it takes to build and maintain an end-to-end development tool chain.
                 </h3>
                 <p>
-                  Planning, coding, testing, creating environments, deploying and monitoring - it's all there and immediately usable.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
+                  OpenShift.io It is a hosted service with planning tools like like prioritizable backlogs and kanban boards for managing your work. It has coding editing and debugging tools built on Eclipse Che that provide developers with a full featured IDE.  We provide dashboard and reporting tools that give teams and developers information about how their projects are progressing and how their code is performing. All of these tools are integrated by default and share a common datastore.
+                </p>
+                <p>
+                  These functionalities are just a few of the capabilities provided to drive developer efficiency.
                 </p>
               </div>
+              <div class="col-sm-4 stack-images">
+                <a class="lightbox" href="#board">
+                  <img src="../assets/images/board.png" />
+                </a>
+                <a class="lightbox" href="#code">
+                  <img src="../assets/images/code.png" />
+                </a>
+              </div>
             </div>
-          </a>
-          <a href="better-decisions.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/analytics.svg" />
-                </div>
+          </div>
+        </div>
+      </div>
+      <!-- problem statement 2 -->
+      <div id="#3" class="container">
+        <div class="row row-cards">
+          <div class="col-sm-12 cards-pf features">
+            <div class="features-background">
+              <div class="card-image col-sm-8">
+                <img src="../assets/images/icon-maze.png" />
                 <h3>
-                  <b>
-                    Mind-meld to make better decisions
-                  </b>
+                  We want to reduce the time and effort it takes to create containerized dev, test and staging environments that plague developers today when using bare metal, virtual machines or tools like Vagrant and Docker.
                 </h3>
                 <p>
-                  Gain confidence in your software stack selection with crowd-sourced and AI insights flagging concerns and also recommendations
-                  on how to address them.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
+                  OpenShift.io integrates the Jenkins Pipeline plugins to give developers a complete library from which to assemble their pipeline, from the simplest ‘just build it’ to support for promotions between environments and human approval steps. As pipelines are written using a Groovy DSL you have huge flexibility in how you build the pieces into a couple of pipelines.
+                </p>
+                <p>
+                  Automatically create containerized development environments. We do this by incorporating the workspace management capabilities of Eclipse Che. This creates environments, using your favorite technology stacks, that are hosted in a container on OpenShift online.
                 </p>
               </div>
+              <div class="col-sm-4 stack-images">
+                <a class="lightbox" href="#pipelines">
+                  <img src="../assets/images/pipelines.png" />
+                </a>
+                <a class="lightbox" href="#wizard">
+                  <img src="../assets/images/wizard.png" />
+                </a>
+              </div>
             </div>
-          </a>
-          <a href="rhdp-membership.html">
-            <div class="col-sm-4 features">
-              <div class="features-background">
-                <div class="card-image">
-                  <img src="../assets/images/community.svg" />
-                </div>
+          </div>
+        </div>
+      </div>
+      <!-- problem statement 3 -->
+      <div id="#4" class="container">
+        <div class="row row-cards">
+          <div class="col-sm-12 cards-pf features">
+            <div class="features-background">
+              <div class="card-image col-sm-8">
+                <img src="../assets/images/icon-dependencies.png" />
                 <h3>
-                  <b>
-                    Not just a tool, but an entire community
-                  </b>
+                  We want to enable development teams be more be more confident in the technology decisions they make.
                 </h3>
                 <p>
-                  Your registration includes a free membership to the Red Hat Developer Program where you get access to Red Hat software for
-                  development, books, cheat sheets, and a lot more.
-                  <div class="learn-more">
-                    Learn more <i class="fa fa-caret-right"></i>
-                  </div>
+                  OpenShift.io is a hosted service with planning tools like like prioritizable backlogs and kanban boards for managing your work. It has coding editing and debugging tools built on Eclipse Che that provide developers with a full featured IDE.  We provide dashboard and reporting tools that give teams and developers information about how their projects are progressing and how their code is performing. All of these tools are integrated by default and share a common datastore. The combination of these tools reduces building and maintenance efforts.
                 </p>
               </div>
+              <div class="col-sm-4 stack-images">
+                <a class="lightbox" href="#report">
+                  <img src="../assets/images/report.png" />
+                </a>
+                <a class="lightbox" href="#lsp">
+                  <img src="../assets/images/lsp.png" />
+                </a>
+              </div>
             </div>
-          </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- bottom sign up/log in section -->
+    <section id="bottomSignup" class="section-footer">
+      <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+          <span class="login-hide">
+            <div class="beta-form">
+              <div class="form-group">
+                <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
+                <span id="helpBlock" class="col-sm-12 help-block">
+                  Early access is limited and will be provided as resources become available.
+                </span>
+              </div>
+            </div>
+            <div id="userLogin" class="col-sm-8 col-sm-offset-2" style="margin-top: 20px;">
+              <form>
+                <h4>
+                  Already a part of the OpenShift.io Developer Preview?
+                </h4>
+                <button type="button" class="btn btn-outline" id="login">LOG IN</button>
+              </form>
+            </div>
+          </span>
         </div>
       </div>
     </section>
