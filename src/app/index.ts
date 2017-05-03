@@ -382,7 +382,7 @@ $(document)
 
     // Load the config to a global var
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
-      $('a#register').attr('href', config.waitlistUrl);
+      $('#register').attr('href', config.waitlistUrl);
     });
 
     // Create a nice representation of our URL
