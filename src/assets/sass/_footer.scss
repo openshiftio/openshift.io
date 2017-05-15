@@ -4,8 +4,8 @@
   width: 100%;
   height: 60px;
   padding: 15px 0;
-  font-size: 12px;
-  background-color: $color-rh-black;;
+  font-size: .750em;
+  background-color: $color-rh-black;
   .conditions {
     a:first-child { margin-left: 70px; }
   }
@@ -48,7 +48,7 @@
 }
 @media (max-width: 1024px) {
   .footer-openshiftio {
-    .conditions { font-size: 12px;
+    .conditions { font-size: .750em;
       a:first-child { margin-left: 35px; }
     }
     .social { display: none; }
