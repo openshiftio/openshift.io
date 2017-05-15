@@ -9,7 +9,9 @@
   background-color: #4c4c4c;
   border-color: #4c4c4c;
   color: $color-pf-white;
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: #3f3f3f;
     border-color: #3f3f3f;
   }
