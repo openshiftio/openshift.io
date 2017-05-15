@@ -1,0 +1,102 @@
+@import 'variables';
+@import 'custom-variables';
+@import 'custom-mixins';
+@import 'custom-fonts';
+
+#return-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  // display: block;
+  display: none;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+     -moz-border-radius: 35px;
+          border-radius: 35px;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-transition: all 0.3s linear;
+     -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+       -o-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+  z-index: 1200;
+  i {
+    position: relative;
+    left: 16px;
+    top: 13px;
+    margin: 0;
+    font-size: 1.188em;
+    color: $color-pf-white;
+    -webkit-transition: all 0.3s ease;
+       -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+  }
+}
+#return-to-top:hover { background-color: rgba(0, 0, 0, 0.9);
+  i {
+    top: 5px;
+    color: $color-pf-white;
+  }
+}
+h1 {
+  font-size: 2em;
+  font-weight: 600;
+}
+h2 {
+  font-size: 1.875em;
+  color: $color-pf-white;
+}
+h3 { font-size: 1.500em; }
+.top-banner {
+  h3 { text-align: right;
+    @media (max-width: 768px) { text-align: left; }
+  }
+  .bullet-header { margin-top: 10px !important; }
+}
+.gray-banner {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: $color-pf-black-500;
+  color: $color-pf-white;
+  ul {
+    padding-left: 20px;
+    -webkit-padding-start: 20px;
+    li {
+      padding-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+}
+.video-cards { margin-top: 0 !important; }
+.video-banner {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.row-spacer { margin-top: 100px; }
+#login:hover { cursor: pointer; }
+
+@import 'colors';
+@import 'layout';
+@import 'buttons';
+@import 'features';
+@import 'footer';
