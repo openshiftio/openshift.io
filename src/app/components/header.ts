@@ -1,4 +1,4 @@
-import '../../assets/stylesheets/custom.scss';
+import '../../assets/sass/custom.scss';
 import './header.scss';
 
 export default class Header {

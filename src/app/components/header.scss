@@ -1,4 +1,4 @@
-@import '../../assets/stylesheets/_custom-variables';
+@import '../../assets/sass/_custom-variables';
 
 .hide {
   display: none;
@@ -18,7 +18,8 @@
     border-radius: 4px;
     margin-top: 20px;
     padding: 5px 15px;
-    &:focus, &:active {
+    &:focus,
+    &:active {
       outline: none;
     }
   }
@@ -39,7 +40,7 @@
     }
   }
   a {
-      color: $color-pf-white;
+    color: $color-pf-white;
   }
   .brand-left{
     margin-top: 10px;
@@ -92,9 +93,9 @@
     background: $color-pf-black;
     letter-spacing: 1px;
     padding: 0 0;
-    transition: background .5s ease-in-out,padding .5s ease-in-out;
-      -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-      -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out;
+      -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+      -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
     &.top-nav-collapse {
       background: $color-pf-black;
       border-bottom: 1px solid rgba(black, 0.3);
@@ -107,17 +108,17 @@
 }
 .navbar-nav {
   > li {
+    margin-top: 10px;
     > .dropdown-menu {
       > li {
-      > a {
-        color: $color-pf-black;
-        &:hover {
-          border-color: $color-pf-white;
-          color: $color-pf-black-300;
+        > a {
+          color: $color-pf-black;
+          &:hover {
+            border-color: $color-pf-white;
+            color: $color-pf-black-300;
+          }
         }
       }
-    }
-    margin-top: 10px;
     }
   }
 }
@@ -126,7 +127,8 @@
   .navbar-header {
     float: none;
   }
-  .navbar-left,.navbar-right {
+  .navbar-left,
+  .navbar-right {
     float: none !important;
   }
   .navbar-toggle {
@@ -149,13 +151,13 @@
   }
   .navbar-nav>li {
     float: none;
-  }
-  .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    &>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
   .collapse.in{
-    display:block !important;
+    display: block !important;
   }
 }
 .toast-pf-top-right-fixed {
