@@ -212,6 +212,7 @@ export class Auth {
           $("#nouserimage").removeClass("hidden");
         }
         $("#name").html(user.attributes.fullName);
+        $("#accounthome").attr("href", "/_home");
         $("#profilelink").attr("href", "/" + user.attributes.username);
         $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
         $("#loggedout").hide();

@@ -22,7 +22,7 @@
        -o-transition: all 0.3s ease;
           transition: all 0.3s ease;
   z-index: 1200;
-  i {
+  img {
     position: relative;
     left: 16px;
     top: 13px;
@@ -60,7 +60,9 @@ h3 { font-size: 1.500em; }
 .gray-banner {
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: $color-pf-black-500;
+  // background-color: $color-pf-black-500;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 5px #303030;
   color: $color-pf-white;
   ul {
     padding-left: 20px;

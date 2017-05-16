@@ -1,12 +1,28 @@
+#topFeature {
+  width: 100%;
+  height: auto;
+  padding: 25px 0;
+  margin-top: -1px; // for firefox
+  // background: url(../images/starnight.jpg) fixed;
+  // -webkit-background-size: cover;
+  //    -moz-background-size: cover;
+  //      -o-background-size: cover;
+  //         background-size: cover;
+  // background-position: left top;
+  color: $color-pf-white;
+}
 .features {
   min-height: 300px;
   color: #363636;
   p { margin-top: 15px; }
 }
 .cards-pf {
-  border: 1px solid;
-  border-color: $color-pf-black-200;
-  box-shadow: 2px 2px 5px $color-pf-black-150;
+  // border: 1px solid;
+  // border-color: $color-pf-black-200;
+  // box-shadow: 2px 2px 5px $color-pf-black-150;
+  // background-color: #303030;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 .features-background { padding: 15px 30px; }
 .card-image {

@@ -19,177 +19,170 @@
 
 <body>
   <!-- Return to Top -->
-  <!-- <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a> -->
+  <!-- <a href="javascript:" id="return-to-top">
+    <img src="../assets/images/desktop_openshiftio_800x600.png">
+  </a> -->
   <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-      <div class="" style="margin-left: 10px; margin-right: 10px;">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse" aria-expanded="false">
-            Menu
-          </button>
-          <span class="logo-with-subtext">
-            <a class="navbar-brand page-scroll" href="/">
-              <img src="../assets/images/OpenShift-io_logo.svg" alt="OpenShift.io" />
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="" style="margin-left: 10px; margin-right: 10px;">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse" aria-expanded="false">
+          Menu
+        </button>
+        <span class="logo-with-subtext">
+          <a class="navbar-brand page-scroll" href="/">
+            <img src="../assets/images/OpenShift-io_logo.svg" alt="OpenShift.io" />
+          </a>
+        </span>
+      </div>
+      <!-- Links and other content -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav brand-left">
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav brand-right">
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown">
+              <span class="pficon pficon-ok"></span>
+              <span data-toggle="tooltip" title="All Integrations Operational">
+                Status
+              </span>
             </a>
-            <span class="logo-subtext">
-              Powered by Red Hat OpenShift Online
-            </span>
-          </span>
-        </div>
-        <!-- Links and other content -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-          <ul class="nav navbar-nav brand-left">
-            <li class="hidden">
-              <a href="#page-top"></a>
-            </li>
-            <li id="home">
-              <a href="/_home">Account Home</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav brand-right">
-            <li class="dropdown">
-              <a href="#" data-toggle="dropdown">
-                <span class="pficon pficon-ok"></span>
-                <span data-toggle="tooltip" title="All Integrations Operational">
-                  Status
-                </span>
-              </a>
-              <div class="dropdown-menu infotip bottom-right">
-                <div class="arrow"></div>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <span class="i pficon pficon-ok"></span> Platform
-                  </li>
-                  <li class="list-group-item">
-                    <span class="i pficon pficon-ok"></span> Planner
-                  </li>
-                  <li class="list-group-item">
-                    <span class="i pficon pficon-ok"></span> Che
-                  </li>
-                  <li class="list-group-item">
-                    <span class="i pficon pficon-ok"></span> Pipeline
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li id="loggedout">
-              <a id="login">
-                <i class="pficon pficon-user"></i> Log In
-              </a>
-            </li>
-            <li class="dropdown hidden" id="loggedin">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <div id="header_dropdownToggle_header">
-                  <span class="nav-item-icon">
-                    <span class="nav-icon pficon-user hidden" id="nouserimage"></span>
-                  <img class="hidden" id="userimage" />
-                  </span>
-                  <span class="nav-item-text" id="name"></span>
-                  <b class="caret"></b>
-                </div>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a id="profilelink">
-                    <span class="nav-item-text">Profile</span>
-                  </a>
+            <div class="dropdown-menu infotip bottom-right">
+              <div class="arrow"></div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="i pficon pficon-ok"></span> Platform
                 </li>
-                <li>
-                  <a href="https://fabric8.io/guide/getStarted/index.html">
-                    <span class="nav-item-text">Help</span>
-                  </a>
+                <li class="list-group-item">
+                  <span class="i pficon pficon-ok"></span> Planner
                 </li>
-                <li class="divider"></li>
-                <li>
-                  <a id="settingslink">
-                    <span class="nav-item-text">Settings</span>
-                  </a>
+                <li class="list-group-item">
+                  <span class="i pficon pficon-ok"></span> Che
                 </li>
-                <li>
-                  <a id="logout" href="#">
-                    <span class="nav-item-text">Sign out</span>
-                  </a>
+                <li class="list-group-item">
+                  <span class="i pficon pficon-ok"></span> Pipeline
                 </li>
               </ul>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </li>
+          <li id="loggedout">
+            <a id="login">
+              <i class="pficon pficon-user"></i> Log In
+            </a>
+          </li>
+          <li class="dropdown hidden" id="loggedin">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <div id="header_dropdownToggle_header">
+                <span class="nav-item-icon">
+                  <span class="nav-icon pficon-user hidden" id="nouserimage"></span>
+                <img class="hidden" id="userimage" />
+                </span>
+                <span class="nav-item-text" id="name"></span>
+                <b class="caret"></b>
+              </div>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a id="accounthome">
+                  <span class="nav-item-text">Account Home</span>
+                </a>
+              </li>
+              <li>
+                <a id="profilelink">
+                  <span class="nav-item-text">Profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://fabric8.io/guide/getStarted/index.html">
+                  <span class="nav-item-text">Help</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a id="settingslink">
+                  <span class="nav-item-text">Settings</span>
+                </a>
+              </li>
+              <li>
+                <a id="logout" href="#">
+                  <span class="nav-item-text">Sign out</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li style="background-color: #c00; color: white;">
+            <a id="register">
+              SIGN UP
+            </a>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <!-- Toast Notification -->
-    <div class="toast-pf toast-pf-max-width toast-pf-top-right toast-pf-top-right-fixed alert alert-dismissable fade in hidden"
-      id="toastNotification">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-        <span class="pficon pficon-close"></span>
-      </button>
-      <span class="pficon pficon-error-circle-o"></span>
-      <div id="toastMessage"></div>
     </div>
-
-  <main>
-    <section id="signUp">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2 intro">
-            <h1>Introducing OpenShift.io</h1>
-            <h2>
-              OpenShift.io is an online development environment for planning, creating and deploying hybrid cloud services.
-            </h2>
-            <div class="login-hide">
-              <div class="button-row">
-                <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
-              </div>
-              <div class="form-group">
-                <span id="helpBlock" class="help-block">
-                  Currently waitlisting registrants.
-                </span>
-              </div>
-              <div class="button-row">
-                <h4>
-                  <b>Already a part of OpenShift.io?</b>
-                </h4>
-                <button type="button" class="btn btn-outline" id="login">LOG IN</button>
-              </div>
+  </nav>
+  <!-- Toast Notification -->
+  <div class="toast-pf toast-pf-max-width toast-pf-top-right toast-pf-top-right-fixed alert alert-dismissable fade in hidden"
+    id="toastNotification">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+      <span class="pficon pficon-close"></span>
+    </button>
+    <span class="pficon pficon-error-circle-o"></span>
+    <div id="toastMessage"></div>
+  </div>
+  <section class="home-video-hero" id="signUp">
+    <div class="video-frame">
+      <div class="video-overlay"></div>
+      <video id="my-video" class="video" autoplay="autoplay" muted="" preload="auto">
+        <source src="./src/assets/media/demo.mp4" type="video/mp4" />
+        <!-- <source src="./src/assets/media/demo.ogv" type="video/ogg" />
+        <source src="./src/assets/media/demo.webm" type="video/webm" /> -->
+        <img src="../assets/images/better-decisions-deep-insights.png" title="Your browser does not support the <video> tag">
+      </video><!-- /video -->
+      <div class="content content-container">
+        <div class="content-header">
+          <h1>Introducing OpenShift.io</h1>
+          <h2>
+            OpenShift.io is an online development environment for planning, creating and deploying hybrid cloud services.
+          </h2>
+          <div>
+            <div class="button-row">
+              <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
+            </div>
+            <div class="form-group">
+              <span id="helpBlock" class="help-block">
+                Currently waitlisting registrants.
+              </span>
+            </div>
+            <div class="button-row">
+              <h4>
+                <b>Already a part of OpenShift.io?</b>
+              </h4>
+              <button type="button" class="btn btn-outline" id="login">LOG IN</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Banner -->
-    <section>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-12 gray-banner top-banner">
-            <div class="col-sm-4 col-sm-offset-2">
-              <h3 class="bullet-header">
-                <b>OpenShift.io gives you:</b>
-              </h3>
-            </div>
-            <div class="col-sm-6">
-              <ul>
-                <li>
-                  Hosted, integrated toolchain
-                </li>
-                <li>
-                  Planning tools for managing and prioritizing work
-                </li>
-                <li>
-                  Code editing and debugging tools built on Eclipse Che
-                </li>
-                <li>
-                  Integrated and automated CI/CD pipelines
-                </li>
-                <li>
-                  Dashboards and reporting tools
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
+  <section class="powered-by" style="text-align: center;">
+    <div class="os-com" style="display: inline-block;">
+      <p>
+        <span class="overlay"></span>
+        <img src="../assets/images/OpenShiftOnlineWhite.svg" style="width: 175px;">
+      </p>
+    </div>
+    <div class="rhd" style="display: inline-block;">
+      <p>
+        <span class="overlay"></span>
+        <img src="../assets/images/RHD-logo.svg" style="width: 175px;">
+      </p>
+    </div>
+  </section>
+  <main class="content">
     <!-- Features -->
-    <section class="top-feature">
+    <section id="topFeature" class="content">
       <!-- opening statement -->
       <div id="#1" class="container">
         <div class="row row-cards">
@@ -310,7 +303,7 @@
       </div>
     </section>
     <!-- video -->
-    <section>
+    <section class="content">
       <div class="container-fluid">
         <div class="row row-cards video-cards">
           <div class="col-sm-12 cards-pf video-banner">
@@ -325,33 +318,13 @@
       </div>
     </section>
     <!-- bottom sign up/log in section -->
-    <section id="bottomSignup" class="section-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2 intro">
-            <div class="button-row">
-              <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
-            </div>
-            <div class="form-group">
-              <span id="helpBlock" class="help-block">
-                Currently waitlisting registrants.
-              </span>
-            </div>
-            <div class="button-row">
-              <h4>
-                <b>Already a part of OpenShift.io?</b>
-              </h4>
-              <button type="button" class="btn btn-outline" id="login">LOG IN</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="footer-openshiftio">
+    <footer class="footer-openshiftio content">
       <div id="footer_container" class="container">
         <div class="row">
           <div class="col-xs-2 col-md-2 logo">
-            <a href="https://www.redhat.com" target="top"></a>
+            <a href="https://www.redhat.com" target="top">
+              <img src="../assets/images/redhat_reverse.png">
+            </a>
           </div>
           <div class="col-xs-10 col-md-10 footer-content">
             <a href="https://www.redhat.com">Copyright &copy;2017 Red Hat, Inc.</a>
