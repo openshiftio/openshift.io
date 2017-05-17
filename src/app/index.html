@@ -160,58 +160,29 @@
       <button type="button" class="btn btn-outline" id="login">LOG IN</button>
     </div>
   </header>
-  <!-- <section class="container-fluid home-video-hero" id="signUp">
-    <div class="row video-frame">
-      <div class="col-sm-12 video-overlay"></div>
-      <div class="content content-container">
-        <div class="content-header">
-          <h1>Introducing OpenShift.io</h1>
-          <h2>
-            OpenShift.io is an online development environment for planning, creating and deploying hybrid cloud services.
-          </h2>
-          <div>
-            <div class="button-row">
-              <a class="btn btn-heavy-cta btn-lg beta-submit" id="register">SIGN UP FOR THE PREVIEW</a>
-            </div>
-            <div class="form-group">
-              <span id="helpBlock" class="help-block">
-                Currently waitlisting registrants.
-              </span>
-            </div>
-            <div class="button-row">
-              <h4>
-                <b>Already a part of OpenShift.io?</b>
-              </h4>
-              <button type="button" class="btn btn-outline" id="login">LOG IN</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <video id="my-video" class="col-sm-12 video" autoplay="autoplay" muted="" preload="auto">
-        <source src="./src/assets/media/demo.mp4" type="video/mp4" />
-        <!-- <source src="./src/assets/media/demo.ogv" type="video/ogg" />
-        <source src="./src/assets/media/demo.webm" type="video/webm" />
-        <img src="../assets/images/better-decisions-deep-insights.png" title="Your browser does not support the <video> tag">
-      </video><!-- /video
-    </div>
-  </section> -->
   <section class="powered-by" style="text-align: center;">
     <div class="os-com" style="display: inline-block;">
       <p>
         <span class="overlay"></span>
-        <img src="../assets/images/OpenShiftOnlineWhite.svg" style="width: 175px;">
+        <img src="../assets/images/OpenShiftOnlineWhite.svg" style="width: 175px;" onclick="OSOContent()">
       </p>
     </div>
     <div class="rhd" style="display: inline-block;">
       <p>
         <span class="overlay"></span>
-        <img src="../assets/images/RHD-logo.svg" style="width: 175px;">
+        <img src="../assets/images/RHD-logo.svg" style="width: 175px;" onclick="RHDContent()">
       </p>
+    </div>
+    <div id="OSO" style="color: #fff; display: none;">
+        OpenShift Online powers OpenShift.io
+    </div>
+    <div id="RHD" style="color: #fff; display: none;">
+        The Red Hat Developers Program powers OpenShift.io
     </div>
   </section>
   <main class="content">
     <!-- Features -->
-    <section id="topFeature" class="content">
+    <section id="topFeature">
       <!-- opening statement -->
       <div id="#1" class="container">
         <div class="row row-cards">
@@ -412,6 +383,24 @@
     <img src="../assets/images/lsp.png" />
     <a class="lightbox-close" href="#4"></a>
   </div>
+  <script>
+  function OSOContent() {
+    var x = document.getElementById('OSO');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+  }
+  function RHDContent() {
+    var x = document.getElementById('RHD');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+  }
+</script>
 </body>
 
 </html>

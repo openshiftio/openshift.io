@@ -15,10 +15,6 @@ body {
   min-height: 100%;
   line-height: 1.44 !important;
 }
-video {
-  margin: 0;
-  padding: 0;
-}
 main {
   background: url(../images/starnight.jpg) fixed;
   -webkit-background-size: cover;
@@ -116,8 +112,6 @@ main {
 .content-container {
   width: 100%;
   position: absolute;
-  // top: 50%;
-  // top: 30%;
   top: 400px;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -129,29 +123,6 @@ main {
     padding: 0 20px;
     text-align: center;
   }
-}
-.home-video-hero {
-  // position: relative;
-  // width: 100%;
-  height: auto;
-  // bottom: -6px;
-  margin-bottom: -10px;
-  .video-frame {
-    // position: relative;
-    .video-overlay {
-      position: absolute;
-      // top: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(227, 227, 227, 0.3); // include if there is a light video background
-      z-index: 2;
-    }
-  }
-}
-.video {
-  width: 100%;
-  // height: auto;
 }
 .powered-by {
   position: relative;
