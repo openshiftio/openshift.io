@@ -1,7 +1,10 @@
 #topFeature {
   width: 100%;
   height: auto;
-  padding: 25px 0;
+  padding-top: 25px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
   margin-top: -1px; // for firefox
   color: $color-pf-white;
 }
@@ -32,12 +35,6 @@
     @media (min-width: 768px) { width: 100%; }
   }
 }
-#bottomSignup {
-  width: 100%;
-  height: auto;
-  padding: 25px 0;
-  margin-top: -1px; // for firefox
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: $color-pf-white;
+.bottom-bar {
+  .cards-pf { background-color: #303030; }
 }

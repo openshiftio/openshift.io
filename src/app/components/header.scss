@@ -1,4 +1,5 @@
 @import '../../assets/sass/_custom-variables';
+@import '../../assets/sass/_colors';
 
 .hide { display: none; }
 .navbar-custom {
@@ -19,13 +20,9 @@
     &:focus,
     &:active { outline: none; }
   }
-  .logo-with-subtext {
-    display: inline-block;
-  }
-  .navbar-brand {
-    height: 100%;
-    img {
-      width: 240px;
+  .logo-with-subtext { display: inline-block; }
+  .navbar-brand { height: 100%;
+    img { width: 240px;
       @media (max-width: 597px) {
         margin-top: 10px;
         width: 223px;
@@ -34,9 +31,7 @@
     }
     &:focus { outline: none; }
   }
-  a {
-    color: $color-pf-white;
-  }
+  a { color: $color-pf-white; }
   .brand-left{
     margin-top: 10px;
     position: fixed;
@@ -68,22 +63,22 @@
           outline: none;
         }
       }
-      &.active {
-        outline: none;
-        a {
-          background-color: rgba($color-pf-black, 0.3);
+      &.active { outline: none;
+        a { background-color: rgba($color-pf-black, 0.3);
           &:hover { color: $color-pf-white; }
         }
       }
     }
   }
-  img#userimage {
-    width: 20px;
-  }
-  .nav-registartion {
+  img#userimage { width: 20px; }
+  .nav-registration {
+    padding-left: 30px;
+    padding-right: 30px;
     border: 1px solid;
-    border-color: #c00;
-    color: $color-pf-white;
+    border-color: $color-rh-blue-light;
+    a {
+      color: $color-rh-blue-light;
+    }
   }
   @media (min-width: 768px) {
     background: $color-pf-black;
@@ -98,11 +93,12 @@
       opacity: .8;
       &:hover { opacity: 1; }
       .nav-registration {
-        background-color: #c00;
+        border-color: $color-rh-red;
+        background-color: $color-rh-red;
         -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-          -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-               transition: background .5s ease-in-out, padding .5s ease-in-out;
-        color: $color-pf-white;
+           -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+                transition: background .5s ease-in-out, padding .5s ease-in-out;
+        a { color: $color-pf-white; }
       }
     }
   }
@@ -112,8 +108,7 @@
     margin-top: 10px;
     > .dropdown-menu {
       > li {
-        > a {
-          color: $color-pf-black;
+        > a { color: $color-pf-black;
           &:hover {
             border-color: $color-pf-white;
             color: $color-pf-black-300;
@@ -127,12 +122,11 @@
 @media (max-width: 1200px) {
   .navbar-header { float: none; }
   .navbar-left,
-  .navbar-right {
-    float: none !important;
-  }
+  .navbar-right { float: none !important; }
   .navbar-toggle { display: block; }
   .navbar-collapse {
-    border-top: 1px solid transparent;
+    border-top: 1px solid;
+    border-top-color: transparent;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
   }
   .navbar-fixed-top {
@@ -144,17 +138,12 @@
     float: none !important;
     margin-top: 7.5px;
   }
-  .navbar-nav>li {
-    float: none;
+  .navbar-nav>li { float: none;
     &>a {
       padding-top: 10px;
       padding-bottom: 10px;
     }
   }
-  .collapse.in{
-    display: block !important;
-  }
+  .collapse.in { display: block !important; }
 }
-.toast-pf-top-right-fixed {
-  position: fixed;
-}
+.toast-pf-top-right-fixed { position: fixed; }

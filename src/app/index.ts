@@ -346,7 +346,7 @@ export function addToast(cssClass: string, htmlMsg: string) {
 }
 
 function collapseNavbar() {
-  if ($(".navbar").offset().top > 100) {
+  if ($(".navbar").offset().top > 200) {
     $(".navbar-fixed-top").addClass("top-nav-collapse");
   } else {
     $(".navbar-fixed-top").removeClass("top-nav-collapse");
