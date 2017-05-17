@@ -118,6 +118,9 @@ module.exports = {
       }, {
         test: /\.html$/,
         use: ['html-loader']
+      }, {
+        test: /\.mp4$/,
+        loader: 'url?limit=10000&mimetype=video/mp4'
       },
     ]
   },
@@ -174,6 +177,13 @@ module.exports = {
       ANALYTICS_WRITE_KEY: JSON.stringify(process.env.ANALYTICS_WRITE_KEY || "disabled"),
       WAITLIST_URL: JSON.stringify(process.env.WAITLIST_URL),
     }),
+    new CopyWebpackPlugin([
+      { from:
+          './src/assets/media/demo.mp4',
+        to:
+          '_openshiftio/assets/media/[name].mp4'
+      }
+    ]),
     extractSass,
     webpackCopyPlugin,
     /*

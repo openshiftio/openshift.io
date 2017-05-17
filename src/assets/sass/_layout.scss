@@ -15,10 +15,65 @@ body {
   min-height: 100%;
   line-height: 1.44 !important;
 }
-.navbar-custom {
-  .navbar-collapse {
-    margin-top: 0 !important;
+main {
+  background: url(../images/starnight.jpg) fixed;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+.dib { display: inline-block; }
+.content {
+  position: relative;
+  z-index: 2;
+}
+.content-container {
+  width: 100%;
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  .content-header {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 0 auto;
+    padding: 0 20px;
+    text-align: center;
   }
+}
+.powered-by {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 100%;
+  background-color: #303030;
+  z-index: 3;
+  img {
+    // padding: 15px;
+    // transition: background-color 0.5s ease;
+    &:hover {
+      cursor: pointer;
+      // background-color: rgba(25 ,29, 34, .75) };
+      // border-radius: 2px;
+    }
+  }
+  .oso-logo {
+    width: 175px;
+  }
+  .rhd-logo {
+    width: 210px;
+  }
+  p {
+    margin: 10px;
+    color: $color-pf-white;
+    text-align: center;
+  }
+}
+.powered-by-hidden {
+  display: none;
+  height: 200px;
+  color: #fff;
 }
 .column-item { min-height: 250px; }
 .row-cards { margin-top: 20px; }
@@ -47,36 +102,15 @@ body {
 .paragraph-break { border-color: $color-pf-black-150; }
 .intro { text-align: center; }
 #signUp {
-  width: 100%;
-  height: auto;
-  padding: 25px 0;
-  margin-top: -1px; // for firefox
-  background: url(../images/hero-background-80.jpg) fixed;
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
-  background-position: left;
-  color: $color-pf-white;
   h1 { margin-top: 10px;
     @media (max-width: 768px) { text-align: center; }
   }
-  h2 { color: $color-pf-white; }
+  h2 {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    color: $color-pf-black;
+  }
   ul { line-height: 1.5; }
-}
-#bottomSignup {
-  width: 100%;
-  height: auto;
-  padding: 25px 0;
-  margin-top: -1px; // for firefox
-  background: url(../images/footer_background.png) fixed;
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
-  color: $color-pf-white;
-  text-align: center;
-  border-top: 2px solid;
 }
 .text-right { text-align: right; }
 .top-feature { margin-top: 25px; }

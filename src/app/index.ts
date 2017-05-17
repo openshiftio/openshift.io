@@ -99,7 +99,6 @@ export class Auth {
     $("#waitlistform").show();
     $("#waitlisttext").show();
     $(".login-hide").show();
-    $("#home").hide();
     this.updateUserMenu();
   }
 
@@ -180,7 +179,6 @@ export class Auth {
     $("#waitlistform").hide();
     $("#waitlisttext").hide();
     $(".login-hide").hide();
-    $("#home").show();
   }
 
   getUrlParams(): Object {
@@ -212,6 +210,7 @@ export class Auth {
           $("#nouserimage").removeClass("hidden");
         }
         $("#name").html(user.attributes.fullName);
+        $("#accounthome").attr("href", "/_home");
         $("#profilelink").attr("href", "/" + user.attributes.username);
         $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
         $("#loggedout").hide();
@@ -346,20 +345,6 @@ export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastMessage").html(htmlMsg);
 }
 
-// ===== Scroll to Top ====
-$(window).scroll(function () {
-  if ($(this).scrollTop() >= 50) {
-    $('#return-to-top').fadeIn(200);
-  } else {
-    $('#return-to-top').fadeOut(200);
-  }
-});
-$('#return-to-top').click(function () {
-  $('body,html').animate({
-    scrollTop: 0
-  }, 500);
-});
-
 function collapseNavbar() {
   if ($(".navbar").offset().top > 100) {
     $(".navbar-fixed-top").addClass("top-nav-collapse");
@@ -367,6 +352,13 @@ function collapseNavbar() {
     $(".navbar-fixed-top").removeClass("top-nav-collapse");
   }
 }
+
+$("#OSOImg").click(function(){
+  $("#OSO").slideToggle("slow");
+});
+$("#RHDImg").click(function(){
+  $("#RHD").slideToggle("slow");
+});
 
 $(window).scroll(collapseNavbar);
 $(document).ready(collapseNavbar);
@@ -386,10 +378,6 @@ $(document)
     });
 
     // Create a nice representation of our URL
-
-
-    // Hide Home menu item
-    $("#home").hide();
 
     // Build services for the login widget
     let auth = new Auth();

@@ -1,12 +1,18 @@
+#topFeature {
+  width: 100%;
+  height: auto;
+  padding: 25px 0;
+  margin-top: -1px; // for firefox
+  color: $color-pf-white;
+}
 .features {
   min-height: 300px;
   color: #363636;
   p { margin-top: 15px; }
 }
 .cards-pf {
-  border: 1px solid;
-  border-color: $color-pf-black-200;
-  box-shadow: 2px 2px 5px $color-pf-black-150;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 .features-background { padding: 15px 30px; }
 .card-image {
@@ -26,96 +32,12 @@
     @media (min-width: 768px) { width: 100%; }
   }
 }
-a.lightbox img {
-  height: 150px;
-  margin: 0 20px 20px 0;
-  border: 3px solid;
-  border-color: $color-pf-white;
-  box-shadow: 0 0 8px rgba(0, 0 ,0, .3);
-}
-.lightbox-target {
-  position: fixed;
-  top: -100%;
+#bottomSignup {
   width: 100%;
-  background-color: rgba(0,0,0,.7);
-  width: 100%;
-  opacity: 0;
-  -webkit-transition: opacity .5s ease-in-out;
-     -moz-transition: opacity .5s ease-in-out;
-       -o-transition: opacity .5s ease-in-out;
-          transition: opacity .5s ease-in-out;
-  overflow: hidden;
-  z-index: 9999;
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    max-height: 0%;
-    max-width: 0%;
-    border: 3px solid;
-    border-color: $color-pf-white;
-    box-shadow: 0 0 8px rgba(0,0,0,.3);
-    box-sizing: border-box;
-    -webkit-transition: .5s ease-in-out;
-       -moz-transition: .5s ease-in-out;
-         -o-transition: .5s ease-in-out;
-            transition: .5s ease-in-out;
-  }
-}
-a.lightbox-close {
-  position: absolute;
-  top: -80px;
-  right: 0;
-  display: block;
-  width: 50px;
-  height: 50px;
-  box-sizing: border-box;
-  background-color: $color-pf-white;
-  color: $color-pf-black;
-  text-decoration: none;
-  -webkit-transition: .5s ease-in-out;
-     -moz-transition: .5s ease-in-out;
-       -o-transition: .5s ease-in-out;
-          transition: .5s ease-in-out;
-  &:before {
-    position: absolute;
-    left: 26px;
-    top: 10px;
-    display: block;
-    height: 30px;
-    width: 1px;
-    background-color: $color-pf-black;
-    -webkit-transform: rotate(45deg);
-       -moz-transform: rotate(45deg);
-         -o-transform: rotate(45deg);
-            transform: rotate(45deg);
-    content: "";
-  }
-  &:after {
-    position: absolute;
-    left: 26px;
-    top: 10px;
-    display: block;
-    height: 30px;
-    width: 1px;
-    background-color: $color-pf-black;
-    -webkit-transform: rotate(-45deg);
-       -moz-transform: rotate(-45deg);
-         -o-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-    content: "";
-  }
-}
-.lightbox-target:target {
-  top: 0;
-  bottom: 0;
-  opacity: 1;
-  img {
-    max-height: 100%;
-    max-width: 100%;
-  }
-  a.lightbox-close { top: 0; }
+  height: auto;
+  padding: 25px 0;
+  margin-top: -1px; // for firefox
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: $color-pf-white;
 }

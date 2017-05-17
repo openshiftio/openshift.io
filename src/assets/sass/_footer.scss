@@ -11,14 +11,13 @@
   }
   .logo {
     a {
-      top: auto;
-      display: inline-block;
-      height: 34px;
-      width: 94px;
-      margin: 0;
-      background-size: 94px 30px;
-      background-image: url(../images/redhat_reverse.png) no-repeat;
-
+      img {
+        top: auto;
+        display: inline-block;
+        height: 34px;
+        // width: 94px;
+        margin: 0;
+      }
     }
   }
   .summit {
