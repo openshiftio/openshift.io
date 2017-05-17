@@ -3,45 +3,6 @@
 @import 'custom-mixins';
 @import 'custom-fonts';
 
-#return-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  // display: block;
-  display: none;
-  text-decoration: none;
-  -webkit-border-radius: 35px;
-     -moz-border-radius: 35px;
-          border-radius: 35px;
-  background-color: rgba(0, 0, 0, 0.7);
-  -webkit-transition: all 0.3s linear;
-     -moz-transition: all 0.3s ease;
-      -ms-transition: all 0.3s ease;
-       -o-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-  z-index: 1200;
-  img {
-    position: relative;
-    left: 16px;
-    top: 13px;
-    margin: 0;
-    font-size: 1.188em;
-    color: $color-pf-white;
-    -webkit-transition: all 0.3s ease;
-       -moz-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
-         -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-  }
-}
-#return-to-top:hover { background-color: rgba(0, 0, 0, 0.9);
-  i {
-    top: 5px;
-    color: $color-pf-white;
-  }
-}
 h1 {
   font-size: 2em;
   font-weight: 600;
@@ -72,6 +33,14 @@ h3 { font-size: 1.500em; }
       font-size: 18px;
     }
   }
+}
+.cover-filter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(25 ,29, 34, .25);
 }
 .row-spacer { margin-top: 100px; }
 #login:hover { cursor: pointer; }
