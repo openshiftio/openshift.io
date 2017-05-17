@@ -57,11 +57,11 @@ h3 { font-size: 1.500em; }
   }
   .bullet-header { margin-top: 10px !important; }
 }
-.gray-banner {
+.banner {
   padding-top: 15px;
   padding-bottom: 15px;
-  // background-color: $color-pf-black-500;
-  background-color: rgba(0, 0, 0, 0.6);
+  // background-color: rgba(0, 0, 0, 0.6);
+  background-color: #303030;
   box-shadow: 0 0 5px #303030;
   color: $color-pf-white;
   ul {
@@ -73,32 +73,13 @@ h3 { font-size: 1.500em; }
     }
   }
 }
-.video-cards { margin-top: 0 !important; }
-.video-banner {
-  padding-top: 15px;
-  padding-bottom: 20px;
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-    iframe,
-    object,
-    embed {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 .row-spacer { margin-top: 100px; }
 #login:hover { cursor: pointer; }
 
 @import 'colors';
 @import 'layout';
+@import 'video';
 @import 'buttons';
 @import 'features';
+@import 'lightbox';
 @import 'footer';

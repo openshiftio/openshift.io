@@ -20,7 +20,7 @@
 <body>
   <div id="big-video-wrap">
     <div id="big-video-vid">
-      <video id="big-video-vid_html5_api" preload="auto" autoplay src="./src/assets/media/demo.mp4" type="video/mp4">
+      <video id="big-video-vid_html5_api" preload="auto" autoplay muted src="./src/assets/media/demo.mp4" type="video/mp4">
       </video>
     </div>
   </div>
@@ -161,22 +161,22 @@
     </div>
   </header>
   <section class="powered-by" style="text-align: center;">
-    <div class="os-com" style="display: inline-block;">
+    <div class="dib">
       <p>
         <span class="overlay"></span>
-        <img src="../assets/images/OpenShiftOnlineWhite.svg" style="width: 175px;" onclick="OSOContent()">
+        <img id="OSOImg" class="oso-logo" src="../assets/images/OpenShiftOnlineWhite.svg">
       </p>
     </div>
-    <div class="rhd" style="display: inline-block;">
+    <div class="dib">
       <p>
         <span class="overlay"></span>
-        <img src="../assets/images/RHD-logo.svg" style="width: 175px;" onclick="RHDContent()">
+        <img id="RHDImg" class="rhd-logo" src="../assets/images/RHD-logo.svg">
       </p>
     </div>
-    <div id="OSO" style="color: #fff; display: none;">
+    <div id="OSO" class="powered-by-hidden">
         OpenShift Online powers OpenShift.io
     </div>
-    <div id="RHD" style="color: #fff; display: none;">
+    <div id="RHD" class="powered-by-hidden">
         The Red Hat Developers Program powers OpenShift.io
     </div>
   </section>
@@ -189,7 +189,6 @@
           <div class="col-sm-12 cards-pf features">
             <div class="features-background">
               <div class="card-image col-sm-8">
-                <!--<img src="../assets/images/icon-blueprints.png" />-->
                 <h3>
                   What is OpenShift.io (OSIO)?
                 </h3>
@@ -215,7 +214,6 @@
           <div class="col-sm-12 cards-pf features">
             <div class="features-background">
               <div class="card-image col-sm-8">
-                <!--<img src="../assets/images/icon-stopwatch.png" />-->
                 <h3>
                   Minimize the time and effort it takes to build and maintain an end-to-end development tool chain.
                 </h3>
@@ -241,7 +239,6 @@
           <div class="col-sm-12 cards-pf features">
             <div class="features-background">
               <div class="card-image col-sm-8">
-                <!--<img src="../assets/images/icon-maze.png" />-->
                 <h3>
                   Makes it simple to create containerized dev, test and staging environments.
                 </h3>
@@ -267,7 +264,6 @@
           <div class="col-sm-12 cards-pf features">
             <div class="features-background">
               <div class="card-image col-sm-8">
-                <!--<img src="../assets/images/icon-dependencies.png" />-->
                 <h3>
                   Allow development teams be more confident in the technology decisions they make.
                 </h3>
@@ -287,16 +283,26 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
+      <div id="#5" class="container-fluid">
         <div class="row row-cards">
-          <div class="col-sm-12 gray-banner">
-            <div class="col-sm-8 col-sm-offset-2">
-              <h3>
-                OpenShift.io is an additional benefit of your OpenShift Online subscription.
-              </h3>
-              <p>
-                OpenShift.io extends the developer experience of OpenShift Online. When you sign up to use OpenShift.io you are given an OpenShift Online account with enough resources to run a basic stage and run environment, pipelines and an Eclipse Che development workspace.  The combination is a powerful toolset enabling the agile deployment of applications.
-              </p>
+          <div class="col-sm-12 cards-pf features">
+            <div class="features-background">
+              <div class="col-sm-3 col-sm-offset-2 stack-images">
+                <a class="lightbox">
+                  <img src="../assets/images/desktop_openshiftio_800x600.png" />
+                </a>
+              </div>
+              <div class="card-image col-sm-5">
+                <h3>
+                  OpenShift.io is an additional benefit of your OpenShift Online subscription.
+                </h3>
+                <p>
+                  OpenShift.io extends the developer experience of OpenShift Online. When you sign up to use OpenShift.io you are given an OpenShift Online account with enough resources to run a basic stage and run environment, pipelines and an Eclipse Che development workspace.  The combination is a powerful toolset enabling the agile deployment of applications.
+                </p>
+                <p id="register" class="btn btn-heavy-cta btn-lg beta-submit">
+                  SIGN UP FOR THE PREVIEW
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -383,24 +389,6 @@
     <img src="../assets/images/lsp.png" />
     <a class="lightbox-close" href="#4"></a>
   </div>
-  <script>
-  function OSOContent() {
-    var x = document.getElementById('OSO');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-  }
-  function RHDContent() {
-    var x = document.getElementById('RHD');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-  }
-</script>
 </body>
 
 </html>

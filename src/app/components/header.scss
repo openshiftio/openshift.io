@@ -1,12 +1,14 @@
 @import '../../assets/sass/_custom-variables';
 
 .hide { display: none; }
-
 .navbar-custom {
   background-color: $color-pf-black;
   margin-bottom: 0;
   min-height: 95px;
-  .navbar-collapse { margin: 10px 0; }
+  .navbar-collapse {
+    margin: 10px 0;
+    margin-top: 0 !important;
+  }
   .navbar-toggle {
     font-size: 16px;
     color: $color-pf-white;
