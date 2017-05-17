@@ -382,7 +382,9 @@ $(document)
 
     // Load the config to a global var
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
-      $('#register').attr('href', config.waitlistUrl);
+      $('#register')
+        .attr('href', config.waitlistUrl)
+        .on('click touch', analytics.trackRegister);
     });
 
     // Create a nice representation of our URL
@@ -487,6 +489,12 @@ export class Analytics {
   trackLogin() {
     if (this.analytics) {
       this.analytics.track('login');
+    }
+  }
+
+  trackRegister() {
+    if (this.analytics) {
+      this.analytics.track('register');
     }
   }
 
