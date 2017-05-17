@@ -18,6 +18,12 @@
 </head>
 
 <body>
+  <div id="big-video-wrap">
+    <div id="big-video-vid">
+      <video id="big-video-vid_html5_api" preload="auto" autoplay src="./src/assets/media/demo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
   <!-- Return to Top -->
   <!-- <a href="javascript:" id="return-to-top">
     <img src="../assets/images/desktop_openshiftio_800x600.png">
@@ -131,15 +137,32 @@
     <span class="pficon pficon-error-circle-o"></span>
     <div id="toastMessage"></div>
   </div>
-  <section class="home-video-hero" id="signUp">
-    <div class="video-frame">
-      <div class="video-overlay"></div>
-      <video id="my-video" class="video" autoplay="autoplay" muted="" preload="auto">
-        <source src="./src/assets/media/demo.mp4" type="video/mp4" />
-        <!-- <source src="./src/assets/media/demo.ogv" type="video/ogg" />
-        <source src="./src/assets/media/demo.webm" type="video/webm" /> -->
-        <img src="../assets/images/better-decisions-deep-insights.png" title="Your browser does not support the <video> tag">
-      </video><!-- /video -->
+  <header class="hero">
+    <div class="hero-container">
+      <h1 class="hero-title">
+        Introducing OpenShift.io
+      </h1>
+      <h2 class="hero-subtitle">
+        <!-- plan, create and deploy hybrid cloud services - all online -->
+        OpenShift.io is an online development environment for planning, creating and deploying hybrid cloud services.
+      </h2>
+      <p id="register" class="btn btn-heavy-cta btn-lg beta-submit">
+        SIGN UP FOR THE PREVIEW
+      </p>
+      <p>
+        <span id="helpBlock" class="help-block">
+          Currently waitlisting registrants.
+        </span>
+      </p>
+      <h4 class="login-block">
+        Already a part of OpenShift.io?
+      </h4>
+      <button type="button" class="btn btn-outline" id="login">LOG IN</button>
+    </div>
+  </header>
+  <!-- <section class="container-fluid home-video-hero" id="signUp">
+    <div class="row video-frame">
+      <div class="col-sm-12 video-overlay"></div>
       <div class="content content-container">
         <div class="content-header">
           <h1>Introducing OpenShift.io</h1>
@@ -164,8 +187,14 @@
           </div>
         </div>
       </div>
+      <video id="my-video" class="col-sm-12 video" autoplay="autoplay" muted="" preload="auto">
+        <source src="./src/assets/media/demo.mp4" type="video/mp4" />
+        <!-- <source src="./src/assets/media/demo.ogv" type="video/ogg" />
+        <source src="./src/assets/media/demo.webm" type="video/webm" />
+        <img src="../assets/images/better-decisions-deep-insights.png" title="Your browser does not support the <video> tag">
+      </video><!-- /video
     </div>
-  </section>
+  </section> -->
   <section class="powered-by" style="text-align: center;">
     <div class="os-com" style="display: inline-block;">
       <p>
@@ -309,8 +338,9 @@
           <div class="col-sm-12 cards-pf video-banner">
             <div class="col-sm-8 col-sm-offset-2">
               <h3>See OpenShift.io in action</h3>
-              <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/XNdi4AC_EPQ?rel=0" frameborder="0" allowfullscreen></iframe>
+              <!-- 16:9 aspect ratio -->
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XNdi4AC_EPQ?rel=0" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
