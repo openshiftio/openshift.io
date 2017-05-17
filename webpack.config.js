@@ -179,7 +179,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from:
-          './src/assets/media/demo.mp4',
+          './src/assets/media/*.mp4',
         to:
           '_openshiftio/assets/media/[name].mp4'
       }
