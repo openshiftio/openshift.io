@@ -4,7 +4,7 @@
 .navbar-custom {
   background-color: $color-pf-black;
   margin-bottom: 0;
-  min-height: 95px;
+  min-height: 85px;
   .navbar-collapse {
     margin: 10px 0;
     margin-top: 0 !important;
@@ -25,7 +25,7 @@
   .navbar-brand {
     height: 100%;
     img {
-      width: 275px;
+      width: 240px;
       @media (max-width: 597px) {
         margin-top: 10px;
         width: 223px;
@@ -80,18 +80,30 @@
   img#userimage {
     width: 20px;
   }
+  .nav-registartion {
+    border: 1px solid;
+    border-color: #c00;
+    color: $color-pf-white;
+  }
   @media (min-width: 768px) {
     background: $color-pf-black;
     letter-spacing: 1px;
     padding: 0 0;
-    transition: background .5s ease-in-out, padding .5s ease-in-out;
-      -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-      -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+       -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+            transition: background .5s ease-in-out, padding .5s ease-in-out;
     &.top-nav-collapse {
       background: $color-pf-black;
       border-bottom: 1px solid rgba(black, 0.3);
       opacity: .8;
       &:hover { opacity: 1; }
+      .nav-registration {
+        background-color: #c00;
+        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+          -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+               transition: background .5s ease-in-out, padding .5s ease-in-out;
+        color: $color-pf-white;
+      }
     }
   }
 }
