@@ -1,3 +1,4 @@
 {
-  "waitlistUrl": "{{ .Env.WAITLIST_URL }}"
+  "waitlistUrl": "{{ .Env.WAITLIST_URL }}",
+  "analyticsWriteKey": "{{ .Env.ANALYTICS_WRITE_KEY }}"
 }
