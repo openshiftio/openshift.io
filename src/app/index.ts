@@ -16,6 +16,7 @@ declare global {
 
 export class OpenshiftIoConfig {
   waitlistUrl: string;
+  analyticsWriteKey: string;
 }
 
 export interface ConfigCallback<T> {
@@ -74,7 +75,9 @@ export class Auth {
 
   private authToken: string;
 
-  constructor() {
+  constructor(
+    private analytics: Analytics
+  ) {
     this.apiUrl = this
       .api
       .buildApiUrl(AUTH_API_URL, 'api', 'api');
@@ -83,13 +86,13 @@ export class Auth {
   }
 
   login() {
-    analytics.trackLogin();
+    this.analytics.trackLogin();
     // Removed ?link=true in favor of getting started page
     window.location.href = this.apiUrl + 'login/authorize';
   }
 
   logout() {
-    analytics.trackLogout();
+    this.analytics.trackLogout();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('refresh_token');
     this.authToken = null;
@@ -242,7 +245,7 @@ export class Auth {
         method: 'GET',
         dataType: 'json',
         success: response => {
-          analytics.identifyUser(response.data);
+          this.analytics.identifyUser(response.data);
           success(response);
         },
         error: error
@@ -295,7 +298,10 @@ function loadScripts(url: any) {
     "bootstrap.min.js\"></script>");
   $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.21.0/js/patter" +
     "nfly.min.js\"></script>");
-  if (ANALYTICS_WRITE_KEY != 'disabled') {
+}
+
+function loadDtm(url: any, analyticsWriteKey: string) {
+  if (analyticsWriteKey != 'disabled') {
 
     // Load Adobe DTM
     let dpals = {
@@ -331,7 +337,6 @@ function loadScripts(url: any) {
       }
     });
   }
-
 }
 
 export function addToast(cssClass: string, htmlMsg: string) {
@@ -380,8 +385,13 @@ $(document)
     // Add the JS
     loadScripts(url);
 
+    let analytics = new Analytics();
+
     // Load the config to a global var
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
+      
+      analytics.loadAnalytics(config.analyticsWriteKey);
+      loadDtm(url, config.analyticsWriteKey);
       $('#register')
         .attr('href', config.waitlistUrl)
         .on('click touch', analytics.trackRegister);
@@ -394,7 +404,7 @@ $(document)
     $("#home").hide();
 
     // Build services for the login widget
-    let auth = new Auth();
+    let auth = new Auth(analytics);
     auth.handleLogin(url);
     auth.handleError(url);
     auth.updateUserMenu();
@@ -403,8 +413,8 @@ $(document)
 
 export class Analytics {
 
-  loadAnalytics() {
-    if (ANALYTICS_WRITE_KEY != 'disabled') {
+  loadAnalytics(analyticsWriteKey: string) {
+    if (analyticsWriteKey != 'disabled') {
       // Load Segment.io
       var analytics = (window as any).analytics = (window as any).analytics || [];
       if (!analytics.initialize) {
@@ -451,7 +461,7 @@ export class Analytics {
             n.parentNode.insertBefore(e, n)
           };
           analytics.SNIPPET_VERSION = "4.0.0";
-          analytics.load(ANALYTICS_WRITE_KEY);
+          analytics.load(analyticsWriteKey);
           analytics.page('landing');
         }
       }
@@ -508,7 +518,3 @@ export class Analytics {
     return window.analytics;
   }
 }
-
-let analytics = new Analytics();
-
-analytics.loadAnalytics();
