@@ -6,7 +6,7 @@ import '../assets/stylesheets/custom.scss';
 
 import Header from "./components/header";
 
-const header = new Header({ el: ".header"});
+const header = new Header({ el: ".header" });
 
 declare global {
   interface Window {
@@ -389,12 +389,13 @@ $(document)
 
     // Load the config to a global var
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
-      
+
       analytics.loadAnalytics(config.analyticsWriteKey);
       loadDtm(url, config.analyticsWriteKey);
-      $('#register')
-        .attr('href', config.waitlistUrl)
-        .on('click touch', () => analytics.trackRegister());
+      $('#register').click(function () {
+        analytics.trackRegister();
+        window.location.href = config.waitlistUrl;
+      });
     });
 
     // Create a nice representation of our URL
