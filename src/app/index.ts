@@ -386,7 +386,7 @@ $(document)
       loadDtm(url, config.analyticsWriteKey);
       $('#register')
         .attr('href', config.waitlistUrl)
-        .on('click touch', analytics.trackRegister);
+        .on('click touch', () => analytics.trackRegister());
     });
 
     // Create a nice representation of our URL
