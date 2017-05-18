@@ -299,45 +299,6 @@ function loadScripts(url: any) {
     "nfly.min.js\"></script>");
 }
 
-function loadDtm(url: any, analyticsWriteKey: string) {
-  if (analyticsWriteKey != 'disabled') {
-
-    // Load Adobe DTM
-    let dpals = {
-      'default': 'www.redhat.com/dtm-staging.js',
-      'prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
-      'www.prod-preview.openshift.io': 'www.redhat.com/dtm-staging.js',
-      'openshift.io': 'www.redhat.com/dtm.js',
-      'www.openshift.io': 'www.redhat.com/dtm.js',
-    } as any;
-    let dpal: string;
-    let hostname = url.hostname();
-    if (dpals.hasOwnProperty(hostname)) {
-      dpal = dpals[hostname];
-    } else {
-      dpal = dpals['default'];
-    }
-
-    $.ajax({
-      url: ('https:' === document.location.protocol ? 'https://' : 'http://') + dpal,
-      dataType: 'script',
-      success: () => {
-        let satellite: any = (window as any)._satellite;
-        if (satellite && typeof satellite.pageBottom === 'function') {
-          satellite.pageBottom();
-        }
-        if (
-          satellite &&
-          typeof satellite.getVisitorId === 'function' &&
-          typeof satellite.getVisitorId().getMarketingCloudVisitorID === 'function'
-        ) {
-          localStorage['openshiftio.adobeMarketingCloudVisitorId'] = satellite.getVisitorId().getMarketingCloudVisitorID();
-        }
-      }
-    });
-  }
-}
-
 export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastNotification")
     .fadeOut(() =>
@@ -383,7 +344,6 @@ $(document)
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
 
       analytics.loadAnalytics(config.analyticsWriteKey);
-      loadDtm(url, config.analyticsWriteKey);
       $('#register').click(function () {
         analytics.trackRegister();
         window.location.href = config.waitlistUrl;
