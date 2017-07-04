@@ -23,6 +23,7 @@ fabric8 is found in the following organizations:
 * <https://github.com/fabric8-analytics>
 * <https://github.com/fabric8-quickstarts>
 * <https://github.com/fabric8io-images>
+* <https://github.com/fabric8-services>
 
 ## Building and deploying
 
