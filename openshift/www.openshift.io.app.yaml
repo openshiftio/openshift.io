@@ -111,7 +111,7 @@ objects:
     creationTimestamp: null
     labels:
       service: wwwopenshiftio
-    name: www-openshift-io
+    name: openshift-io
   spec:
     host: ''
     port:
