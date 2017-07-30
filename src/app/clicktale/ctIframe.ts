@@ -1,0 +1,1 @@
+console.log('loading the analytics clicktale Iframe');

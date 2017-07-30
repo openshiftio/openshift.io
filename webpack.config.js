@@ -61,7 +61,10 @@ if (isProd) {
 }
 
 module.exports = {
-  entry: ['./src/app/index.ts'],
+  entry: {
+    app: './src/app/index',
+    clicktale: './src/app/clicktale/ctIframe'
+  },
   devtool: (isProd ? 'cheap-module-source-map' : 'inline-source-map'),
   output: {
     filename: '/_openshiftio/[name].js',
@@ -136,38 +139,51 @@ module.exports = {
        */
     new HtmlWebpackPlugin({
       template: 'src/app/index.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'better-decisions.html',
       template: 'src/app/pages/_learn-more/better-decisions.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'end-to-end.html',
       template: 'src/app/pages/_learn-more/end-to-end.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'install-nothing.html',
       template: 'src/app/pages/_learn-more/install-nothing.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'microservices.html',
       template: 'src/app/pages/_learn-more/microservices.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'planning-tools.html',
       template: 'src/app/pages/_learn-more/planning-tools.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
       filename: 'rhdp-membership.html',
       template: 'src/app/pages/_learn-more/rhdp-membership.html',
+      chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
+    new HtmlWebpackPlugin({
+      filename: './clicktale/ctIframe.html',
+      template: 'src/app/clicktale/ctIframe.html',
+      chunks: ['clicktale']
+    }),
+
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL)
