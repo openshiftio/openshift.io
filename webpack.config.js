@@ -179,7 +179,7 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: './clicktale/ctIframe.html',
+      filename: './_openshiftio/clicktale/ctIframe.html',
       template: 'src/app/clicktale/ctIframe.html',
       chunks: ['clicktale']
     }),
