@@ -1,7 +1,8 @@
 ///////////////////////
 // Styles relating to general html document
 ///////////////////////
-html, body {
+html,
+body {
   height: 100%;
   position: relative;
 }
@@ -11,7 +12,7 @@ body {
   min-height: 100%;
   padding-bottom: 60px;
   padding-top: 73px !important;
-  font-size: $font-size-base;
+  font-size: @font-size-base;
   line-height: 1.44 !important;
 }
 .navbar-custom {
@@ -45,7 +46,6 @@ body {
   border-radius: 4px;
 }
 .section-footer {
-  // height: 100%;
   padding-bottom: 20px;
 }
 .paragraph-wrap {
@@ -55,19 +55,19 @@ body {
   }
 }
 .paragraph-break {
-  border-color: $color-pf-black-150;
+  border-color: @color-pf-black-150;
 }
 .intro {
   text-align: center;
 }
 #signUp {
-  background: url(../images/hero-background-80.jpg) fixed;
+  background: url('../images/hero-background-80.jpg') fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-position: left;
-  color: $color-pf-white;
+  color: @color-pf-white;
   width: 100%;
   height: auto;
   padding: 25px 0;
@@ -86,13 +86,13 @@ body {
   }
 }
 #bottomSignup {
-  background: url(../images/footer_background.png) fixed;
+  background: url('../images/footer_background.png') fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   // background-position: left;
-  color: $color-pf-white;
+  color: @color-pf-white;
   width: 100%;
   height: auto;
   padding: 25px 0;
@@ -105,17 +105,16 @@ body {
 }
 .top-feature {
   margin-top: 25px;
-  // margin-bottom: 45px;
 }
 .form-control {
-  font-size: $font-size-base;
+  font-size: @font-size-base;
   height: 50px;
   &::placeholder {
     font-style: normal;
   }
 }
 hr {
-  border: 1px solid $color-pf-white;
+  border: 1px solid @color-pf-white;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -128,14 +127,14 @@ hr {
   margin-top: 20px;
 }
 .fill-container {
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:0;
-  margin:0;
-  border-width:0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
 }
 @media (max-width: 350px) {
   .col-xs-12 {

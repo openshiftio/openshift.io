@@ -1,5 +1,4 @@
-import '../../assets/stylesheets/custom.scss';
-import './header.scss';
+import './header.less';
 
 export default class Header {
   $el: any;

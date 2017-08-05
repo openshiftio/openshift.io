@@ -1,0 +1,73 @@
+{
+    "fileExtensions": [".less", ".css"],
+
+    "excludedFiles": ["./node_modules/**"],
+
+    "newlineAfterBlock": false,
+
+    "emptyRule": true, // If there are no options for a rule, you can simply enable it by setting it to true
+
+    "importantRule": false, // To disable a rule completely, set it to false
+
+    "borderZero": {
+      "enabled": true,
+      "style": "zero"
+    },
+
+    "decimalZero": {
+      "enabled": true,
+      "style": "none"
+    },
+
+    "hexLength": {
+      "enabled": true,
+      "style": "short"
+    },
+
+    "hexNotation": {
+      "enabled": true,
+      "style": "lowercase"
+    },
+
+    "hexValidation": {
+      "enabled": true
+    },
+
+    "idSelector": {
+      "enabled": true
+    },
+
+    "importPath": {
+      "enabled": false,
+      "filenameExtension": true,
+      "leadingUnderscore": true
+    },
+
+    "propertyOrdering": {
+      "enabled": false
+    },
+
+    "qualifyingElement": {
+     "allowWithAttribute": true,
+     "allowWithClass": true,
+     "allowWithId": true
+    },
+
+    "singleLinePerProperty": {
+      "allowSingleLineRules": true
+    },
+
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space" // Comments are allowed
+    },
+
+    "spaceAroundOperator": {
+     "style": "none"
+    },
+
+    "zeroUnit": {
+      "enabled": true,
+      "style": "no_unit"
+    }
+}
