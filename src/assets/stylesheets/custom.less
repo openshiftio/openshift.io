@@ -1,14 +1,9 @@
-@import 'variables';
-@import 'custom-variables';
-@import 'custom-mixins';
-@import 'custom-fonts';
-
 #return-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.7);
+  // background: rgba(0, 0, 0, .7);
   width: 50px;
   height: 50px;
   display: block;
@@ -16,33 +11,32 @@
   -webkit-border-radius: 35px;
   -moz-border-radius: 35px;
   border-radius: 35px;
-  display: none;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
   z-index: 1200;
 }
 #return-to-top i {
-  color: $color-pf-white;
+  color: @color-pf-white;
   margin: 0;
   position: relative;
   left: 16px;
   top: 13px;
   font-size: 19px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
 }
 #return-to-top:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, .9);
 }
 #return-to-top:hover i {
-    color: $color-pf-white;
-    top: 5px;
+  color: @color-pf-white;
+  top: 5px;
 }
 h1 {
   font-size: 2em;
@@ -50,7 +44,7 @@ h1 {
 }
 h2 {
   font-size: 30px;
-  color: $color-pf-white;
+  color: @color-pf-white;
 }
 h3 {
   font-size: 24px;
@@ -67,8 +61,8 @@ h3 {
   }
 }
 .gray-banner {
-  background-color: $color-pf-black-500;
-  color: $color-pf-white;
+  background-color: @color-pf-black-500;
+  color: @color-pf-white;
   padding-top: 15px;
   padding-bottom: 15px;
   ul {
@@ -86,19 +80,13 @@ h3 {
 .video-banner {
   padding-top: 15px;
   padding-bottom: 20px;
-  // .video-container {
-  //   text-align: center;
-  //   iframe {
-  //     height: 20em;
-  //     width: 50%;
-  //   }
-  // }
   .video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
   }
-
   .video-container iframe,
   .video-container object,
   .video-container embed {
@@ -115,9 +103,3 @@ h3 {
 #login:hover {
   cursor: pointer;
 }
-
-@import 'colors';
-@import 'layout';
-@import 'buttons';
-@import 'features';
-@import 'footer';

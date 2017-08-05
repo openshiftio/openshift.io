@@ -2,7 +2,7 @@ import 'core-js/es6/string';
 
 import * as $ from 'jquery';
 import * as URI from 'urijs';
-import '../assets/stylesheets/custom.scss';
+import '../assets/stylesheets/osio.less';
 
 import Header from "./components/header";
 
