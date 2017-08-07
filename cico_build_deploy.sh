@@ -7,7 +7,7 @@ set -x
 set -e
 
 # Export needed vars
-for var in BUILD_NUMBER BUILD_URL GIT_COMMIT; do
+for var in BUILD_NUMBER BUILD_URL GIT_COMMIT DEVSHIFT_USERNAME DEVSHIFT_PASSWORD; do
   export $(grep ${var} jenkins-env | xargs)
 done
 export BUILD_TIMESTAMP=`date -u +%Y-%m-%dT%H:%M:%S`+00:00
@@ -50,11 +50,14 @@ docker exec wwwopenshiftio-builder npm install
     docker build -t wwwopenshiftio-deploy -f Dockerfile.deploy . && \
 
     TAG=$(echo $GIT_COMMIT | cut -c1-6)
+    REGISTRY="push.registry.devshift.net"
 
-    docker tag wwwopenshiftio-deploy registry.devshift.net/fabric8io/wwwopenshiftio:$TAG && \
-    docker push registry.devshift.net/fabric8io/wwwopenshiftio:$TAG && \
-    docker tag wwwopenshiftio-deploy registry.devshift.net/fabric8io/wwwopenshiftio:latest && \
-    docker push registry.devshift.net/fabric8io/wwwopenshiftio:latest
+    docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${REGISTRY}
+
+    docker tag wwwopenshiftio-deploy ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
+    docker push ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
+    docker tag wwwopenshiftio-deploy ${REGISTRY}/fabric8io/wwwopenshiftio:latest && \
+    docker push ${REGISTRY}/fabric8io/wwwopenshiftio:latest
     if [ $? -eq 0 ]; then
       echo 'CICO: image pushed, ready to update deployed app'
       exit 0
