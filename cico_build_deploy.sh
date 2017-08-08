@@ -52,7 +52,11 @@ docker exec wwwopenshiftio-builder npm install
     TAG=$(echo $GIT_COMMIT | cut -c1-6)
     REGISTRY="push.registry.devshift.net"
 
-    docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${REGISTRY}
+    if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
+      docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${REGISTRY}
+    else
+      echo "Could not login, missing credentials for the registry"
+    fi
 
     docker tag wwwopenshiftio-deploy ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
     docker push ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
