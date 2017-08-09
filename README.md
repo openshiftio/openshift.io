@@ -26,7 +26,7 @@ fabric8 is found in the following organizations:
 
 ## Building and Deploying the Marketing Pages
 
-The following instructions will allow you to work on the IO marketing pages. The OpenShift.io product is being developed in the cloud at [OpenShift.io](https://openshift.io/).
+The following instructions will allow you to work on the IO marketing pages. The OpenShift.io product is being developed in the cloud at [OpenShift.io](https://openshift.io/) and so cannot be build and deployed locally (of course you can build and deploy the upstream components in OpenShift.io by visiting the upstream repos). 
 
 ### Setup Backend API
 
