@@ -1,0 +1,160 @@
+@import (reference) '_layout.less';
+.openshiftio-logo {
+    background: url('../images/openshift-io_white.svg') no-repeat;
+    width: 300px;
+    margin-top: 12px;
+    @media (max-width: 1200px) {
+      background: url('../images/OSIO_logo_color_cmyk_white.svg') no-repeat;
+      height: 60px;
+      width: 250px;
+      margin-top: 8px;
+    }
+}
+.navbar-menu-title {
+  display: inline-block;
+  font-size: .8em;
+  color: @color-pf-white;
+}
+.icon-bar {
+  background-color: @color-pf-white;
+  border-radius: 1px;
+  display: block;
+  height: 2px;
+  margin-top: 4px;
+  width: 27px;
+  margin: 0 auto;
+}
+.nav .open>a {
+  background-color: rgba(0, 0, 0, .8);
+  border-color: rgba(0, 0, 0, .8);
+}
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, .8);
+  border: 0;
+  &>li>a {
+    color: @color-pf-white;
+    &:active {
+      border-color: @color-pf-white;
+    }
+  }
+}
+.navbar-custom {
+  background-color: rgba(0, 0, 0, .8);
+  a {
+    color: @color-pf-white;
+    cursor: pointer;
+  }
+  .navbar-left {
+    margin-top: 10px;
+  }
+  .navbar-right {
+    margin-top: 10px;
+  }
+  .nav {
+    li {
+      a {
+        transition: background .3s ease-in-out;
+          -webkit-transition: background .3s ease-in-out;
+          -moz-transition: background .3s ease-in-out;
+        &:hover {
+          background-color: transparent;
+          color: rgba(255, 255, 255, .8);
+          outline: none;
+        }
+        &:focus,
+        &:active {
+          background-color: transparent;
+          outline: none;
+        }
+      }
+      &.active {
+        outline: none;
+        a {
+          background-color: rgba(0, 0, 0, .3);
+          &:hover {
+            color: @color-pf-white;
+          }
+        }
+      }
+    }
+  }
+}
+.navbar-nav {
+  .links {
+    font-size: 16px;
+  }
+  &>li>.dropdown-menu {
+    margin-top: 10px;
+  }
+  &-signup {
+    margin-top: -10px;
+    margin-bottom: -1px;
+    // margin-left: 10px;
+    padding-top: 11px;
+    height: 70px;
+    width: 120px;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+    background-color: @color-pf-red-100;
+    text-align: center;
+  }
+  &-logo {
+    margin-top: -10px;
+    margin-bottom: -1px;
+    padding-top: 19px;
+    height: 70px;
+    width: 140px;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+    background-color: #030303;
+    a {
+      margin: 0 auto;
+      margin-left: 15px;
+      @media (max-width: 1024px) {
+        margin-right: 15px;
+        margin-left: 0;
+        float: right;
+      }
+    }
+  }
+}
+// override default Bootstrap breakpoint for mobile navigation
+@media (max-width: 1200px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-left,
+  .navbar-right {
+    float: none !important;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+  }
+  .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-nav {
+    float: none !important;
+    margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+    float: none;
+  }
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .collapse.in {
+    display: block !important;
+  }
+}
