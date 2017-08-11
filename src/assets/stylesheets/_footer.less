@@ -1,51 +1,54 @@
-.footer-openshiftio {
-  background-color: #010101;
-  font-size: 12px;
-  height: 60px;
-  padding: 15px 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  .conditions {
-    a:first-child {
-      margin-left: 70px;
-    }
-  }
-  .logo {
-    a {
-      background: url('../images/redhat_reverse.png') no-repeat;
-      height: 34px;
-      width: 94px;
-      margin: 0;
-      top: auto;
-      background-size: 94px 30px;
-      display: inline-block;
-    }
-  }
-  .summit {
-    position: absolute;
-    right: 20px;
-    bottom: 0;
+.top-footer {
+  padding-top: 20px;
+  background-color: #161b1f;
+  color: @color-pf-white;
+  .product-footer-intro {
+    margin-top: -20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    // padding-bottom: 37px;
+    background-color: @color-pf-red-100;
+    .title { padding-top: 20px; }
   }
   a {
-    color: #858585;
-    top: 7px;
-    position: relative;
-    margin-left: 15px;
-    &.legal {
-      border-right: 1px solid #858585;
-      padding-right: 15px;
+    color: @color-pf-white;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  &--item {
+    @media screen and (max-width: 768px) {
+      padding-left: 10px;
+    }
+    &:last-of-type {
+      background: @color-pf-red-100;
+      padding: 2.5%;
     }
   }
 }
-@media (min-width: 768px) and (max-width: 996px) {
-  .conditions {
-    display: none;
-  }
-  .footer-content {
-    a:first-child {
-      position: absolute;
-      right: 20px;
+.bottom-footer {
+  width: 100%;
+  background-color: #010101;
+  font-size: 12px;
+  &--item {
+    margin: 0 auto;
+    &-link {
+      @media (min-width: 320px) and (max-width: 996px) {
+        display: none;
+      }
+      color: #858585;
+      top: 20px;
+      position: relative;
+      margin-left: 15px;
+      padding-right: 15px;
+      border-right: 1px solid #858585;
+      &:last-child {
+        border-right: 0;
+      }
+      a {
+        color: inherit;
+      }
     }
   }
 }
