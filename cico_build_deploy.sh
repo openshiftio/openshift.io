@@ -7,7 +7,7 @@ set -x
 set -e
 
 # Export needed vars
-for var in BUILD_NUMBER BUILD_URL GIT_COMMIT DEVSHIFT_USERNAME DEVSHIFT_PASSWORD; do
+for var in BUILD_NUMBER BUILD_URL GIT_COMMIT DEVSHIFT_USERNAME DEVSHIFT_PASSWORD DEVSHIFT_TAG_LEN; do
   export $(grep ${var} jenkins-env | xargs)
 done
 export BUILD_TIMESTAMP=`date -u +%Y-%m-%dT%H:%M:%S`+00:00
@@ -49,7 +49,7 @@ docker exec wwwopenshiftio-builder npm install
 #    echo 'CICO: build OK'
     docker build -t wwwopenshiftio-deploy -f Dockerfile.deploy . && \
 
-    TAG=$(echo $GIT_COMMIT | cut -c1-6)
+    TAG=$(echo $GIT_COMMIT | cut -c1-${DEVSHIFT_TAG_LEN})
     REGISTRY="push.registry.devshift.net"
 
     if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
