@@ -2,6 +2,13 @@ body {
   font-family: 'Overpass', sans-serif;
   font-size: @font-size-base;
 }
+.header {
+  background-color: #030303;
+  padding: 20px;
+}
+.content {
+  background-color: @color-pf-white;
+}
 .top-footer {
   min-height: 225px;
 }
@@ -58,14 +65,6 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-.block-a {
-  height: 50px;
-  background-color: #ddd;
-}
-.block-b {
-  height: 50px;
-  background-color: orange;
-}
 .padding--top_grid {
   padding-top: 50px;
 }
@@ -110,5 +109,7 @@ body {
   font-family: 'Overpass';
   letter-spacing: 1.5px;
   line-height: 150%;
-  margin-bottom: 40px;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  // margin-bottom: 40px;
 }
