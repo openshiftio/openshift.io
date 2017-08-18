@@ -4,10 +4,6 @@ import * as $ from 'jquery';
 import * as URI from 'urijs';
 import '../assets/stylesheets/osio.less';
 
-// import Header from "./components/header";
-
-// const header = new Header({ el: ".header" });
-
 declare global {
   interface Window {
     analytics: SegmentAnalytics.AnalyticsJS;
@@ -101,11 +97,6 @@ export class Auth {
     clearTimeout(this.clearTimeoutId);
     this.refreshInterval = null;
     this.loggedIn = false;
-    // $("#waitlistform").show();
-    // $("#waitlisttext").show();
-    // $(".login-hide").show();
-    // $("#home").hide();
-    // this.updateUserMenu();
   }
 
   setupRefreshTimer(refreshInSeconds: number) {
@@ -181,11 +172,6 @@ export class Auth {
 
   bindLoggedInUser() {
     this.loggedIn = true;
-    // this.updateUserMenu();
-    // $("#waitlistform").hide();
-    // $("#waitlisttext").hide();
-    // $(".login-hide").hide();
-    // $("#home").show();
   }
 
   getUrlParams(): Object {
@@ -205,38 +191,6 @@ export class Auth {
     }
   }
 
-  // updateUserMenu() {
-  //   if (this.authToken) {
-  //     this.getUser(this.authToken, (response: any) => {
-  //       let user = response.data;
-  //       if (user.attributes.imageURL) {
-  //         $("#userimage")
-  //           .attr("src", user.attributes.imageURL)
-  //           .removeClass("hidden");
-  //       } else {
-  //         $("#nouserimage").removeClass("hidden");
-  //       }
-  //       // $("#name").html(user.attributes.fullName);
-  //       // $("#profilelink").attr("href", "/" + user.attributes.username);
-  //       // $("#settingslink").attr("href", "/" + user.attributes.username + "/_settings");
-  //       // $("#loggedout").hide();
-  //       // $("#loggedin").removeClass('hidden');
-  //     },
-  //       (response: JQueryXHR, textStatus: string, errorThrown: string) => {
-  //         if (response.status == 401) {
-  //           this.refreshToken();
-  //         } else {
-  //           this.logout();
-  //         }
-  //       }
-  //     );
-  //   }
-  //   // } else {
-  //   //   $("#loggedout").show();
-  //   //   $("#loggedin").hide();
-  //   // }
-  // }
-
   getUser(authToken: string, success: any, error: any) {
     if (authToken) {
       $.ajax({
@@ -255,17 +209,6 @@ export class Auth {
       });
     }
   }
-
-  // bindLoginLogout() {
-  //   let _this = this;
-  //   $("a#login, button#login").click(function () {
-  //     _this.login();
-  //   });
-  //
-  //   $("a#logout").click(function () {
-  //     _this.logout();
-  //   });
-  // }
 
   processTokenResponse(response: any): Token {
     let token = response as Token;

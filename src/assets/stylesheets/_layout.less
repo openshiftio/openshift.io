@@ -15,6 +15,15 @@ body {
 .bottom-footer {
   min-height: 60px;
 }
+.padding--top_grid-50 {
+  padding-top: 50px;
+}
+.padding--top_grid-150 {
+  padding-top: 150px;
+}
+.padding--bottom_grid {
+  padding-bottom: 100px;
+}
 .logo {
   background: url('../images/redhat_reverse.png') no-repeat;
   height: 34px;
@@ -57,19 +66,65 @@ body {
   z-index: 1;
 }
 .register {
-  min-height: 575px;
+  min-height: 675px;
   width: 100%;
-  background: url('../images/SpaceBackground.png') #ddd no-repeat;
+  background: url('../images/background_register.png') #ddd no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
-.padding--top_grid {
-  padding-top: 50px;
-}
-.padding--bottom_grid {
-  padding-bottom: 100px;
+.content--row_contribute {
+  &-banner {
+    min-height: 420px;
+    width: 100%;
+    background: url('../images/banner_contribute@3x.png') #030303 no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    &--body {
+      color: @color-pf-white;
+      &_intro {
+        &:extend(.introduction-text);
+        max-width: 100% !important;
+        text-align: center;
+      }
+    }
+  }
+  &-get-started-box {
+    padding: 75px 100px;
+    border: .5px solid #d1d1d1;
+    background: url('../images/icon-people.png') 5% 15% no-repeat;
+  }
+  .header-sections {
+    display: inline-flex;
+    flex-grow: 3;
+    align-items: center;
+    font-weight: 700;
+    i {
+      margin-right: 10px;
+    }
+    &::after {
+      display: inline-block;
+      content: '';
+      border-top: .3rem solid black;
+      width: 200px;
+      margin: 0 1rem;
+      // transform: translateY(-1rem);
+    }
+  }
+  .action-links {
+    i {
+      margin-left: 7px;
+    }
+  }
+  .upstream-links {
+    img {
+      // margin-right: 8px;
+      margin: 0 auto;
+    }
+  }
 }
 .video {
   min-height: 450px;
@@ -107,9 +162,7 @@ body {
   font-size: 1.714em;
   font-weight: normal;
   font-family: 'Overpass';
-  letter-spacing: 1.5px;
   line-height: 150%;
   max-width: 700px;
   margin: 0 auto 40px auto;
-  // margin-bottom: 40px;
 }
