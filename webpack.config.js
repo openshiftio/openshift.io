@@ -147,6 +147,12 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
+      filename: 'contribute.html',
+      template: 'src/app/pages/contribute.html',
+      chunks: ['app'],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
       filename: './_openshiftio/clicktale/ctIframe.html',
       template: 'src/app/clicktale/ctIframe.html',
       chunks: ['clicktale']

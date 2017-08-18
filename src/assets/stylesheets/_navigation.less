@@ -80,8 +80,10 @@
   }
 }
 .navbar-nav {
-  .links {
-    font-size: 16px;
+  font-size: @font-size-base;
+  &-links--features {
+    margin-left: 70px;
+    margin-right: 30px;
   }
   &>li>.dropdown-menu {
     margin-top: 10px;
@@ -89,15 +91,21 @@
   &-signup {
     margin-top: -10px;
     margin-bottom: -1px;
-    // margin-left: 10px;
     padding-top: 11px;
     height: 70px;
     width: 120px;
-    @media (max-width: 1024px) {
-      width: 100%;
-    }
     background-color: @color-pf-red-100;
     text-align: center;
+    @media (max-width: 1200px) {
+      background-color: transparent;
+      text-align: left;
+      width: 100%;
+    }
+  }
+  &--login {
+    i {
+      margin-right: 3px;
+    }
   }
   &-logo {
     margin-top: -10px;
@@ -122,6 +130,10 @@
 }
 // override default Bootstrap breakpoint for mobile navigation
 @media (max-width: 1200px) {
+  .navbar-nav-links--features {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .navbar-header {
     float: none;
   }
@@ -129,8 +141,12 @@
   .navbar-right {
     float: none !important;
   }
+  .navbar-nav-logo {
+    display: none !important;
+  }
   .navbar-toggle {
     display: block;
+    margin-bottom: 0;
   }
   .navbar-collapse {
     border-top: 1px solid transparent;
@@ -156,5 +172,6 @@
   }
   .collapse.in {
     display: block !important;
+    overflow: hidden !important;
   }
 }
