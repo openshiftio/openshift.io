@@ -1,5 +1,5 @@
-FROM registry.centos.org/fabric8/openshift-nginx:latest
-MAINTAINER "Pete Muir <pmuir@bleepbleep.org.uk>"
+FROM fabric8/fabric8-openshift-nginx:vd83b3a1
+LABEL maintainer "Devtools <devtools@redhat.com>"
 
 USER root
 
