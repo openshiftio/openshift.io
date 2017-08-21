@@ -87,8 +87,10 @@ export class Auth {
 
   login() {
     this.analytics.trackLogin();
-    // Removed ?link=true in favor of getting started page
-    window.location.href = this.apiUrl + 'login/authorize';
+    // Logout first then login
+    let redirectBackToReferrerURL = encodeURIComponent(window.location.href);
+    let redirectToLoginURL = encodeURIComponent(this.apiUrl + 'login/authorize?redirect=' + redirectBackToReferrerURL);
+    window.location.href = this.apiUrl + 'logout?redirect=' + redirectToLoginURL;
   }
 
   logout() {
