@@ -3,19 +3,17 @@
   word-wrap: break-word;
   font-size: @font-size-base;
 }
-.btn-lg {
-  padding: 12px 20px;
-}
+.btn-lg { padding: 12px 20px; }
 .btn-default {
   background-image: none;
-  background-color: #4c4c4c;
-  border-color: #4c4c4c;
+  background-color: @color-rh-black-700;
+  border-color: @color-rh-black-700;
   color: @color-pf-white;
   &:hover,
   &:focus,
   &:active {
-    background-color: #3f3f3f;
-    border-color: #3f3f3f;
+    background-color: @color-rh-black-750;
+    border-color: @color-rh-black-750;
   }
 }
 .btn-heavy-cta {
@@ -128,8 +126,8 @@
   &:active:focus,
   &:active:hover,
   .active {
-    background: #f2f2f2;
-    border-color: #f2f2f2;
+    background: @color-rh-black-100;
+    border-color: @color-rh-black-100;
     color: @color-rh-red;
   }
 }

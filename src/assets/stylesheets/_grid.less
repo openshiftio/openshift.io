@@ -1,12 +1,13 @@
 .grid-container {
   display: grid;
   grid-template-columns: [left] 20px [center] auto [right] 20px;
-  grid-template-rows: 70px 850px auto auto;
+  grid-template-rows: 70px auto auto auto;
   grid-template-areas:
     "header header header"
     "content content content"
     "top-footer top-footer top-footer"
     "bottom-footer bottom-footer bottom-footer";
+  height: 100vh;
 }
 .grid-container--features {
   &:extend(.grid-container);
@@ -16,7 +17,7 @@
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: header-start;
-  grid-row-end: content-start;
+  grid-row-end: header-end / content-start;
 }
 .content {
   grid-row: row 2;
@@ -24,7 +25,7 @@
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: content-start;
-  grid-row-end: top-footer-start;
+  grid-row-end: content-end / top-footer-start;
 }
 .content--row_1 {
   margin: 0 auto;
@@ -146,7 +147,6 @@
   }
 }
 .content--row_contribute {
-  // margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
   grid-row: 2;
@@ -163,28 +163,84 @@
 }
 .content--row_contribute-reporting {
   grid-row: 3;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-stack-overflow {
   grid-row: 4;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-chat {
   grid-row: 5;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-email {
   grid-row: 6;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-faq {
   grid-row: 7;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-news {
   grid-row: 8;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-github {
   grid-row: 9;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .content--row_contribute-upstream {
   grid-row: 10;
   .padding--bottom_grid;
+  &-heading {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    div:first-of-type {
+      margin-right: 50px;
+    }
+  }
 }
 .news-links {
   margin-top: 15px;
@@ -209,6 +265,9 @@
   grid-row-gap: 20px;
   grid-column-gap: 10px;
   grid-template-columns: 55px 1fr 55px 1fr 55px 1fr 55px 1fr;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 55px 1fr;
+  }
 }
 .top-footer {
   margin: 0 auto;
@@ -217,10 +276,11 @@
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: top-footer-start;
-  grid-row-end: bottom-footer-start;
+  grid-row-end: top-footer-end / bottom-footer-start;
   grid-column-gap: .5em;
   @media screen and (max-width: 768px) {
     grid-template-columns: 12fr;
+    height: 100%;
     .top-footer--item_intro {
       grid-column-start: 1;
       grid-column-end: 4;
@@ -265,4 +325,21 @@
   grid-column-end: 4;
   grid-row-start: bottom-footer-start;
   grid-row-end: bottom-footer-end;
+  @media screen and (max-width: 768px) {
+    grid-template-areas:
+      "a"
+      "b"
+      "c";
+    .corporate {
+      grid-area: a;
+    }
+    .terms {
+      grid-area: b;
+    }
+    .empty {
+      grid-area: c;
+    }
+    grid-template-columns: repeat(3, 100%);
+    grid-column-gap: 0;
+  }
 }

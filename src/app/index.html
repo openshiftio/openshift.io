@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#030303"/>
   <title>OpenShift.io</title>
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
@@ -12,11 +13,14 @@
   <meta name="description" content="OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.">
   <meta name="author" content="Red Hat">
   <meta name="google-site-verification" content="DYysfqUDyUP6WNbcNfF7RqFN6X7VK1tJXV5QLoU7ojs" />
+  <link rel="manifest" href="/manifest.json">
   <!-- PatternFly Styles -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly.min.css" rel="stylesheet" media="screen, print">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
   <link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet">
   <link href="http://overpass-30e2.kxcdn.com/overpass-mono.css" rel="stylesheet">
+  <script async id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
+  <!-- <script id="adobe_dtm" src="{//www.redhat.com/dtm-staging.js}" type="text/javascript"></script> -->
 </head>
 
 <body>
@@ -31,31 +35,31 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand openshiftio-logo" href="/"></a>
+            <a class="navbar-brand openshiftio-logo" href="/" aria-label="Home"></a>
           </div>
           <!-- Links and other content -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
               <li>
-                <a href="features.html" class="navbar-nav-links--features uppercase">Features</a>
+                <a href="features.html" class="navbar-nav-links--features uppercase" aria-label="Features">Features</a>
               </li>
               <li>
-                <a href="contribute.html" class="navbar-nav-links--contribute uppercase">Contribute</a>
+                <a href="get-involved.html" class="navbar-nav-links--contribute uppercase" aria-label="GetInvolved">Get Involved</a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li id="loggedout" class="navbar-nav--login">
-                <a id="login" class="uppercase">
+                <a id="login" class="uppercase" aria-label="LogIn">
                   <i class="pficon pficon-user"></i> Log In
                 </a>
               </li>
               <li class="navbar-nav-signup">
-                <a id="register" class="uppercase">
+                <a id="registerNav" role="button" class="uppercase" aria-label="SignUp">
                   Sign Up
                 </a>
               </li>
               <li class="navbar-nav-logo">
-                <a href="https://www.redhat.com" target="top" class="logo"></a>
+                <a href="https://www.redhat.com" target="top" class="corporate-logo" aria-label="Logo"></a>
               </li>
             </ul>
           </div>
@@ -73,7 +77,7 @@
           <p class="introduction-text">
             OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.
           </p>
-          <a class="btn btn-heavy-cta btn-lg beta-submit uppercase" id="register2">sign up for the preview</a>
+          <a class="btn btn-heavy-cta btn-lg beta-submit uppercase" role="button" id="registerContent">sign up for the preview</a>
           <div class="help-block">
             Currently waitlisting registrants.
           </div>
@@ -83,7 +87,7 @@
       <div class="content--row_2 desktop-to-iphone">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-          <img src="../assets/images/DesktopiPhone2.png" class="screenshot" />
+          <img src="../assets/images/DesktopiPhone2.png" alt="Product Screenshots" class="screenshot" />
         </div>
         <div class="col-sm-3"></div>
       </div>
@@ -97,10 +101,10 @@
         <p class="uppercase">Product</p>
         <ul>
           <li>
-            <a href="features.html">Features</a>
+            <a href="features.html" aria-label="Features" >Features</a>
           </li>
           <li>
-            <a href="#">Contribute</a>
+            <a href="get-involved.html" aria-label="Get Involved">Get Involved</a>
           </li>
         </ul>
       </div>
@@ -108,19 +112,19 @@
         <p class="uppercase">Community</p>
         <ul>
           <li>
-            <a href="https://developers.redhat.com">Red Hat Developer Program</a>
+            <a href="https://developers.redhat.com" aria-label="Red Hat Developers Program">Red Hat Developer Program</a>
           </li>
           <li>
-            <a href="https://developers.redhat.com/blog">Red Hat Developers Blog</a>
+            <a href="https://developers.redhat.com/blog" aria-label="Red Hat Blog">Red Hat Developers Blog</a>
           </li>
           <li>
-            <a href="https://www.redhat.com/en/about/contact">Contact Us</a>
+            <a href="https://www.redhat.com/en/about/contact" aria-label="Contact Us">Contact Us</a>
           </li>
           <li>
-            <a href="https://www.facebook.com/openshiftio/" target="top" class="social">
+            <a href="https://www.facebook.com/openshiftio/" target="top" class="social-facebook" aria-label="Facebook Link">
               <i class="fa fa-facebook fa-lg"></i>
             </a>
-            <a href="https://twitter.com/openshiftio" target="top" class="social">
+            <a href="https://twitter.com/openshiftio" target="top" class="social-twitter" aria-label="Twitter Link">
               <i class="fa fa-twitter fa-lg"></i>
             </a>
           </li>
@@ -130,16 +134,16 @@
         <p class="uppercase">Related Sites</p>
         <ul>
           <li>
-            <a href="https://www.openshift.com">Red Hat OpenShift Online</a>
+            <a href="https://www.openshift.com" aria-label="OpenShift.com">Red Hat OpenShift Online</a>
           </li>
           <li>
-            <a href="https://access.redhat.com/">Red Hat Customer Portal</a>
+            <a href="https://access.redhat.com/" aria-label="Red Hat Custom Portal">Red Hat Customer Portal</a>
           </li>
           <li>
-            <a href="https://www.redhat.com/en/store">Red Hat Store</a>
+            <a href="https://www.redhat.com/en/store" aria-label="Red Hat Store">Red Hat Store</a>
           </li>
           <li>
-            <a href="http://jobs.redhat.com/">Red Hat Jobs</a>
+            <a href="http://jobs.redhat.com/" aria-label="Red Hat Jobs">Red Hat Jobs</a>
           </li>
         </ul>
       </div>
@@ -157,29 +161,38 @@
       <div></div>
     </div>
     <div class="bottom-footer">
-      <div class="bottom-footer--item">
-        <a href="https://www.redhat.com" class="logo"></a>
+      <div class="bottom-footer--item corporate">
+        <a href="https://www.redhat.com" class="corporate-logo" aria-label="redhat.com"></a>
         <span class="bottom-footer--item-link">
-          <a href="https://www.redhat.com">Copyright &copy;2017 Red Hat, Inc.</a>
+          <a href="https://www.redhat.com" aria-label="Copyright">Copyright &copy;2017 Red Hat, Inc.</a>
         </span>
       </div>
-      <div class="bottom-footer--item">
+      <div class="bottom-footer--item terms">
         <span class="bottom-footer--item-link">
-          <a href="https://www.redhat.com/en/about/privacy-policy" class="legal">Privacy Statement</a>
+          <a href="https://www.redhat.com/en/about/privacy-policy" class="legal" aria-label="Privacy Statement">Privacy Statement</a>
         </span>
         <span class="bottom-footer--item-link">
-          <a href="https://www.openshift.com/legal/terms.html" class="legal">Service Terms</a>
+          <a href="https://www.openshift.com/legal/terms.html" class="legal" aria-label="Service Terms">Service Terms</a>
         </span>
         <span class="bottom-footer--item-link">
-          <a href="https://www.redhat.com/en/about/terms-use" class="legal">Terms of Use</a>
+          <a href="https://www.redhat.com/en/about/terms-use" class="legal" aria-label="Terms of Use">Terms of Use</a>
         </span>
         <span class="bottom-footer--item-link">
-          <a href="https://www.redhat.com/en/about/all-policies-guidelines">All policies and guidelines</a>
+          <a href="https://www.redhat.com/en/about/all-policies-guidelines" aria-label="Policies and Guidelines">All policies and guidelines</a>
         </span>
       </div>
-      <div></div>
+      <div class="empty"></div>
     </div>
   </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/js/patternfly.min.js"></script>
+  <script type="text/javascript">
+    if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+        _satellite.pageBottom();
+    }
+  </script>
 </body>
 
 </html>

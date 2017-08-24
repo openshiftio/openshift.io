@@ -3,28 +3,16 @@ body {
   font-size: @font-size-base;
 }
 .header {
-  background-color: #030303;
+  background-color: @color-rh-black-800;
   padding: 20px;
 }
-.content {
-  background-color: @color-pf-white;
-}
-.top-footer {
-  min-height: 225px;
-}
-.bottom-footer {
-  min-height: 60px;
-}
-.padding--top_grid-50 {
-  padding-top: 50px;
-}
-.padding--top_grid-150 {
-  padding-top: 150px;
-}
-.padding--bottom_grid {
-  padding-bottom: 100px;
-}
-.logo {
+.content { background-color: @color-pf-white; }
+.top-footer { min-height: 225px; }
+.bottom-footer { min-height: 60px; }
+.padding--top_grid-50 { padding-top: 50px; }
+.padding--top_grid-150 { padding-top: 150px; }
+.padding--bottom_grid { padding-bottom: 100px; }
+.corporate-logo {
   background: url('../images/redhat_reverse.png') no-repeat;
   height: 34px;
   width: 94px;
@@ -45,24 +33,16 @@ body {
   background: -moz-linear-gradient(@color-pf-black-300, @color-pf-white);
   background: linear-gradient(@color-pf-black-300, @color-pf-white);
 }
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
 .screenshot {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -40px;
+  bottom: -75px;
   margin: 0 auto;
-  @media (min-width: 1440px) and (max-width: 2560px) {
-    width: 50%;
-  }
-  @media (min-width: 768px) and (max-width: 1440px) {
-    width: 75%;
-  }
-  @media (min-width: 320px) and (max-width: 767px) {
-    width: 40%;
-  }
+  @media (min-width: 1440px) and (max-width: 2560px) { width: 60%; }
+  @media (min-width: 768px) and (max-width: 1440px) { width: 75%; }
+  @media (min-width: 320px) and (max-width: 767px) { width: 50%; }
   z-index: 1;
 }
 .register {
@@ -78,15 +58,19 @@ body {
   &-banner {
     min-height: 420px;
     width: 100%;
-    background: url('../images/banner_contribute@3x.png') #030303 no-repeat;
+    background: url('../images/banner_contribute@3x.png') @color-rh-black-800 no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     &--body {
       color: @color-pf-white;
+      text-align: center;
+      align-self: center;
+      justify-self: center;
       &_intro {
         &:extend(.introduction-text);
+        margin: 100px auto !important;
         max-width: 100% !important;
         text-align: center;
       }
@@ -94,36 +78,32 @@ body {
   }
   &-get-started-box {
     padding: 75px 100px;
-    border: .5px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
     background: url('../images/icon-people.png') 5% 15% no-repeat;
+    text-align: center;
   }
   .header-sections {
     display: inline-flex;
     flex-grow: 3;
     align-items: center;
     font-weight: 700;
-    i {
-      margin-right: 10px;
-    }
+    i { margin-right: 10px; }
+  }
+  .horizontal-line {
     &::after {
       display: inline-block;
       content: '';
-      border-top: .3rem solid black;
-      width: 200px;
-      margin: 0 1rem;
-      // transform: translateY(-1rem);
+      width: 100%;
+      margin: -1rem 1rem;
+      vertical-align: bottom;
+      border-top: 1px solid @color-pf-black-300;
     }
   }
   .action-links {
-    i {
-      margin-left: 7px;
-    }
+    i { margin-left: 7px; }
   }
   .upstream-links {
-    img {
-      // margin-right: 8px;
-      margin: 0 auto;
-    }
+    img { margin: 0 auto; }
   }
 }
 .video {
