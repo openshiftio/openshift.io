@@ -22,6 +22,11 @@ if (isProd) {
     {
       from: 'src/config',
       to: 'config'
+    },
+    {
+      from: 'manifest.json',
+      to: '_openshiftio/',
+      toType: 'dir'
     }
   ]);
 } else {
@@ -34,6 +39,11 @@ if (isProd) {
           return process.env[p1];
         });
       }
+    },
+    {
+      from: 'manifest.json',
+      to: '_openshiftio/',
+      toType: 'dir'
     }
   ]);
 }
@@ -116,7 +126,8 @@ module.exports = {
             }
           }
         ]
-      }, {
+      },
+      {
         test: /\.html$/,
         use: ['html-loader']
       },
@@ -134,7 +145,7 @@ module.exports = {
        * which changes every compilation.
        *
        * See: https://github.com/ampedandwired/html-webpack-plugin
-       */
+    */
     new HtmlWebpackPlugin({
       template: 'src/app/index.html',
       chunks: ['app'],
@@ -147,8 +158,8 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: 'contribute.html',
-      template: 'src/app/pages/contribute.html',
+      filename: 'get-involved.html',
+      template: 'src/app/pages/get-involved.html',
       chunks: ['app'],
       chunksSortMode: 'dependency'
     }),

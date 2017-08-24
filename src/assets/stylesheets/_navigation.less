@@ -1,14 +1,15 @@
 @import (reference) '_layout.less';
+
 .openshiftio-logo {
-    background: url('../images/openshift-io_white.svg') no-repeat;
-    width: 300px;
-    margin-top: 12px;
-    @media (max-width: 1200px) {
-      background: url('../images/OSIO_logo_color_cmyk_white.svg') no-repeat;
-      height: 60px;
-      width: 250px;
-      margin-top: 8px;
-    }
+  background: url('../images/openshift-io_white.svg') no-repeat;
+  width: 300px;
+  margin-top: 12px;
+  @media (max-width: 1200px) {
+    background: url('../images/OSIO_logo_color_cmyk_white.svg') no-repeat;
+    height: 60px;
+    width: 250px;
+    margin-top: 8px;
+  }
 }
 .navbar-menu-title {
   display: inline-block;
@@ -44,9 +45,7 @@
     color: @color-pf-white;
     cursor: pointer;
   }
-  .navbar-left {
-    margin-top: 10px;
-  }
+  .navbar-left,
   .navbar-right {
     margin-top: 10px;
   }
@@ -103,9 +102,7 @@
     }
   }
   &--login {
-    i {
-      margin-right: 3px;
-    }
+    i { margin-right: 3px; }
   }
   &-logo {
     margin-top: -10px;
@@ -113,10 +110,8 @@
     padding-top: 19px;
     height: 70px;
     width: 140px;
-    @media (max-width: 1024px) {
-      width: 100%;
-    }
-    background-color: #030303;
+    @media (max-width: 1024px) { width: 100%; }
+    background-color: @color-rh-black-800;
     a {
       margin: 0 auto;
       margin-left: 15px;
@@ -146,6 +141,7 @@
   }
   .navbar-toggle {
     display: block;
+    margin-top: 0;
     margin-bottom: 0;
   }
   .navbar-collapse {

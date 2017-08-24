@@ -1,0 +1,19 @@
+{
+  "name": "OpenShift.io",
+  "short_name": "OSIO",
+  "start_url": ".",
+  "display": "browser",
+  "lang": "en-US",
+  "background_color": "#fff",
+  "theme_color": "#030303",
+  "description": "OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.",
+  "icons": [{
+    "src": "icons/favicon-16x16.png",
+    "sizes": "16x16",
+    "type": "image/png"
+  }, {
+    "src": "images/images/favicon-32x32.png",
+    "sizes": "32x32",
+    "type": "image/png"
+  }]
+}
