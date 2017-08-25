@@ -8,15 +8,15 @@ import Header from "./components/header";
 
 const header = new Header({ el: ".header" });
 
-// declare global {
-//   interface Window {
-//     analytics: SegmentAnalytics.AnalyticsJS;
-//   }
-// }
+declare global {
+  interface Window {
+    analytics: SegmentAnalytics.AnalyticsJS;
+  }
+}
 
 export class OpenshiftIoConfig {
   waitlistUrl: string;
-  // analyticsWriteKey: string;
+  analyticsWriteKey: string;
 }
 
 export interface ConfigCallback<T> {
@@ -76,7 +76,7 @@ export class Auth {
   private authToken: string;
 
   constructor(
-    // private analytics: Analytics
+    private analytics: Analytics
   ) {
     this.apiUrl = this
       .api
@@ -86,7 +86,7 @@ export class Auth {
   }
 
   login() {
-    // this.analytics.trackLogin();
+    this.analytics.trackLogin();
     // Logout first then login
     let redirectBackToReferrerURL = encodeURIComponent(window.location.href);
     let redirectToLoginURL = encodeURIComponent(this.apiUrl + 'login/authorize?redirect=' + redirectBackToReferrerURL);
@@ -94,7 +94,7 @@ export class Auth {
   }
 
   logout() {
-    // this.analytics.trackLogout();
+    this.analytics.trackLogout();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('refresh_token');
     this.authToken = null;
@@ -206,7 +206,7 @@ export class Auth {
         method: 'GET',
         dataType: 'json',
         success: response => {
-          // this.analytics.identifyUser(response.data);
+          this.analytics.identifyUser(response.data);
           success(response);
         },
         error: error
@@ -243,11 +243,6 @@ function loadScripts(url: any) {
   // Alias out jquery for patternfly
   (window as any).jQuery = $;
   (window as any).$ = $;
-  // Add patternfly - I don't need it in the main bundle
-  // $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/" +
-  //   "bootstrap.min.js\"></script>");
-  // $("body").append("<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/js/patter" +
-  //   "nfly.min.js\"></script>");
 }
 
 export function addToast(cssClass: string, htmlMsg: string) {
@@ -296,135 +291,135 @@ $(document)
     // Add the JS
     loadScripts(url);
 
-    // let analytics = new Analytics();
+    let analytics = new Analytics();
 
     // Load the config to a global var
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
 
-      // analytics.loadAnalytics(config.analyticsWriteKey);
-      // $('#registerNav').click(function () {
-      //   analytics.trackRegister();
-      //   window.location.href = config.waitlistUrl;
-      // });
-      // $('#registerContent').click(function () {
-      //   analytics.trackRegister();
-      //   window.location.href = config.waitlistUrl;
-      // });
+      analytics.loadAnalytics(config.analyticsWriteKey);
+      $('#registerNav').click(function () {
+        analytics.trackRegister();
+        window.location.href = config.waitlistUrl;
+      });
+      $('#registerContent').click(function () {
+        analytics.trackRegister();
+        window.location.href = config.waitlistUrl;
+      });
     });
 
     // Create a nice representation of our URL
 
     // Build services for the login widget
-    // let auth = new Auth(analytics);
-    // auth.handleLogin(url);
-    // auth.handleError(url);
+    let auth = new Auth(analytics);
+    auth.handleLogin(url);
+    auth.handleError(url);
   });
 
-// export class Analytics {
-//
-//   loadAnalytics(analyticsWriteKey: string) {
-//     if (analyticsWriteKey != 'disabled') {
-//       // Load Segment.io
-//       var analytics = (window as any).analytics = (window as any).analytics || [];
-//       if (!analytics.initialize) {
-//         if (analytics.invoked) {
-//           window.console && console.error && console.error("Segment snippet included twice.");
-//         } else {
-//           analytics.invoked = !0;
-//           analytics.methods = [
-//             "trackSubmit",
-//             "trackClick",
-//             "trackLink",
-//             "trackForm",
-//             "pageview",
-//             "identify",
-//             "reset",
-//             "group",
-//             "track",
-//             "ready",
-//             "alias",
-//             "debug",
-//             "page",
-//             "once",
-//             "off",
-//             "on"
-//           ];
-//           analytics.factory = function (t: any) {
-//             return function () {
-//               var e = Array.prototype.slice.call(arguments);
-//               e.unshift(t);
-//               analytics.push(e);
-//               return analytics
-//             }
-//           };
-//           for (var t = 0; t < analytics.methods.length; t++) {
-//             var e = analytics.methods[t];
-//             analytics[e] = analytics.factory(e)
-//           }
-//           analytics.load = function (t: any) {
-//             var e = document.createElement("script");
-//             e.type = "text/javascript";
-//             e.async = !0;
-//             e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
-//             var n = document.getElementsByTagName("script")[0];
-//             n.parentNode.insertBefore(e, n)
-//           };
-//           analytics.SNIPPET_VERSION = "4.0.0";
-//           analytics.load(analyticsWriteKey);
-//           analytics.page('landing');
-//         }
-//       }
-//     }
-//   }
-//
-//   identifyUser(user: any): any {
-//     if (this.analytics) {
-//       let traits = {
-//         avatar: user.attributes.imageURL,
-//         email: user.attributes.email,
-//         username: user.attributes.username,
-//         website: user.attributes.url,
-//         name: user.attributes.fullName,
-//         description: user.attributes.bio
-//       } as any;
-//       if (localStorage['openshiftio.adobeMarketingCloudVisitorId']) {
-//         traits.adobeMarketingCloudVisitorId = localStorage['openshiftio.adobeMarketingCloudVisitorId'];
-//       }
-//       this.analytics.
-//         identify(
-//         user.id, traits);
-//     }
-//   }
-//
-//   trackError(action: string, error: any) {
-//     if (this.analytics) {
-//       this.analytics.track('error', {
-//         error: error,
-//         action: action
-//       });
-//     }
-//   }
-//
-//   trackLogin() {
-//     if (this.analytics) {
-//       this.analytics.track('login');
-//     }
-//   }
-//
-//   trackRegister() {
-//     if (this.analytics) {
-//       this.analytics.track('registerNav');
-//       this.analytics.track('registerContent');
-//     }
-//   }
-//
-//   trackLogout() {
-//     if (this.analytics) {
-//       this.analytics.track('logout');
-//     }
-//   }
-//
-//   private get analytics(): SegmentAnalytics.AnalyticsJS {
-//     return window.analytics;
-//   }
-// }
+export class Analytics {
+
+  loadAnalytics(analyticsWriteKey: string) {
+    if (analyticsWriteKey != 'disabled') {
+      // Load Segment.io
+      var analytics = (window as any).analytics = (window as any).analytics || [];
+      if (!analytics.initialize) {
+        if (analytics.invoked) {
+          window.console && console.error && console.error("Segment snippet included twice.");
+        } else {
+          analytics.invoked = !0;
+          analytics.methods = [
+            "trackSubmit",
+            "trackClick",
+            "trackLink",
+            "trackForm",
+            "pageview",
+            "identify",
+            "reset",
+            "group",
+            "track",
+            "ready",
+            "alias",
+            "debug",
+            "page",
+            "once",
+            "off",
+            "on"
+          ];
+          analytics.factory = function (t: any) {
+            return function () {
+              var e = Array.prototype.slice.call(arguments);
+              e.unshift(t);
+              analytics.push(e);
+              return analytics
+            }
+          };
+          for (var t = 0; t < analytics.methods.length; t++) {
+            var e = analytics.methods[t];
+            analytics[e] = analytics.factory(e)
+          }
+          analytics.load = function (t: any) {
+            var e = document.createElement("script");
+            e.type = "text/javascript";
+            e.async = !0;
+            e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+            var n = document.getElementsByTagName("script")[0];
+            n.parentNode.insertBefore(e, n)
+          };
+          analytics.SNIPPET_VERSION = "4.0.0";
+          analytics.load(analyticsWriteKey);
+          analytics.page('landing');
+        }
+      }
+    }
+  }
+
+  identifyUser(user: any): any {
+    if (this.analytics) {
+      let traits = {
+        avatar: user.attributes.imageURL,
+        email: user.attributes.email,
+        username: user.attributes.username,
+        website: user.attributes.url,
+        name: user.attributes.fullName,
+        description: user.attributes.bio
+      } as any;
+      if (localStorage['openshiftio.adobeMarketingCloudVisitorId']) {
+        traits.adobeMarketingCloudVisitorId = localStorage['openshiftio.adobeMarketingCloudVisitorId'];
+      }
+      this.analytics.
+        identify(
+        user.id, traits);
+    }
+  }
+
+  trackError(action: string, error: any) {
+    if (this.analytics) {
+      this.analytics.track('error', {
+        error: error,
+        action: action
+      });
+    }
+  }
+
+  trackLogin() {
+    if (this.analytics) {
+      this.analytics.track('login');
+    }
+  }
+
+  trackRegister() {
+    if (this.analytics) {
+      this.analytics.track('registerNav');
+      this.analytics.track('registerContent');
+    }
+  }
+
+  trackLogout() {
+    if (this.analytics) {
+      this.analytics.track('logout');
+    }
+  }
+
+  private get analytics(): SegmentAnalytics.AnalyticsJS {
+    return window.analytics;
+  }
+}
