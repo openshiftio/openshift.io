@@ -1,5 +1,5 @@
 body {
-  font-family: 'Overpass', sans-serif;
+  font-family: Overpass, sans-serif;
   font-size: @font-size-base;
 }
 .header {
@@ -71,15 +71,17 @@ body {
       justify-self: center;
       &_intro {
         &:extend(.introduction-text);
+        /* stylelint-disable */
         margin: 100px auto !important;
         max-width: 100% !important;
+        /* stylelint-enable */
         text-align: center;
       }
     }
   }
   &-get-started-box {
     padding: 75px 100px;
-    border-bottom: 1px solid #d1d1d1;
+    border-bottom: 1px solid @color-pf-black-300;
     background: url('../images/icon-people.png') 5% 15% no-repeat;
     text-align: center;
   }
@@ -91,7 +93,7 @@ body {
     i { margin-right: 10px; }
   }
   .horizontal-line {
-    &::after {
+    &:after {
       display: inline-block;
       content: '';
       width: 100%;
@@ -142,8 +144,8 @@ body {
 .introduction-text {
   font-size: 1.714em;
   font-weight: normal;
-  font-family: 'Overpass';
+  font-family: Overpass, sans-serif;
   line-height: 150%;
   max-width: 700px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 40px;
 }

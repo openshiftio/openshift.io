@@ -94,7 +94,7 @@ export class Auth {
   }
 
   logout() {
-    this.analytics.trackLogout();
+    // this.analytics.trackLogout();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('refresh_token');
     this.authToken = null;
@@ -152,11 +152,6 @@ export class Auth {
     let token = localStorage.getItem('auth_token');
     if (token) {
       this.authToken = token;
-      // refresh the token in five seconds to make sure we have expiry and a running timer - only do this first time in
-      if (!this.refreshInterval) {
-        this.setupRefreshTimer(15);
-      }
-      this.bindLoggedInUser();
       return;
     }
     let params: any = this.getUrlParams();
@@ -413,11 +408,11 @@ export class Analytics {
     }
   }
 
-  trackLogout() {
-    if (this.analytics) {
-      this.analytics.track('logout');
-    }
-  }
+  // trackLogout() {
+  //   if (this.analytics) {
+  //     this.analytics.track('logout');
+  //   }
+  // }
 
   private get analytics(): SegmentAnalytics.AnalyticsJS {
     return window.analytics;
