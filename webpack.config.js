@@ -5,6 +5,8 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+
 // Helper functions
 const ROOT = path.resolve(__dirname, '.');
 const isProd = process.env.NODE_ENV === "production";
@@ -173,6 +175,19 @@ module.exports = {
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
       STACK_API_URL: JSON.stringify(process.env.FABRIC8_STACK_API_URL)
     }),
+
+    /*
+     * StyleLintPlugin
+     */
+    new StyleLintPlugin({
+      configFile: '.stylelintrc',
+      syntax: 'less',
+      context: 'src',
+      files: '**/*.less',
+      failOnError: true,
+      quiet: false,
+    }),
+
     extractCSS,
     webpackCopyPlugin,
     /*

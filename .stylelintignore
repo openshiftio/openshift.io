@@ -1,0 +1,6 @@
+# Ignore guidelines for stylelint
+# These are to be written in the same format as gitignore
+# Any directories or files are automatically found by the stylelint process
+
+# Ignore certain shared Less files
+node_modules/**/*.less
