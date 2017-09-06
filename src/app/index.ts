@@ -152,9 +152,7 @@ export class Auth {
     let token = localStorage.getItem('auth_token');
     if (token) {
       this.authToken = token;
-      setTimeout(function () {
-        window.location.href = `/_gettingstarted`;
-      }, 1000);
+      window.location.href = `/_gettingstarted`;
       return;
     }
     let params: any = this.getUrlParams();
