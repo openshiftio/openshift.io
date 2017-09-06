@@ -152,6 +152,9 @@ export class Auth {
     let token = localStorage.getItem('auth_token');
     if (token) {
       this.authToken = token;
+      setTimeout(function () {
+        window.location.href = `/_gettingstarted`;
+      }, 1000);
       return;
     }
     let params: any = this.getUrlParams();
@@ -207,6 +210,13 @@ export class Auth {
         error: error
       });
     }
+  }
+
+  bindLoginLogout() {
+    let _this = this;
+    $("a#login").click(function () {
+      _this.login();
+    });
   }
 
   processTokenResponse(response: any): Token {
@@ -308,6 +318,7 @@ $(document)
     let auth = new Auth(analytics);
     auth.handleLogin(url);
     auth.handleError(url);
+    auth.bindLoginLogout();
   });
 
 export class Analytics {
