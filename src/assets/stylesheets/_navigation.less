@@ -4,7 +4,12 @@
   background: url('../images/openshift-io_white.svg') no-repeat;
   width: 300px;
   margin-top: 12px;
-  @media (max-width: 1200px) {
+  /* stylelint-disable */
+  /* overwrites PatternFly logo placement */
+  margin-left: 0 !important;
+  /* stylelint-enable */
+
+  @media (max-width: 1400px) {
     background: url('../images/OSIO_logo_color_cmyk_white.svg') no-repeat;
     height: 60px;
     width: 250px;
