@@ -191,10 +191,10 @@ module.exports = {
     extractCSS,
     webpackCopyPlugin,
     /*
-     * Generate FavIcons from the master svg in all formats
+     * Generate FavIcons from the master png in all formats
      */
     new FaviconsWebpackPlugin({
-      logo: './src/assets/images/favicon.svg',
+      logo: './src/assets/images/favicon.png',
       prefix: '_openshiftio/icons/'
     }),
 
