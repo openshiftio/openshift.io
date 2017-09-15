@@ -4,3 +4,5 @@
 
 # Ignore certain shared Less files
 node_modules/**/*.less
+
+src/assets/stylesheets/*.less
