@@ -314,10 +314,19 @@ $(document)
 
     // Build services for the login widget
     let auth = new Auth(analytics);
-    auth.handleLogin(url);
+    //auth.handleLogin(url);
     auth.handleError(url);
     auth.bindLoginLogout();
-  });
+    
+    let osioIdeurl: string = window.location.href;
+    if (osioIdeurl.indexOf("osio-ide.html") != -1)
+    {
+      trigger_osio_ide();
+    } else {
+      auth.handleLogin(url);
+    }
+
+  });  
 
 export class Analytics {
 
@@ -427,3 +436,59 @@ export class Analytics {
     return window.analytics;
   }
 }
+
+
+function displayField(doc: any, source: any, name: string) {
+        if (source[name]) {
+            var element = doc.getElementById(name + "_text");
+            if (element) {
+                element.innerText = source[name].substring(0, 16);
+            }
+            element = doc.getElementById(name);
+            if (element) {
+                element.innerText = source[name];
+            }
+        }
+  }
+
+  function trigger_osio_ide(){
+    
+    var request = (function() {
+            let _get = {};
+            let re = /[?&]([^=&]+)(=?)([^&]*)/g;
+            let m;
+            while (m = re.exec(location.search))
+                _get[decodeURIComponent(m[1])] = (m[2] == '=' ? decodeURIComponent(m[3]) : true);
+            return _get;
+    })();
+    
+    if(request && request.hasOwnProperty("token_json")){
+      let info = JSON.parse(request["token_json"]);
+      let fields = ["access_token", "refresh_token", "expires_in", "refresh_expires_in"];
+      for (let i=0; i < fields.length;++i) {
+      displayField(document, info, fields[i]);
+      }
+      let element = document.getElementById("token_json");
+      if (element) {
+          element.innerText = request["token_json"];
+      }
+    }
+
+    $('#btn-copy-token').click(function (){
+        let text = $('#refresh_token').text();
+        let $input = $('<input type=text>');
+        $input.prop('value', text);
+        $input.appendTo($('#token_copy_status'));
+        $input.focus();
+        $input.select();
+        try {
+            let successful = document.execCommand('copy');
+            let msg = successful ? 'successful' : 'unsuccessful';
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+        $('#token_copy_status').empty();
+    });
+
+  }
+
