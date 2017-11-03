@@ -166,6 +166,12 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
+      filename: 'osio-ide.html',
+      template: 'src/app/pages/osio-ide.html',
+      chunks: ['app'],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
       filename: './_openshiftio/clicktale/ctIframe.html',
       template: 'src/app/clicktale/ctIframe.html',
       chunks: ['clicktale']
