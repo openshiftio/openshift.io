@@ -101,6 +101,9 @@ export class Auth {
     clearTimeout(this.clearTimeoutId);
     this.refreshInterval = null;
     this.loggedIn = false;
+    $("#loggedInUserName").hide();
+    $("#logoutAction").hide();
+    this.updateUserMenu();
   }
 
   setupRefreshTimer(refreshInSeconds: number) {
@@ -152,7 +155,13 @@ export class Auth {
     let token = localStorage.getItem('auth_token');
     if (token) {
       this.authToken = token;
-      window.location.href = `/_gettingstarted`;
+      if (!this.refreshInterval) {
+        this.setupRefreshTimer(15);
+      }
+      this.bindLoggedInUser();
+      // this is only needed for automatic redirects,
+      // preventing users from visiting the marketing page after login
+      // window.location.href = `/_gettingstarted`;
       return;
     }
     let params: any = this.getUrlParams();
@@ -172,6 +181,9 @@ export class Auth {
 
   bindLoggedInUser() {
     this.loggedIn = true;
+    this.updateUserMenu();
+    $("#loggedInUserName").show();
+    $("#logoutAction").show();
   }
 
   getUrlParams(): Object {
@@ -182,6 +194,40 @@ export class Auth {
       result[item[0]] = decodeURIComponent(item[1]);
     });
     return result;
+  }
+
+ updateUserMenu() {
+    if (this.authToken) {
+      this.getUser(this.authToken, (response: any) => {
+        let user = response.data;
+        if (user.attributes.imageURL) {
+          $("#userImage")
+            .attr("src", user.attributes.imageURL)
+            .removeClass("hidden");
+        } else {
+          $("#noUserImage").removeClass("hidden");
+        }
+        $("#userName").html(user.attributes.fullName);
+        $("#profileLink").attr("href", "/" + user.attributes.username);
+        $("#hideLogIn").hide();
+        $("#hideSignUp").hide();
+        $("#loggedInUserName").removeClass('hidden');
+        $("#logoutAction").removeClass('hidden');
+      },
+        (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+          if (response.status == 401) {
+            this.refreshToken();
+          } else {
+            this.logout();
+          }
+        }
+      );
+    } else {
+      $("#hideLogIn").show();
+      $("#hideSignUp").show();
+      $("#loggedInUserName").hide();
+      $("#logoutAction").hide();
+    }
   }
 
   handleError(url: uri.URI) {
@@ -214,6 +260,9 @@ export class Auth {
     let _this = this;
     $("a#login").click(function () {
       _this.login();
+    });
+    $("a#logout").click(function () {
+      _this.logout();
     });
   }
 
@@ -316,6 +365,7 @@ $(document)
     let auth = new Auth(analytics);
     auth.handleLogin(url);
     auth.handleError(url);
+    auth.updateUserMenu();
     auth.bindLoginLogout();
   });
 
