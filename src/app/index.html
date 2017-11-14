@@ -37,7 +37,7 @@
           </div>
           <!-- Links and other content -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav" style="margin-top: 10px;">
+            <ul class="nav navbar-nav">
               <li>
                 <a href="features.html" class="navbar-nav-links--features uppercase" aria-label="Features">Features</a>
               </li>
@@ -46,12 +46,28 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li id="loggedout" class="navbar-nav--login">
+              <li id="loggedInUserName" class="navbar-nav--user">
+                <span class="navbar-nav--user_info">
+                  <a id="profileLink" aria-label="UserProfile">
+                    <span class="icon-user pficon-user hidden" id="noUserImage"></span>
+                    <img class="icon-user hidden" id="userImage" />
+                    <span id="userName" class="navbar-nav--user__name uppercase"></span>
+                  </a>
+                </span>
+              </li>
+              <li id="logoutAction" class="navbar-nav--user">
+                <span class="navbar-nav--user_logout">
+                  <a id="logout" href="/" class="uppercase" aria-label="LogOut">
+                    Log Out
+                  </a>
+                </span>
+              </li>
+              <li id="hideLogIn" class="navbar-nav--login">
                 <a id="login" class="uppercase" aria-label="LogIn">
                   <i class="pficon pficon-user"></i> Log In
                 </a>
               </li>
-              <li class="navbar-nav-signup">
+              <li id="hideSignUp" class="navbar-nav-signup">
                 <a id="registerNav" role="button" class="uppercase" aria-label="SignUp">
                   Sign Up
                 </a>
