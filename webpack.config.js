@@ -29,6 +29,11 @@ if (isProd) {
       from: 'manifest.json',
       to: '_openshiftio/',
       toType: 'dir'
+    },
+    {
+      from: 'src/assets/documents',
+      to: '',
+      toType: 'dir'
     }
   ]);
 } else {
@@ -45,6 +50,11 @@ if (isProd) {
     {
       from: 'manifest.json',
       to: '_openshiftio/',
+      toType: 'dir'
+    },
+    {
+      from: 'src/assets/documents',
+      to: '',
       toType: 'dir'
     }
   ]);
@@ -134,14 +144,14 @@ module.exports = {
         test: /\.pdf$/,
         loaders: [
           {
-            loader: "url-loader",
-            query: {
-              limit: 3000,
+            loader: "file-loader",
+            options: {
               name: '/_openshiftio/assets/documents/[name].[ext]'
             }
           }
         ]
       },
+      
       {
         test: /\.html$/,
         use: ['html-loader']
