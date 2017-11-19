@@ -129,6 +129,19 @@ module.exports = {
           }
         ]
       },
+      // File loader for supporting documentation files (e.g. PDFs)
+      {
+        test: /\.pdf$/,
+        loaders: [
+          {
+            loader: "url-loader",
+            query: {
+              limit: 3000,
+              name: '/_openshiftio/assets/documents/[name].[ext]'
+            }
+          }
+        ]
+      },
       {
         test: /\.html$/,
         use: ['html-loader']
