@@ -192,42 +192,48 @@ export class Auth {
     return result;
   }
 
- updateUserMenu() {
-    if (this.authToken) {
-      this.getUser(this.authToken, (response: any) => {
-        let user = response.data;
-        if (user.attributes.imageURL) {
-          $("#userImage")
-            .attr("src", user.attributes.imageURL)
-            .removeClass("hidden");
+ updateUserMenu() : Promise<any> {
+    return new Promise((resolve, reject) => {
+        if (this.authToken) {
+          this.getUser(this.authToken, (response: any) => {
+            let user = response.data;
+            if (user.attributes.imageURL) {
+              $("#userImage")
+                .attr("src", user.attributes.imageURL)
+                .removeClass("hidden");
+            } else {
+              $("#noUserImage").removeClass("hidden");
+            }
+            $("#userName").html(user.attributes.fullName);
+            $("#profileLink").attr("href", "/" + user.attributes.username);
+            $("#hideLogIn").hide();
+            $("#hideSignUp").hide();
+            $("#loggedInUserName").removeClass('hidden');
+            $("#logoutAction").removeClass('hidden');
+
+            resolve();
+            
+          },
+            (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+              if (response.status == 401) {
+                this.refreshToken();
+              } else {
+                this.logout();
+              }
+            }
+          );
         } else {
-          $("#noUserImage").removeClass("hidden");
+          $("#hideLogIn").show();
+          $("#hideSignUp").show();
+          $("#loggedInUserName").hide();
+          $("#logoutAction").hide();
         }
-        $("#userName").html(user.attributes.fullName);
-        $("#profileLink").attr("href", "/" + user.attributes.username);
-        $("#hideLogIn").hide();
-        $("#hideSignUp").hide();
-        $("#loggedInUserName").removeClass('hidden');
-        $("#logoutAction").removeClass('hidden');
+      });
+  }
 
-        // Start redirect only after response from user is complete.
-        window.location.href = `/_gettingstarted`;
-
-      },
-        (response: JQueryXHR, textStatus: string, errorThrown: string) => {
-          if (response.status == 401) {
-            this.refreshToken();
-          } else {
-            this.logout();
-          }
-        }
-      );
-    } else {
-      $("#hideLogIn").show();
-      $("#hideSignUp").show();
-      $("#loggedInUserName").hide();
-      $("#logoutAction").hide();
-    }
+  redirectToGettingStarted(){
+    window.location.href= `/_gettingstarted`;
+    return true;
   }
 
   handleError(url: uri.URI) {
@@ -365,7 +371,7 @@ $(document)
     let auth = new Auth(analytics);
     auth.handleLogin(url);
     auth.handleError(url);
-    auth.updateUserMenu();
+    auth.updateUserMenu().then(auth.redirectToGettingStarted);
     auth.bindLoginLogout();
   });
 
