@@ -178,7 +178,6 @@ export class Auth {
 
   bindLoggedInUser() {
     this.loggedIn = true;
-    this.updateUserMenu();
     $("#loggedInUserName").show();
     $("#logoutAction").show();
   }
@@ -211,10 +210,8 @@ export class Auth {
         $("#loggedInUserName").removeClass('hidden');
         $("#logoutAction").removeClass('hidden');
 
-        // Start redirect only after response from user returns.
-        //setTimeout(function () {
-          window.location.href = `/_gettingstarted`;
-        //}, 1000);
+        // Start redirect only after response from user is complete.
+        window.location.href = `/_gettingstarted`;
 
       },
         (response: JQueryXHR, textStatus: string, errorThrown: string) => {
