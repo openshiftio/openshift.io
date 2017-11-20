@@ -172,9 +172,6 @@ export class Auth {
       // Clear the tokens from the URL, they are toooo long
       history.pushState(null, "", location.href.split("?")[0]);
       // Put a short delay here, as local storage takes a few MS to update
-      setTimeout(function () {
-        window.location.href = `/_gettingstarted`;
-      }, 1000);
       return;
     }
   }
@@ -213,6 +210,12 @@ export class Auth {
         $("#hideSignUp").hide();
         $("#loggedInUserName").removeClass('hidden');
         $("#logoutAction").removeClass('hidden');
+
+        // Start redirect only after response from user returns.
+        //setTimeout(function () {
+          window.location.href = `/_gettingstarted`;
+        //}, 1000);
+
       },
         (response: JQueryXHR, textStatus: string, errorThrown: string) => {
           if (response.status == 401) {
