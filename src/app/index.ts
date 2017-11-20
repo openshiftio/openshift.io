@@ -189,20 +189,29 @@ export class Auth {
  updateUserMenu() {
     if (this.authToken) {
       this.getUser(this.authToken, (response: any) => {
-        let user = response.data;
-        if (user.attributes.imageURL) {
-          $("#userImage")
-            .attr("src", user.attributes.imageURL)
-            .removeClass("hidden");
+        // check to see if user is on root and logged in successfully - if so, move them to gettingstarted
+        if (window.location.pathname.indexOf('get-involved') === -1 &&
+            window.location.pathname.indexOf('features')  === -1) {
+          setTimeout(function () {
+                window.location.href = `/_gettingstarted`;
+            }, 500);
         } else {
-          $("#noUserImage").removeClass("hidden");
+
+            let user = response.data;
+            if (user.attributes.imageURL) {
+                $("#userImage")
+                    .attr("src", user.attributes.imageURL)
+                    .removeClass("hidden");
+            } else {
+                $("#noUserImage").removeClass("hidden");
+            }
+            $("#userName").html(user.attributes.fullName);
+            $("#profileLink").attr("href", "/" + user.attributes.username);
+            $("#hideLogIn").hide();
+            $("#hideSignUp").hide();
+            $("#loggedInUserName").removeClass('hidden');
+            $("#logoutAction").removeClass('hidden');
         }
-        $("#userName").html(user.attributes.fullName);
-        $("#profileLink").attr("href", "/" + user.attributes.username);
-        $("#hideLogIn").hide();
-        $("#hideSignUp").hide();
-        $("#loggedInUserName").removeClass('hidden');
-        $("#logoutAction").removeClass('hidden');
       },
         (response: JQueryXHR, textStatus: string, errorThrown: string) => {
           if (response.status == 401) {
