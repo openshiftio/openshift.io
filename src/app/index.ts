@@ -172,16 +172,12 @@ export class Auth {
       // Clear the tokens from the URL, they are toooo long
       history.pushState(null, "", location.href.split("?")[0]);
       // Put a short delay here, as local storage takes a few MS to update
-      setTimeout(function () {
-        window.location.href = `/_gettingstarted`;
-      }, 1000);
       return;
     }
   }
 
   bindLoggedInUser() {
     this.loggedIn = true;
-    this.updateUserMenu();
     $("#loggedInUserName").show();
     $("#logoutAction").show();
   }
@@ -196,38 +192,48 @@ export class Auth {
     return result;
   }
 
- updateUserMenu() {
-    if (this.authToken) {
-      this.getUser(this.authToken, (response: any) => {
-        let user = response.data;
-        if (user.attributes.imageURL) {
-          $("#userImage")
-            .attr("src", user.attributes.imageURL)
-            .removeClass("hidden");
+ updateUserMenu() : Promise<any> {
+    return new Promise((resolve, reject) => {
+        if (this.authToken) {
+          this.getUser(this.authToken, (response: any) => {
+            let user = response.data;
+            if (user.attributes.imageURL) {
+              $("#userImage")
+                .attr("src", user.attributes.imageURL)
+                .removeClass("hidden");
+            } else {
+              $("#noUserImage").removeClass("hidden");
+            }
+            $("#userName").html(user.attributes.fullName);
+            $("#profileLink").attr("href", "/" + user.attributes.username);
+            $("#hideLogIn").hide();
+            $("#hideSignUp").hide();
+            $("#loggedInUserName").removeClass('hidden');
+            $("#logoutAction").removeClass('hidden');
+
+            resolve();
+            
+          },
+            (response: JQueryXHR, textStatus: string, errorThrown: string) => {
+              if (response.status == 401) {
+                this.refreshToken();
+              } else {
+                this.logout();
+              }
+            }
+          );
         } else {
-          $("#noUserImage").removeClass("hidden");
+          $("#hideLogIn").show();
+          $("#hideSignUp").show();
+          $("#loggedInUserName").hide();
+          $("#logoutAction").hide();
         }
-        $("#userName").html(user.attributes.fullName);
-        $("#profileLink").attr("href", "/" + user.attributes.username);
-        $("#hideLogIn").hide();
-        $("#hideSignUp").hide();
-        $("#loggedInUserName").removeClass('hidden');
-        $("#logoutAction").removeClass('hidden');
-      },
-        (response: JQueryXHR, textStatus: string, errorThrown: string) => {
-          if (response.status == 401) {
-            this.refreshToken();
-          } else {
-            this.logout();
-          }
-        }
-      );
-    } else {
-      $("#hideLogIn").show();
-      $("#hideSignUp").show();
-      $("#loggedInUserName").hide();
-      $("#logoutAction").hide();
-    }
+      });
+  }
+
+  redirectToGettingStarted(){
+    window.location.href= `/_gettingstarted`;
+    return true;
   }
 
   handleError(url: uri.URI) {
@@ -365,7 +371,7 @@ $(document)
     let auth = new Auth(analytics);
     auth.handleLogin(url);
     auth.handleError(url);
-    auth.updateUserMenu();
+    auth.updateUserMenu().then(auth.redirectToGettingStarted);
     auth.bindLoginLogout();
   });
 
