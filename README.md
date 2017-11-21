@@ -1,6 +1,6 @@
 # OpenShift.io
 
-OpenShift.io is a cloud-native development environment for planning, creating and deploying hybrid cloud services. It provides a full toolchain for development teams, in the cloud with zero setup and maintenance.
+OpenShift.io is a cloud-native development environment for planning, creating and deploying hybrid cloud services. It provides a full toolchain for development teams, in the cloud with zero setup and maintenance. This repository contains the marketing pages and the issue tracker that is used across the project.
 
 ## Community Feedback
 
