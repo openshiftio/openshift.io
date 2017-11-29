@@ -151,39 +151,29 @@ export class Auth {
     }
   }
 
-  handleLogin(url: uri.URI) {
-    let token = localStorage.getItem('auth_token');
-    if (token) {
-      this.authToken = token;
-      if (!this.refreshInterval) {
-        this.setupRefreshTimer(15);
-      }
-      this.bindLoggedInUser();
-      // this is only needed for automatic redirects,
-      // preventing users from visiting the marketing page after login
-      // window.location.href = `/_gettingstarted`;
-      return;
-    }
+  handleLogin(url: uri.URI): boolean {
+    // Handle token_json in URL as a primary responsibility, if not present, drop to potential authToken in local storage
     let params: any = this.getUrlParams();
     if ('token_json' in params) {
       let tokenJson = decodeURIComponent(params['token_json']);
-      let token = this.processTokenResponse(JSON.parse(tokenJson));
-      this.setupRefreshTimer(token.expires_in);
+      this.processTokenResponse(JSON.parse(tokenJson));
       // Clear the tokens from the URL, they are toooo long
       history.pushState(null, "", location.href.split("?")[0]);
-      // Put a short delay here, as local storage takes a few MS to update
-      setTimeout(function () {
-        window.location.href = `/_gettingstarted`;
-      }, 1000);
-      return;
-    }
-  }
 
-  bindLoggedInUser() {
-    this.loggedIn = true;
-    this.updateUserMenu();
-    $("#loggedInUserName").show();
-    $("#logoutAction").show();
+      //return true to force redirect
+      return true;
+    } else {
+      let token = localStorage.getItem('auth_token');
+      if (token) {
+          this.authToken = token;
+          this.loggedIn = true;
+          if (!this.refreshInterval) {
+              this.setupRefreshTimer(15);
+          }
+      }
+      // use local storage token - keep user on welcome screen
+      return false;
+    }
   }
 
   getUrlParams(): Object {
@@ -199,20 +189,29 @@ export class Auth {
  updateUserMenu() {
     if (this.authToken) {
       this.getUser(this.authToken, (response: any) => {
-        let user = response.data;
-        if (user.attributes.imageURL) {
-          $("#userImage")
-            .attr("src", user.attributes.imageURL)
-            .removeClass("hidden");
+        // check to see if user is on root and logged in successfully - if so, move them to gettingstarted
+        if (window.location.pathname.indexOf('get-involved') === -1 &&
+            window.location.pathname.indexOf('features')  === -1) {
+          setTimeout(function () {
+                window.location.href = `/_gettingstarted`;
+            }, 500);
         } else {
-          $("#noUserImage").removeClass("hidden");
+
+            let user = response.data;
+            if (user.attributes.imageURL) {
+                $("#userImage")
+                    .attr("src", user.attributes.imageURL)
+                    .removeClass("hidden");
+            } else {
+                $("#noUserImage").removeClass("hidden");
+            }
+            $("#userName").html(user.attributes.fullName);
+            $("#profileLink").attr("href", "/" + user.attributes.username);
+            $("#hideLogIn").hide();
+            $("#hideSignUp").hide();
+            $("#loggedInUserName").removeClass('hidden');
+            $("#logoutAction").removeClass('hidden');
         }
-        $("#userName").html(user.attributes.fullName);
-        $("#profileLink").attr("href", "/" + user.attributes.username);
-        $("#hideLogIn").hide();
-        $("#hideSignUp").hide();
-        $("#loggedInUserName").removeClass('hidden');
-        $("#logoutAction").removeClass('hidden');
       },
         (response: JQueryXHR, textStatus: string, errorThrown: string) => {
           if (response.status == 401) {
@@ -238,22 +237,20 @@ export class Auth {
   }
 
   getUser(authToken: string, success: any, error: any) {
-    if (authToken) {
-      $.ajax({
-        url: this.apiUrl + 'user',
-        headers: {
-          "Authorization": "Bearer " + this.authToken,
+    $.ajax({
+      url: this.apiUrl + 'user',
+      headers: {
+          "Authorization": "Bearer " + authToken,
           'Content-Type': "application/json"
-        },
-        method: 'GET',
-        dataType: 'json',
-        success: response => {
+      },
+      method: 'GET',
+      dataType: 'json',
+      success: response => {
           this.analytics.identifyUser(response.data);
           success(response);
-        },
-        error: error
-      });
-    }
+      },
+      error: error
+    });
   }
 
   bindLoginLogout() {
@@ -332,12 +329,11 @@ function collapseNavbar() {
 }
 
 $(window).scroll(collapseNavbar);
-$(document).ready(collapseNavbar);
 
 $(document)
   .ready(function () {
 
-    collapseNavbar;
+    collapseNavbar();
 
     let url = new URI(window.location.href);
     // Add the JS
@@ -363,10 +359,16 @@ $(document)
 
     // Build services for the login widget
     let auth = new Auth(analytics);
-    auth.handleLogin(url);
-    auth.handleError(url);
-    auth.updateUserMenu();
-    auth.bindLoginLogout();
+    let redirect = auth.handleLogin(url);
+    if (redirect) {
+      setTimeout(function () {
+          window.location.href = `/_gettingstarted`;
+      }, 500);
+    } else {
+      auth.handleError(url);
+      auth.updateUserMenu();
+      auth.bindLoginLogout();
+    }
   });
 
 export class Analytics {
