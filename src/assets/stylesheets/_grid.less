@@ -13,6 +13,13 @@
   &:extend(.grid-container);
   grid-template-rows: 70px auto auto auto;
 }
+.grid-container--not-authorized {
+  &:extend(.grid-container);
+  grid-template-rows: 70px auto;
+  grid-template-areas:
+    'header header header'
+    'content content content';
+}
 .header {
   grid-column-start: 1;
   grid-column-end: 4;

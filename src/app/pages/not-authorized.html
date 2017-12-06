@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#030303" />
+  <title>OpenShift.io - Not Authorized</title>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="expires" content="0" />
+  <meta name="description" content="OpenShift.io is an open online development environment for planning, creating and deploying hybrid cloud services.">
+  <meta name="author" content="Red Hat">
+  <meta name="google-site-verification" content="DYysfqUDyUP6WNbcNfF7RqFN6X7VK1tJXV5QLoU7ojs" />
+  <link rel="manifest" href="/manifest.json">
+  <!-- PatternFly Styles -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly.min.css" rel="stylesheet" media="screen, print">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
+  <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Overpass:300,400,600,700" rel="stylesheet">
+  <script async id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="grid-container--not-authorized">
+    <div class="header">
+      <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+              aria-expanded="false">
+              <span class="navbar-menu-title">MENU</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand openshiftio-logo" href="/" aria-label="Home"></a>
+          </div>
+          <!-- Links and other content -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="features.html" class="navbar-nav-links--features uppercase" aria-label="Features">Features</a>
+              </li>
+              <li>
+                <a href="get-involved.html" class="navbar-nav-links--contribute uppercase" aria-label="GetInvolved">Get Involved</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li id="loggedInUserName" class="navbar-nav--user">
+                <span class="navbar-nav--user_info">
+                  <a id="profileLink" aria-label="UserProfile">
+                    <span class="icon-user pficon-user hidden" id="noUserImage"></span>
+                    <img class="icon-user hidden" id="userImage" />
+                    <span id="userName" class="navbar-nav--user__name uppercase"></span>
+                  </a>
+                </span>
+              </li>
+              <li id="logoutAction" class="navbar-nav--user">
+                <span class="navbar-nav--user_logout">
+                  <a id="logout" href="/" class="uppercase" aria-label="LogOut">
+                    Log Out
+                  </a>
+                </span>
+              </li>
+              <li id="hideLogIn" class="navbar-nav--login">
+                <a id="login" class="uppercase" aria-label="LogIn">
+                  <i class="pficon pficon-user"></i> Log In
+                </a>
+              </li>
+              <li id="hideSignUp" class="navbar-nav-signup">
+                <a id="registerNav" role="button" class="uppercase" aria-label="SignUp">
+                  Sign Up
+                </a>
+              </li>
+              <li class="navbar-nav-logo">
+                <a href="https://www.redhat.com" target="top" class="corporate-logo" aria-label="Logo"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="content">
+      <div class="content--row_1 not-authorized">
+        <div class="transparency-overlay"></div>
+        <div class="not-authorized--content transparency-overlay">
+          <h1>
+            <i class="fa fa-lock"></i>
+          </h1>
+          <div class="introduction-text">You are not authorized to access OpenShift.io</div>
+          <div class="introduction-subtext small">
+            You do not have access to OpenShift.io. You can register for OpenShift.io or check the status of your existing request by
+            clicking the button below. If someone shares and OpenShift.io public space with you, you will be able to view that space
+            without logging in.
+          </div>
+          <div style="margin-bottom: 40px;">
+            <a class="btn btn-status btn-lg" role="button" id="checkStatus">Sign up or check for approval status</a>
+          </div>
+          <div>
+            <iframe title="OpenShift.io Introduction" width="560" height="315" src="https://www.youtube.com/embed/XNdi4AC_EPQ?rel=0"
+              frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="transparency-overlay"></div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/js/patternfly.min.js"></script>
+  <script type="text/javascript">
+    if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+      _satellite.pageBottom();
+    }
+  </script>
+  </body>
+</html>

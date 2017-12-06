@@ -1,0 +1,38 @@
+.not-authorized {
+  grid-template-columns: 3fr 6fr 3fr;
+  align-content: center;
+  text-align: center;
+  min-height: 675px;
+  width: 100%;
+  color: #fff;
+  background: url('../images/notauth_bgpattern.svg') rgba(41, 46, 52, 1) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  background-position: center center;
+  &--content {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    i {
+      font-size: 2em;
+    }
+  }
+  .transparency-overlay {
+    background-color: rgba(0, 0, 0, .35);
+  }
+  .btn-status {
+    &:extend(.btn-default);
+    background-color: @color-rh-blue;
+    border-color: @color-rh-blue;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: @color-rh-blue-dark;
+      border-color: @color-rh-blue-dark;
+    }
+  }
+  .introduction-subtext {
+    margin: 0 auto 30px;
+  }
+}
