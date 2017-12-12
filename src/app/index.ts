@@ -191,7 +191,8 @@ export class Auth {
       this.getUser(this.authToken, (response: any) => {
         // check to see if user is on root and logged in successfully - if so, move them to gettingstarted
         if (window.location.pathname.indexOf('get-involved') === -1 &&
-            window.location.pathname.indexOf('features')  === -1) {
+            window.location.pathname.indexOf('features')  === -1 &&
+            window.location.pathname.indexOf('not-authorized') === -1) {
           setTimeout(function () {
                 window.location.href = `/_gettingstarted`;
             }, 500);
