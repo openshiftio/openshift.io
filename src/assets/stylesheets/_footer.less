@@ -33,7 +33,9 @@
   width: 100%;
   background-color: @color-rh-black-900;
   font-size: 12px;
-  height: 100%;
+  @media screen and (max-width: 768px) {
+    height: 100%;
+  }
   &--item {
     margin: 0 auto;
     @media (min-width: 320px) and (max-width: 996px) { margin: 0; }
