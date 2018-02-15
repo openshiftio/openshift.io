@@ -151,7 +151,7 @@ module.exports = {
           }
         ]
       },
-      
+
       {
         test: /\.html$/,
         use: ['html-loader']
@@ -191,6 +191,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'not-authorized.html',
       template: 'src/app/pages/not-authorized.html',
+      chunks: ['app'],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'documentation.html',
+      template: 'src/app/pages/documentation.html',
       chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
