@@ -1,4 +1,4 @@
-FROM fabric8/fabric8-openshift-nginx:vd83b3a1
+FROM fabric8/fabric8-openshift-nginx:SNAPSHOT-PR-4-1
 LABEL maintainer "Devtools <devtools@redhat.com>"
 
 USER root
