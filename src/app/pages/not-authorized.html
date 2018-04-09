@@ -98,7 +98,7 @@
             without logging in.
           </div>
           <div style="margin-bottom: 40px;">
-            <a class="btn btn-status btn-lg" role="button" id="checkStatus" href="https://manage.openshift.com/openshiftio">Sign up or check for approval status</a>
+            <a class="btn btn-status btn-lg" role="button" id="signUp" href="https://manage.openshift.com/openshiftio">Sign up or check for approval status</a>
           </div>
           <div>
             <iframe title="OpenShift.io Introduction" width="560" height="315" src="https://www.youtube.com/embed/XNdi4AC_EPQ?rel=0"
@@ -117,6 +117,36 @@
     if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
       _satellite.pageBottom();
     }
+
+    (function init() {
+      const statusMessages = {
+        'awaiting_approval': 'Your request for access is pending approval. As soon as your access is approved, you’ll receive an email with a link to connect. Thanks for your interest in OpenShift.io!',
+        'provision_queued': 'Your account is queued for provisioning. As soon as your account is ready, you’ll receive an email with a link to connect. Thanks for your interest in OpenShift.io!',
+        'signup_needed': 'Log in with your existing OpenShift Online, Red Hat Developer Program, or Red Hat Customer Portal account to register for access to OpenShift.io.'
+      }
+      const $signUpButton = $('#signUp');
+      const $introText = $('.introduction-subtext');
+
+      function getUrlParams() {
+        let query = window.location.search.substr(1);
+        let result = {};
+        query.split('&').forEach(function (part) {
+          let item = part.split('=');
+          result[item[0]] = decodeURIComponent(item[1]);
+        });
+        return result;
+      }
+
+      const status = getUrlParams().status;
+      if (status) {
+        const statusMessage = statusMessages[status];
+        $introText.text(statusMessage);
+        $signUpButton.text('Sign up');
+        if (status !== 'signup_needed') {
+          $signUpButton.hide();
+        }
+      }
+    })();
   </script>
   </body>
 </html>
