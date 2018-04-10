@@ -138,8 +138,8 @@
       }
 
       const status = getUrlParams().status;
-      if (status) {
-        const statusMessage = statusMessages[status];
+      const statusMessage = statusMessages[status];
+      if (status && statusMessage) {
         $introText.text(statusMessage);
         $signUpButton.text('Sign up');
         if (status !== 'signup_needed') {
@@ -147,6 +147,7 @@
         }
       }
     })();
+
   </script>
   </body>
 </html>
