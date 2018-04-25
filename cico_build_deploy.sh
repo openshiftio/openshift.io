@@ -1,5 +1,17 @@
 #!/bin/bash
 
+REGISTRY="push.registry.devshift.net"
+DEPLOY_CONT="wwwopenshiftio-deploy"
+BUILDER_CONT="wwwopenshiftio-builder"
+
+if [ "$TARGET" = "rhel" ]; then
+  DOCKERFILE_DEPLOY="Dockerfile.deploy.rhel"
+  REGISTRY_URL=${REGISTRY}/osio-prod/fabric8io/wwwopenshiftio
+else
+  DOCKERFILE_DEPLOY="Dockerfile.deploy"
+  REGISTRY_URL=${REGISTRY}/fabric8io/wwwopenshiftio
+fi
+
 # Show command before executing
 set -x
 
@@ -7,13 +19,15 @@ set -x
 set -e
 
 # Export needed vars
+set +x
 for var in BUILD_NUMBER BUILD_URL GIT_COMMIT DEVSHIFT_USERNAME DEVSHIFT_PASSWORD DEVSHIFT_TAG_LEN; do
   export $(grep ${var} jenkins-env | xargs)
 done
 export BUILD_TIMESTAMP=`date -u +%Y-%m-%dT%H:%M:%S`+00:00
+set -x
 
 # We need to disable selinux for now, XXX
-/usr/sbin/setenforce 0
+/usr/sbin/setenforce 0 || :
 
 # Get all the deps in
 yum -y install docker
@@ -21,60 +35,31 @@ yum clean all
 service docker start
 
 # Build builder image
-docker build -t wwwopenshiftio-builder -f Dockerfile.builder .
-mkdir -p dist && docker run --detach=true --name=wwwopenshiftio-builder -t -v $(pwd)/dist:/dist:Z -e BUILD_NUMBER -e BUILD_URL -e BUILD_TIMESTAMP wwwopenshiftio-builder
+docker build -t "${BUILDER_CONT}" -f Dockerfile.builder .
+
+# Clean builder container
+docker ps | grep -q "${BUILDER_CONT}" && docker stop "${BUILDER_CONT}"
+docker ps -a | grep -q "${BUILDER_CONT}" && docker rm "${BUILDER_CONT}"
+
+mkdir -p dist && docker run --detach=true --name="${BUILDER_CONT}" -t -v $(pwd)/dist:/dist:Z -e BUILD_NUMBER -e BUILD_URL -e BUILD_TIMESTAMP "${BUILDER_CONT}"
 
 # Build almigty-ui
-docker exec wwwopenshiftio-builder npm install
+docker exec "${BUILDER_CONT}" npm install
+docker exec "${BUILDER_CONT}" npm run build:prod
+docker exec -u root "${BUILDER_CONT}" cp -r /home/fabric8/wwwopenshiftio/dist /
 
-## Exec unit tests
-#docker exec wwwopenshiftio-builder ./run_unit_tests.sh
+if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
+  docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${REGISTRY}
+else
+  echo "Could not login, missing credentials for the registry"
+fi
 
-#if [ $? -eq 0 ]; then
-#  echo 'CICO: unit tests OK'
-#else
-#  echo 'CICO: unit tests FAIL'
-#  exit 1
-#fi
+docker build -t "${DEPLOY_CONT}" -f "${DOCKERFILE_DEPLOY}" .
 
-## Exec functional tests
-#docker exec wwwopenshiftio-builder ./run_functional_tests.sh
+TAG=$(echo $GIT_COMMIT | cut -c1-${DEVSHIFT_TAG_LEN})
 
-#if [ $? -eq 0 ]; then
-#  echo 'CICO: functional tests OK'
-  docker exec wwwopenshiftio-builder npm run build:prod
-  docker exec -u root wwwopenshiftio-builder cp -r /home/fabric8/wwwopenshiftio/dist /
-  ## All ok, deploy
-#  if [ $? -eq 0 ]; then
-#    echo 'CICO: build OK'
-    docker build -t wwwopenshiftio-deploy -f Dockerfile.deploy . && \
+docker tag "${DEPLOY_CONT}" "${REGISTRY_URL}:$TAG"
+docker push "${REGISTRY_URL}:$TAG"
 
-    TAG=$(echo $GIT_COMMIT | cut -c1-${DEVSHIFT_TAG_LEN})
-    REGISTRY="push.registry.devshift.net"
-
-    if [ -n "${DEVSHIFT_USERNAME}" -a -n "${DEVSHIFT_PASSWORD}" ]; then
-      docker login -u ${DEVSHIFT_USERNAME} -p ${DEVSHIFT_PASSWORD} ${REGISTRY}
-    else
-      echo "Could not login, missing credentials for the registry"
-    fi
-
-    docker tag wwwopenshiftio-deploy ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
-    docker push ${REGISTRY}/fabric8io/wwwopenshiftio:$TAG && \
-    docker tag wwwopenshiftio-deploy ${REGISTRY}/fabric8io/wwwopenshiftio:latest && \
-    docker push ${REGISTRY}/fabric8io/wwwopenshiftio:latest
-    if [ $? -eq 0 ]; then
-      echo 'CICO: image pushed, ready to update deployed app'
-      exit 0
-    else
-      echo 'CICO: Image push to registry failed'
-      exit 2
-    fi
-#  else
-#    echo 'CICO: app tests Failed'
-#    exit 1
-#  fi
-#else
-#  echo 'CICO: functional tests FAIL'
-#  exit 1
-#fi
-
+docker tag "${DEPLOY_CONT}" "${REGISTRY_URL}:latest"
+docker push "${REGISTRY_URL}:latest"
