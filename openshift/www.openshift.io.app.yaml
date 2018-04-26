@@ -38,7 +38,7 @@ objects:
           service: wwwopenshiftio
       spec:
         containers:
-        - image: registry.devshift.net/fabric8io/wwwopenshiftio:${IMAGE_TAG}
+        - image: ${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: Always
           name: wwwopenshiftio
           ports:
@@ -123,6 +123,7 @@ objects:
     wildcardPolicy: None
   status: {}
 parameters:
+- name: IMAGE
+  value: registry.devshift.net/fabric8io/wwwopenshiftio
 - name: IMAGE_TAG
   value: latest
-
