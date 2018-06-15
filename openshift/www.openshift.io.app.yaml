@@ -124,6 +124,6 @@ objects:
   status: {}
 parameters:
 - name: IMAGE
-  value: registry.devshift.net/fabric8io/wwwopenshiftio
+  value: quay.io/openshiftio/rhel-fabric8io-wwwopenshiftio
 - name: IMAGE_TAG
   value: latest

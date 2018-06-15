@@ -1,4 +1,4 @@
-FROM prod.registry.devshift.net/osio-prod/base/fabric8-openshift-nginx:latest
+FROM quay.io/openshiftio/rhel-base-fabric8-openshift-nginx:latest
 LABEL maintainer "Devtools <devtools@redhat.com>"
 LABEL author "Devtools <devtools@redhat.com>"
 
