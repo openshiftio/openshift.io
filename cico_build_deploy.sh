@@ -48,7 +48,7 @@ if [ ! -d dist ]; then
     docker ps -a | grep -q "${BUILDER_CONT}" && docker rm "${BUILDER_CONT}"
     docker run --detach=true --name="${BUILDER_CONT}" -t \
         -v $(pwd)/dist:/dist:Z \
-        -e BUILD_NUMBER -e BUILD_URL -e BUILD_TIMESTAMP \
+        -e BUILD_NUMBER -e BUILD_URL \
         "${BUILDER_CONT}"
 
     # Build almigty-ui
