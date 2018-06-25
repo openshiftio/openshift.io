@@ -1,0 +1,33 @@
+== "Incident title"
+
+*Period*: "From-To date"
+
+*System*: "OSiO|Build|Idler"
+
+*Effected*: "Estimated effected users"
+
+=== Story
+
+"Describe reason for change/events leading up to the incident. Include timeline of events."
+
+"Who were at which bar when the phone rang etc"
+
+"Links to feature dev issue, reported user error etc"
+
+=== Rundown
+
+"Describe what was found, how it was found, the effect across services and across users. Include timeline of events."
+
+"metrics of events etc"
+
+=== Takeaway
+
+"What have we learned?"
+
+"What are we doing to avoid it happening again?"
+
+"Short/Medium/Long term"
+
+"code changes? build/verification changes? monitoring changes? process changes?"
+
+"Links to follow up changes"
