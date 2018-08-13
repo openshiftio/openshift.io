@@ -27,7 +27,7 @@ For example if you are facing UI problem you can tell us
 
   * which browser are you using
   * attach screenshot or record screencast (that would be awesome!)
-  * attach console log or any other relevant information from Dev Tools (if you have running)
+  * attach console log or any other relevant information from additional tools such as browser developer tools
 
 If you face an error while building your project:
 
