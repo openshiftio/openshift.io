@@ -1,7 +1,7 @@
 <!--
 Thanks for interest in Openshift.io and apologies for making your experience not yet as awesome as we strive for.  
 
-Please follow template provided below to report a bug you have encountered and will make sure to improve it.
+Please follow template provided below to report a bug you have encountered and we will make sure to improve it.
 
 YOU CAN DELETE THIS TEXT BEFORE SUBMITTING THE ISSUE
 -->
