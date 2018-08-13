@@ -6,7 +6,7 @@ get in the habit of thinking in terms of continues improvement.
 An Incident report should be created for each OSiO outage(small or large) in GitHub with label "type/incident":
 https://github.com/openshiftio/openshift.io/issues
 
-Note: this is a public report so de sensitise data. No tokens, no users, no internal links etc
+Note: this is a public report so please desensitize data. No tokens, no users, no internal links etc
 
 -->
 
