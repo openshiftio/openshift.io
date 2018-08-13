@@ -1,7 +1,7 @@
 ---
-name: incident
+name: Incident report
 about: The incident report is intended as a write up for transparency, cross-team
-  knowledge transfer.
+  knowledge transfer and to get in the habit of thinking in terms of continues improvement.
 
 ---
 
