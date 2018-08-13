@@ -1,3 +1,7 @@
+---
+name: bug
+about: Bug report
+---
 <!--
 Thanks for interest in Openshift.io and apologies for making your experience not yet as awesome as we strive for.  
 
