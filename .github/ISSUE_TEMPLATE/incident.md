@@ -16,7 +16,7 @@ Note: this is a public report so please desensitize data. No tokens, no users, n
 
 *System*: "OSiO|Build|Idler"
 
-*Effected*: "Estimated effected users"
+*Affected*: "Estimated affected users"
 
 #### Story
 
