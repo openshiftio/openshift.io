@@ -188,15 +188,17 @@ export class Auth {
 
  updateUserMenu() {
     if (this.authToken) {
+      $("#hideLogIn").hide();
+      $("#hideSignUp").hide();
+      $("#loggedInUserName").show();
+      $("#logoutAction").show();
       this.getUser(this.authToken, (response: any) => {
         // check to see if user is on root and logged in successfully - if so, move them to gettingstarted
         if (window.location.pathname.indexOf('get-involved') === -1 &&
             window.location.pathname.indexOf('features')  === -1 &&
             window.location.pathname.indexOf('documentation')  === -1 &&
             window.location.pathname.indexOf('not-authorized') === -1) {
-          setTimeout(function () {
-                window.location.href = `/_gettingstarted`;
-            }, 500);
+          goToApp();
         } else {
 
             let user = response.data;
@@ -209,8 +211,6 @@ export class Auth {
             }
             $("#userName").html(user.attributes.fullName);
             $("#profileLink").attr("href", "/" + user.attributes.username);
-            $("#hideLogIn").hide();
-            $("#hideSignUp").hide();
             $("#loggedInUserName").removeClass('hidden');
             $("#logoutAction").removeClass('hidden');
         }
@@ -330,6 +330,16 @@ function collapseNavbar() {
   }
 }
 
+function goToApp() {
+  $("#hideLogIn").hide();
+  $("#hideSignUp").hide();
+  $("#loggedInUserName").show();
+  $("#logoutAction").show();
+  setTimeout(function () {
+    window.location.href = `/_gettingstarted`;
+  }, 500);
+}
+
 $(window).scroll(collapseNavbar);
 
 $(document)
@@ -363,9 +373,7 @@ $(document)
     let auth = new Auth(analytics);
     let redirect = auth.handleLogin(url);
     if (redirect) {
-      setTimeout(function () {
-          window.location.href = `/_gettingstarted`;
-      }, 500);
+      goToApp();
     } else {
       auth.handleError(url);
       auth.updateUserMenu();
