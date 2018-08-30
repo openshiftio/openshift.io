@@ -298,13 +298,14 @@ function loadScripts(url: any) {
 
 export function addToast(cssClass: string, htmlMsg: string) {
   $("#toastNotification")
-    .fadeOut(() =>
-      $("#toastNotification")
-        .removeClass('hidden')
-        .removeClass('alert-info alert-sucess alert-warning alert-danger')
-        .addClass(cssClass)
-        .fadeIn()
-    );
+    .fadeOut({
+      complete: () =>
+        $("#toastNotification")
+          .removeClass('hidden')
+          .removeClass('alert-info alert-sucess alert-warning alert-danger')
+          .addClass(cssClass)
+          .fadeIn()
+    });
   $("#toastMessage").html(htmlMsg);
 }
 
