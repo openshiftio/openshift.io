@@ -2,6 +2,9 @@ FROM centos:7
 MAINTAINER "Konrad Kleine <kkleine@redhat.com>"
 ENV LANG=en_US.utf8
 
+# load the gpg keys
+COPY gpg /gpg
+
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
   && for key in \
@@ -14,23 +17,28 @@ RUN set -ex \
     B9AE9905FFD7803F25714661B63B535A4C206CA9 \
     C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
   ; do \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
-    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$key" ; \
+    gpg --import "/gpg/${key}.gpg" ; \
   done
 
 #ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.9.2
+ENV NODE_VERSION 8.3.0
 
-RUN yum install -y bzip2 fontconfig java-1.8.0-openjdk nmap-ncat psmisc \
-  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
+RUN yum -y update && \
+    yum install -y bzip2 fontconfig tar gcc-c++ java-1.8.0-openjdk nmap-ncat psmisc gtk3 git \
+      python-setuptools xorg-x11-xauth wget unzip which \
+      xorg-x11-server-Xvfb xfonts-100dpi libXfont GConf2 \
+      xorg-x11-fonts-75dpi xfonts-scalable xfonts-cyrillic \
+      ipa-gothic-fonts xorg-x11-utils xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
+      epel-release libappindicator && \
+      yum -y clean all
+
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
   && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
   && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
-  && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-  && yum clean all
+  && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 ENV FABRIC8_USER_NAME=fabric8
 
