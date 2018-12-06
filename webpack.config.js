@@ -199,10 +199,11 @@ module.exports = {
     /*
      * Generate FavIcons from the master png in all formats
      */
-    new FaviconsWebpackPlugin({
-      logo: './src/assets/images/favicon.png',
-      prefix: '_openshiftio/icons/'
-    }),
+    //Commenting the fav icon until we get the new logo
+    // new FaviconsWebpackPlugin({
+    //   logo: './src/assets/images/favicon.png',
+    //   prefix: '_openshiftio/icons/'
+    // }),
 
   ],
 
