@@ -335,10 +335,7 @@ function goToApp() {
   $("#hideLogIn").hide();
   $("#hideSignUp").hide();
   $("#loggedInUserName").show();
-  $("#logoutAction").show();
-  setTimeout(function () {
-    window.location.href = `/_gettingstarted`;
-  }, 500);
+  window.location.href = "/_home";
 }
 
 $(window).scroll(collapseNavbar);
@@ -372,6 +369,10 @@ $(document)
 
     // Build services for the login widget
     let auth = new Auth(analytics);
+    let params: any = auth.getUrlParams();
+    if (!('token_json' in params)) {
+      $('body').show();
+    }
     let redirect = auth.handleLogin(url);
     if (redirect) {
       goToApp();
