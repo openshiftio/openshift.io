@@ -19,9 +19,24 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
   <link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Overpass:300,400,600,700" rel="stylesheet">
   <script async id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
+  <script>
+    var queryParams = window.location.search.substr(1);
+    var result = {};
+    queryParams.split('&').forEach(function (part) {
+      var item = part.split('=');
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    if ('token_json' in result) {
+      var tokenJson = decodeURIComponent(result['token_json']);
+      var tokenObj = JSON.parse(tokenJson);
+      localStorage.setItem('auth_token', tokenObj.access_token);
+      localStorage.setItem('refresh_token', tokenObj.refresh_token);
+      window.location.href = '_home';
+    }
+  </script>
 </head>
 
-<body style="display:none">
+<body>
   <div class="grid-container">
     <div class="header">
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">

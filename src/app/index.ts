@@ -369,10 +369,7 @@ $(document)
 
     // Build services for the login widget
     let auth = new Auth(analytics);
-    let params: any = auth.getUrlParams();
-    if (!('token_json' in params)) {
-      $('body').show();
-    }
+
     let redirect = auth.handleLogin(url);
     if (redirect) {
       goToApp();
