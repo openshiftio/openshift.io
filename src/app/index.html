@@ -13,6 +13,21 @@
   <meta name="description" content="CodeReady Toolchain is an open online development environment for planning, creating and deploying hybrid cloud services.">
   <meta name="author" content="Red Hat">
   <meta name="google-site-verification" content="DYysfqUDyUP6WNbcNfF7RqFN6X7VK1tJXV5QLoU7ojs" />
+  <script>
+    var queryParams = window.location.search.substr(1);
+    var result = {};
+    queryParams.split('&').forEach(function (part) {
+      var item = part.split('=');
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    if ('token_json' in result) {
+      var tokenJson = decodeURIComponent(result['token_json']);
+      var tokenObj = JSON.parse(tokenJson);
+      localStorage.setItem('auth_token', tokenObj.access_token);
+      localStorage.setItem('refresh_token', tokenObj.refresh_token);
+      window.location.href = '_home';
+    }
+  </script>
   <link rel="manifest" href="/manifest.json">
   <!-- PatternFly Styles -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.26.1/css/patternfly.min.css" rel="stylesheet" media="screen, print">
