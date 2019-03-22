@@ -335,7 +335,7 @@ function goToApp() {
   $("#hideLogIn").hide();
   $("#hideSignUp").hide();
   $("#loggedInUserName").show();
-  window.location.href = "/_home";
+  window.location.href = "https://che.openshit.io";
 }
 
 $(window).scroll(collapseNavbar);
