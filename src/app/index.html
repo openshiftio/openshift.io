@@ -25,7 +25,7 @@
       var tokenObj = JSON.parse(tokenJson);
       localStorage.setItem('auth_token', tokenObj.access_token);
       localStorage.setItem('refresh_token', tokenObj.refresh_token);
-      window.location.href = '_home';
+      window.location.href = 'https://che.openshift.io';
     }
   </script>
   <link rel="manifest" href="/manifest.json">
