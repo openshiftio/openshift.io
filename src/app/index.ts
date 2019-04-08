@@ -355,13 +355,8 @@ $(document)
     loadConfig<OpenshiftIoConfig>('www.openshift.io', (config) => {
 
       analytics.loadAnalytics(config.analyticsWriteKey);
-      $('#registerNav').click(function () {
+      $('#registerNav, #registerContent, #registerContent2').attr('href', config.waitlistUrl).click(function () {
         analytics.trackRegister();
-        window.location.href = config.waitlistUrl;
-      });
-      $('#registerContent').click(function () {
-        analytics.trackRegister();
-        window.location.href = config.waitlistUrl;
       });
     });
 
