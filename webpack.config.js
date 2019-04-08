@@ -205,6 +205,12 @@ module.exports = {
     //   prefix: '_openshiftio/icons/'
     // }),
 
+    new CopyWebpackPlugin([
+      {
+        from: 'src/assets/static',
+        to: 'static',
+      },
+    ]),
   ],
 
   /*
