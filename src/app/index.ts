@@ -335,7 +335,7 @@ function goToApp() {
   $("#hideLogIn").hide();
   $("#hideSignUp").hide();
   $("#loggedInUserName").show();
-  window.location.href = "https://che.openshift.io";
+  window.location.href = "https://che." + location.hostname;
 }
 
 $(window).scroll(collapseNavbar);
