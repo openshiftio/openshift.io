@@ -153,29 +153,29 @@ module.exports = {
       chunks: ['app'],
       chunksSortMode: 'dependency'
     }),
-    new HtmlWebpackPlugin({
-      filename: 'features.html',
-      template: 'src/app/pages/features.html',
-      chunks: ['app'],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'get-involved.html',
-      template: 'src/app/pages/get-involved.html',
-      chunks: ['app'],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'not-authorized.html',
-      template: 'src/app/pages/not-authorized.html',
-      chunks: ['app'],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: './_openshiftio/clicktale/ctIframe.html',
-      template: 'src/app/clicktale/ctIframe.html',
-      chunks: ['clicktale']
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'features.html',
+    //   template: 'src/app/pages/features.html',
+    //   chunks: ['app'],
+    //   chunksSortMode: 'dependency'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'get-involved.html',
+    //   template: 'src/app/pages/get-involved.html',
+    //   chunks: ['app'],
+    //   chunksSortMode: 'dependency'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'not-authorized.html',
+    //   template: 'src/app/pages/not-authorized.html',
+    //   chunks: ['app'],
+    //   chunksSortMode: 'dependency'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: './_openshiftio/clicktale/ctIframe.html',
+    //   template: 'src/app/clicktale/ctIframe.html',
+    //   chunks: ['clicktale']
+    // }),
 
     new DefinePlugin({
       AUTH_API_URL: JSON.stringify(process.env.FABRIC8_WIT_API_URL),
