@@ -55,7 +55,13 @@ objects:
                 configMapKeyRef:
                   name: wwwopenshiftio
                   key: waitlist.url
-          resources: {}
+          resources:
+            requests:
+              cpu: 1m
+              memory: 10Mi
+            limits:
+              cpu: 400m
+              memory: 1Gi
           terminationMessagePath: /dev/termination-log
           readinessProbe:
             failureThreshold: 3
